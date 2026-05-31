@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ──────────────────────────────────────────────────────────── */
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+  h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; }
+  p { font-size: 1.0625rem; line-height: 1.7; color: #4b5563; }
+}
+
+/* ── Utilities ─────────────────────────────────────────────────────── */
+@layer utilities {
+  .text-red { color: #C0392B; }
+  .bg-red { background-color: #C0392B; }
+  .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+@media (min-width: 769px) {
+  .hero {
+    height: calc(100vh - 104px);
+  }
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,15,15,0.85) 0%, rgba(25,25,25,0.75) 100%);
+  z-index: 1;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+  padding: 3rem 1.5rem;
+  margin: 0 auto;
+}
+
+/* ── Mobile Custom Hero Layout ── */
+@media (max-width: 768px) {
+  .hero {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: auto;
+    justify-content: flex-start;
+    background-color: #f9fafb;
+    padding: 0.5rem 0 1rem;
+  }
+  .hero-bg {
+    position: relative;
+    width: calc(100% - 2.5rem);
+    margin: 0 auto 1rem;
+    height: 320px;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.15), 0 8px 12px -6px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+  .hero-overlay {
+    background: transparent !important;
+  }
+  .hero-inner {
+    padding: 0 1.5rem 0.5rem;
+    color: #111827;
+    max-width: 100%;
+  }
+  .hero-inner h1 {
+    color: #111827 !important;
+  }
+  .hero-inner p {
+    color: #4b5563 !important;
+  }
+  .hero-inner .bg-white\/15 {
+    background-color: rgba(192, 57, 43, 0.08) !important;
+    border-color: rgba(192, 57, 43, 0.15) !important;
+    color: #c0392b !important;
+  }
+  .hero-inner .bg-white\/10 {
+    background-color: rgba(0, 0, 0, 0.05) !important;
+    color: #374151 !important;
+  }
+  .hero-inner .border-2.border-white {
+    border-color: #c0392b !important;
+    color: #c0392b !important;
+  }
+  .hero-inner .border-2.border-white:hover {
+    background-color: #c0392b !important;
+    color: white !important;
+  }
+}
+
+/* ── Product image placeholders ────────────────────────────────────── */
+.cat-placeholder {
+  width: 100%;
+  padding-bottom: 66%;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.cat-university-lists { background: linear-gradient(135deg, #1a237e, #3949ab); }
+.cat-sop-samples { background: linear-gradient(135deg, #1b5e20, #388e3c); }
+.cat-lor-templates { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+.cat-cv-resume { background: linear-gradient(135deg, #bf360c, #e64a19); }
+.cat-application-guides { background: linear-gradient(135deg, #004d40, #00796b); }
+.cat-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem !important;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ── Process steps ─────────────────────────────────────────────────── */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0;
+  position: relative;
+}
+@media (max-width: 900px) {
+  .process-steps { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Page hero (inner pages) ────────────────────────────────────────── */
+.page-hero {
+  background: linear-gradient(135deg, #1a1a1a 0%, #C0392B 100%);
+  color: white;
+  padding: 5rem 1.5rem 3rem;
+  text-align: center;
+}
+
+/* ── Testimonial featured ───────────────────────────────────────────── */
+.testimonial-featured {
+  background: linear-gradient(135deg, #C0392B, #a93226) !important;
+  color: white !important;
+}
+.testimonial-featured p,
+.testimonial-featured strong,
+.testimonial-featured span { color: white !important; }
+.testimonial-featured .testimonial-quote { color: rgba(255,255,255,0.4) !important; }
+
+/* ── Service detail reverse layout ─────────────────────────────────── */
+.service-detail-reverse {
+  flex-direction: row-reverse;
+}
+@media (max-width: 768px) {
+  .service-detail-reverse { flex-direction: column; }
+}
+
+/* ── Mobile drawer ──────────────────────────────────────────────────── */
+.drawer-open { overflow: hidden; }
+
+/* ── Typography Scaling Overrides ── */
+.text-xs {
+  font-size: 0.875rem !important; /* 12px -> 14px */
+  line-height: 1.5 !important;
+}
+.text-sm {
+  font-size: 1.0625rem !important; /* 14px -> 17px */
+  line-height: 1.6 !important;
+}
+.text-base {
+  font-size: 1.125rem !important; /* 16px -> 18px */
+  line-height: 1.7 !important;
+}
+
+/* ── Mobile Blogs Filter Bar ── */
+@media (max-width: 1024px) {
+  /* Make the aside sidebar a horizontal filter bar at the top of the blogs page */
+  aside.lg\:w-64 {
+    width: 100% !important;
+    margin-bottom: 1.5rem;
+  }
+  
+  aside.lg\:w-64 .shadow-card {
+    padding: 1.25rem !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.05) !important;
+  }
+  
+  /* Hide the headings on mobile to save vertical space */
+  aside.lg\:w-64 h3 {
+    display: none !important;
+  }
+  
+  /* Make search box full width and compact */
+  aside.lg\:w-64 .relative.mb-6 {
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Convert vertical category list into a swipeable horizontal chip list */
+  aside.lg\:w-64 ul {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+    overflow-x: auto !important;
+    padding-bottom: 0.25rem !important;
+    margin: 0 !important;
+    list-style: none !important;
+    
+    /* Hide scrollbar for Chrome/Safari/Opera */
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  aside.lg\:w-64 ul::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  aside.lg\:w-64 ul {
+    scrollbar-width: none !important; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+  }
+  
+  aside.lg\:w-64 ul li {
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Chip styling for category buttons */
+  aside.lg\:w-64 ul li button {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 9999px !important; /* Pill style */
+    font-size: 0.875rem !important;
+    border: 1px solid #e5e7eb !important;
+  }
+  
+  /* Chip active/inactive background styling */
+  aside.lg\:w-64 ul li button.bg-primary {
+    background-color: #c0392b !important;
+    border-color: #c0392b !important;
+    color: white !important;
+  }
+  
+  aside.lg\:w-64 ul li button:not(.bg-primary) {
+    background-color: #f3f4f6 !important;
+    color: #4b5563 !important;
+  }
+}
+
+/* ── Infinite Marquee Ticker ───────────────────────────────────────── */
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause scrolling on hover for rich, interactive user experience */
+.marquee-container:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+
+
