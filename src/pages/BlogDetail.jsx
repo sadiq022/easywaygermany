@@ -160,84 +160,74 @@ export default function BlogDetail() {
         })}</script>
       </Helmet>
       {/* Blog Hero/Header Section */}
-      <header className="bg-gradient-to-b from-gray-50 via-gray-50/50 to-white pt-24 pb-12 border-b border-gray-100">
-        <div className="max-w-4xl mx-auto px-6">
+      <header className="bg-gradient-to-b from-gray-50 via-gray-50/50 to-white pt-10 pb-7 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Breadcrumb & Navigation */}
-          <div className="flex items-center justify-between mb-8">
-            <Link 
-              to="/blog" 
+          <div className="flex items-center justify-between mb-5">
+            <Link
+              to="/blog"
               className="inline-flex items-center gap-1 text-sm font-bold text-primary hover:text-red-700 transition-colors group"
             >
               <span className="material-icons-round text-base transition-transform group-hover:-translate-x-1">arrow_back</span>
               Back to all articles
             </Link>
-            <span className="text-xs font-bold bg-primary/10 text-primary border border-primary/20 px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+            <span className="text-xs font-bold bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full uppercase tracking-wider">
               {blog.category}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 tracking-tight mb-8">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-snug text-gray-900 tracking-tight mb-5">
             {blog.title}
           </h1>
 
           {/* Metadata Row */}
-          <div className="flex flex-wrap items-center gap-y-4 gap-x-8 text-sm text-gray-500 font-semibold border-y border-gray-100 py-5">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary text-base font-extrabold shadow-inner">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-500 font-medium border-t border-gray-100 pt-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-extrabold">
                 EG
               </div>
               <div>
-                <p className="text-gray-900 font-bold leading-none mb-1">EasyWay Germany</p>
-                <p className="text-xs text-gray-400 font-semibold">Official Publication</p>
+                <p className="text-gray-900 font-bold text-sm leading-none">EasyWay Germany</p>
+                <p className="text-xs text-gray-400">Official Publication</p>
               </div>
             </div>
-            
-            <div className="flex items-center gap-2">
-              <span className="material-icons-round text-primary opacity-80 text-lg">calendar_today</span>
+            <div className="flex items-center gap-1.5">
+              <span className="material-icons-round text-primary text-base">calendar_today</span>
               <span>{formatDate(blog.date)}</span>
             </div>
-            
-            <div className="flex items-center gap-2">
-              <span className="material-icons-round text-primary opacity-80 text-lg">schedule</span>
-              <span>{blog.read_time}</span>
-            </div>
+            {blog.read_time && (
+              <div className="flex items-center gap-1.5">
+                <span className="material-icons-round text-primary text-base">schedule</span>
+                <span>{blog.read_time}</span>
+              </div>
+            )}
           </div>
         </div>
       </header>
 
       {/* Blog Article Layout */}
-      <main className="py-12 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <main className="py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Main Cover Image */}
           {blog.image && (
-            <div className="rounded-[2rem] overflow-hidden shadow-2xl mb-12 max-h-[500px] bg-gray-50 border-4 border-white flex items-center justify-center transition-all hover:shadow-3xl duration-300">
+            <div className="rounded-2xl overflow-hidden shadow-lg mb-8 bg-gray-50">
               <img
                 src={blog.image}
                 alt={blog.image_alt || blog.title}
-                className="w-full h-full object-cover select-none"
+                className="w-full object-cover max-h-[420px] select-none"
               />
             </div>
           )}
 
-          {/* Render Rich HTML Text Content */}
+          {/* Rich Text Content */}
           <div
-            className="prose prose-lg max-w-none text-gray-700 leading-relaxed font-sans mb-14
-              prose-headings:font-serif prose-headings:text-gray-900 prose-headings:font-extrabold
-              prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:pb-3 prose-h2:border-gray-100
-              prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-              prose-p:mb-6 prose-p:text-gray-600 prose-p:leading-8
-              prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6 prose-ul:space-y-2
-              prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-6 prose-ol:space-y-2
-              prose-li:text-gray-600 prose-li:leading-7
-              prose-a:text-primary prose-a:font-bold hover:prose-a:text-red-700 hover:prose-a:underline transition-colors
-              prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-700 prose-blockquote:bg-red-50/50 prose-blockquote:py-5 prose-blockquote:pr-5 prose-blockquote:rounded-r-2xl prose-blockquote:my-8 prose-blockquote:font-medium
-              prose-img:rounded-2xl prose-img:shadow-lg prose-img:my-8"
+            className="blog-content mb-6"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
 
           {/* Share/Footer Strip */}
-          <div className="border-t border-b border-gray-100 py-6 flex flex-wrap justify-between items-center gap-4 my-10">
+          <div className="border-t border-b border-gray-100 py-5 flex flex-wrap justify-between items-center gap-4 mt-8 mb-6">
             <Link 
               to="/blog" 
               className="flex items-center gap-2 text-primary font-extrabold hover:text-red-700 transition-colors text-base group"
@@ -258,8 +248,8 @@ export default function BlogDetail() {
             </div>
           </div>
 
-          {/* Gorgeous Newsletter Subscription Card */}
-          <section className="relative bg-gradient-to-br from-gray-950 via-gray-900 to-red-950 text-white rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden my-16 border border-gray-800">
+          {/* Newsletter Subscription Card */}
+          <section className="relative bg-gradient-to-br from-gray-950 via-gray-900 to-red-950 text-white rounded-2xl p-7 md:p-10 shadow-xl overflow-hidden my-8 border border-gray-800">
             {/* Soft backdrop glow circles */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -mr-20 -mt-20 z-0 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-900/10 rounded-full blur-3xl -ml-20 -mb-20 z-0 pointer-events-none" />
@@ -310,8 +300,8 @@ export default function BlogDetail() {
 
           {/* Related Articles */}
           {related.length > 0 && (
-            <section className="mt-16 pt-8 border-t border-gray-100">
-              <h3 className="font-serif font-extrabold text-gray-900 text-2xl sm:text-3xl mb-8">Related Articles</h3>
+            <section className="mt-8 pt-6 border-t border-gray-100">
+              <h3 className="font-bold text-gray-900 text-xl mb-5">Related Articles</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {related.map((b) => (
                   <Link

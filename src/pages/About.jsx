@@ -80,7 +80,7 @@ const TEAM = [
     role: 'Co-Founder',
     location: 'Dresden, Germany',
     img: '/images/sadiq.webp',
-    bio: ['Based in Dresden, Germany', 'Handles student onboarding & document preparation', 'Your first point of contact when you reach out'],
+    bio: ['Moved to Dresden, Germany in October 2023', 'Handles student onboarding & document preparation', 'Your first point of contact when you reach out'],
   },
 ]
 
