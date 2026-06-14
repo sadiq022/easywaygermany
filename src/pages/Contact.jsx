@@ -58,7 +58,7 @@ export default function Contact() {
 
           {/* Form */}
           <div className="bg-white rounded-2xl shadow-card p-8">
-            <h3 className="font-serif font-bold text-gray-900 text-xl mb-6">Book Free Consultation</h3>
+            <h3 className="font-serif font-bold text-gray-900 text-xl mb-6">Book Consultation</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>

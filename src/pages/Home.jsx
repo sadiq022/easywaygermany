@@ -1,7 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase, isSupabaseConfigured } from '../supabase'
 import ProductCard from '../components/ProductCard'
+
+/*
+ * SUCCESS STORIES — add real student photos at:
+ *   public/images/success-stories/<filename>.jpg
+ * Until photos are added, each card shows an initials avatar.
+ * Fields: name, photo (path), course, university, intake
+ */
+function SuccessCard({ name, photo, course, university }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase()
+  return (
+    <div className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 p-6 flex flex-col items-center text-center group">
+      <div className="relative mb-4">
+        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/15 group-hover:border-primary/40 transition-colors">
+          {imgFailed || !photo ? (
+            <div className="w-full h-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
+              <span className="text-white font-bold text-3xl">{initials}</span>
+            </div>
+          ) : (
+            <img
+              src={photo}
+              alt={name}
+              className="w-full h-full object-cover"
+              onError={() => setImgFailed(true)}
+            />
+          )}
+        </div>
+        <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-500 rounded-full flex items-center justify-center shadow-sm">
+          <span className="material-icons-round text-white text-sm">check</span>
+        </div>
+      </div>
+      <h4 className="font-bold text-gray-900 text-base mb-1">{name}</h4>
+      <p className="text-primary text-sm font-semibold mb-1">{course}</p>
+      <p className="text-gray-500 text-xs">{university}</p>
+    </div>
+  )
+}
 
 const BENEFITS = [
   { icon: 'school', title: 'World-Class Education', desc: 'Study at globally ranked universities' },
@@ -13,16 +50,16 @@ const BENEFITS = [
 ]
 
 const SERVICES = [
-  { img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80', title: 'Career Counseling', desc: 'We help you choose the right course and university based on your academic background and career goals.' },
-  { img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80', title: 'SOP Writing', desc: 'Expert SOP writers craft powerful, personalized statements that highlight your unique strengths.' },
-  { img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80', title: 'Visa Assistance', desc: 'Complete visa guidance including documentation, blocked account, and interview preparation.' },
-  { img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80', title: 'University Shortlisting', desc: 'Personalized shortlist based on your academic background, GPA, IELTS score, and career goals.' },
-  { img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80', title: 'Application Support', desc: 'End-to-end support in application form filling and document preparation for every university.' },
-  { img: 'https://images.unsplash.com/photo-1530099486328-e021101a494a?w=600&q=80', title: 'Pre-Departure Support', desc: 'Accommodation, insurance, travel and forex assistance – we\'re with you till you fly.' },
+  { img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80', title: 'University Shortlisting', desc: 'Personalized shortlist of 8–12 universities based on your GPA, IELTS score, budget, and field of study.', link: '/services/university-shortlisting' },
+  { img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80', title: 'SOP Writing', desc: 'Expert SOP writers craft powerful, personalized statements that highlight your unique strengths.', link: '/services/sop-writing' },
+  { img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80', title: 'LOR Writing', desc: 'Professional Letters of Recommendation written on behalf of your professors, supervisors, or managers.', link: '/services/lor-writing' },
+  { img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80', title: 'CV Preparation', desc: 'European-standard CV tailored for German universities — ATS-optimized and professionally formatted.', link: '/services/cv-preparation' },
+  { img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80', title: 'Visa SOP', desc: 'A Statement of Purpose for the German embassy — covering your study plan, finances, and return intent.', link: '/services/visa-sop' },
+  { img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80', title: 'Visa Cover Letter', desc: 'Mandatory for the student visa — crafted by our visa experts to strengthen your embassy application.', link: '/services/visa-cover-letter' },
 ]
 
 const PROCESS = [
-  { n: '1', title: 'Free Consultation', desc: 'We understand your profile and goals' },
+  { n: '1', title: 'Book Consultation', desc: 'We understand your profile and goals' },
   { n: '2', title: 'Profile Evaluation', desc: 'We evaluate and suggest the best options' },
   { n: '3', title: 'University Shortlist', desc: 'We shortlist the best universities for you' },
   { n: '4', title: 'Application', desc: 'We assist in application and documentation' },
@@ -47,12 +84,106 @@ const TESTIMONIALS = [
 
 
 
+const SUCCESS_STORIES = [
+  { name: 'Student Name',  photo: '/images/success-stories/student1.jpg', course: 'MSc Computer Science',        university: 'TU Munich',              intake: 'Winter 2024' },
+  { name: 'Student Name',  photo: '/images/success-stories/student2.jpg', course: 'MSc Mechanical Engineering',  university: 'RWTH Aachen',            intake: 'Winter 2024' },
+  { name: 'Student Name',  photo: '/images/success-stories/student3.jpg', course: 'MSc Data Science',            university: 'TU Berlin',              intake: 'Summer 2024' },
+  { name: 'Student Name',  photo: '/images/success-stories/student4.jpg', course: 'MSc Electrical Engineering',  university: 'KIT Karlsruhe',          intake: 'Winter 2024' },
+  { name: 'Student Name',  photo: '/images/success-stories/student5.jpg', course: 'MSc Biotechnology',           university: 'Heidelberg University',  intake: 'Winter 2023' },
+  { name: 'Student Name',  photo: '/images/success-stories/student6.jpg', course: 'MBA',                         university: 'University of Mannheim', intake: 'Summer 2024' },
+  { name: 'Student Name',  photo: '/images/success-stories/student7.jpg', course: 'MSc Civil Engineering',       university: 'TU Darmstadt',           intake: 'Winter 2024' },
+  { name: 'Student Name',  photo: '/images/success-stories/student8.jpg', course: 'MSc Finance',                 university: 'Frankfurt University',   intake: 'Winter 2023' },
+]
+
 const STATS = [
   { num: '1000+', label: 'Students Placed' },
   { num: '95%+', label: 'Visa Success Rate' },
   { num: '200+', label: 'Partner Universities' },
   { num: '10+', label: 'Years of Experience' },
 ]
+
+function TestimonialsCarousel() {
+  const [current, setCurrent] = useState(0)
+  const touchStartX = useRef(null)
+  const total = TESTIMONIALS.length
+
+  function prev() { setCurrent(i => (i - 1 + total) % total) }
+  function next() { setCurrent(i => (i + 1) % total) }
+
+  function onTouchStart(e) { touchStartX.current = e.touches[0].clientX }
+  function onTouchEnd(e) {
+    if (touchStartX.current === null) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (diff > 40) next()
+    else if (diff < -40) prev()
+    touchStartX.current = null
+  }
+
+  const { initials, name, program, text, featured: feat } = TESTIMONIALS[current]
+
+  return (
+    <section className="py-20 bg-gray-50">
+      <div className="max-w-3xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Student Success Stories</div>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Real Students. Real Stories.</h2>
+        </div>
+
+        {/* Card + Arrows */}
+        <div className="relative flex items-center gap-4">
+          {/* Left arrow — desktop only */}
+          <button
+            onClick={prev}
+            className="hidden md:flex w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
+            aria-label="Previous"
+          >
+            <span className="material-icons-round">chevron_left</span>
+          </button>
+
+          {/* Card */}
+          <div
+            className={`flex-1 rounded-2xl p-8 shadow-card select-none ${feat ? 'testimonial-featured' : 'bg-white'}`}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
+          >
+            <div className={`font-serif text-6xl leading-none mb-4 ${feat ? 'text-white/30' : 'text-gray-200'}`}>"</div>
+            <p className={`text-sm leading-relaxed mb-6 ${feat ? 'text-white' : 'text-gray-600'}`}>{text}</p>
+            <div className="flex items-center gap-3">
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${feat ? 'bg-white/20 text-white' : 'bg-primary text-white'}`}>
+                {initials}
+              </div>
+              <div>
+                <div className={`font-semibold text-sm ${feat ? 'text-white' : 'text-gray-900'}`}>{name}</div>
+                <div className={`text-xs ${feat ? 'text-white/70' : 'text-gray-500'}`}>{program}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right arrow — desktop only */}
+          <button
+            onClick={next}
+            className="hidden md:flex w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
+            aria-label="Next"
+          >
+            <span className="material-icons-round">chevron_right</span>
+          </button>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-6">
+          {TESTIMONIALS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2.5 bg-primary' : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'}`}
+              aria-label={`Go to review ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 export default function Home() {
   const [featured, setFeatured] = useState([])
@@ -138,7 +269,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link to="/contact" className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-primary-dark transition-colors text-base">
                 <span className="material-icons-round text-base">calendar_today</span>
-                Book Free Consultation
+                Book Consultation
               </Link>
               <Link to="/products" className="flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-xl font-bold hover:bg-white hover:text-gray-900 transition-colors text-base">
                 <span className="material-icons-round text-base">store</span>
@@ -198,7 +329,7 @@ export default function Home() {
             <p className="text-gray-500">End-to-end support for your Study in Germany journey</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map(({ img, title, desc }) => (
+            {SERVICES.map(({ img, title, desc, link }) => (
               <div key={title} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-shadow group">
                 <div className="h-44 overflow-hidden">
                   <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
@@ -206,7 +337,7 @@ export default function Home() {
                 <div className="p-5">
                   <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-3">{desc}</p>
-                  <Link to="/services" className="text-primary text-sm font-semibold transition-colors">
+                  <Link to={link} className="inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
                     Learn More
                   </Link>
                 </div>
@@ -266,74 +397,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Why Choose Us ── */}
-      <section className="py-20 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
-          <div>
-            <div className="inline-block text-xs font-bold text-yellow-400 uppercase tracking-widest bg-yellow-400/10 px-3 py-1 rounded-full mb-4">Why Choose EasyWay Germany?</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">
-              We Don't Just Make Promises,<br />
-              <span className="text-yellow-400">We Deliver Results!</span>
-            </h2>
-            <ul className="space-y-3 mb-8">
-              {[
-                'Expert counselors with German education experience',
-                'Transparent and honest guidance',
-                'Personalized support for every student',
-                'High visa success rate',
-                'Support even after you reach Germany',
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3 text-gray-300">
-                  <span className="material-icons-round text-yellow-400 text-base mt-0.5">check_circle</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Link to="/about" className="inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-xl font-bold hover:bg-primary-dark transition-colors">
-              About Us
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            {STATS.map(({ num, label }) => (
-              <div key={label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-                <div className="font-serif text-4xl font-black text-yellow-400 mb-1">{num}</div>
-                <div className="text-sm text-gray-400">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── Testimonials ── */}
-      <section className="py-20 bg-gray-50">
+      <TestimonialsCarousel />
+
+      {/* ── Success Stories ── */}
+      <section className="pt-20 pb-10 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Student Success Stories</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Real Students. Real Stories.</h2>
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Success Stories</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Students Who Made It to Germany
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              Real students, real admissions. Here are some of the students we helped get into top German universities.
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {TESTIMONIALS.map(({ initials, name, program, text, featured: feat }) => (
-              <div key={name}
-                className={`rounded-2xl p-7 shadow-card ${feat ? 'testimonial-featured' : 'bg-white'}`}>
-                <div className={`font-serif text-6xl leading-none mb-4 ${feat ? 'text-white/30' : 'text-gray-200'}`}>"</div>
-                <p className={`text-sm leading-relaxed mb-5 ${feat ? 'text-white' : 'text-gray-600'}`}>{text}</p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${feat ? 'bg-white/20 text-white' : 'bg-primary text-white'}`}>
-                    {initials}
-                  </div>
-                  <div>
-                    <div className={`font-semibold text-sm ${feat ? 'text-white' : 'text-gray-900'}`}>{name}</div>
-                    <div className={`text-xs ${feat ? 'text-white/70' : 'text-gray-500'}`}>{program}</div>
-                  </div>
-                </div>
-              </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mb-10">
+            {SUCCESS_STORIES.map((s, i) => (
+              <SuccessCard key={i} {...s} />
             ))}
+          </div>
+
+          <div className="text-center space-y-3">
+            <div className="inline-flex items-center gap-2 text-gray-400 text-sm bg-gray-50 border border-gray-100 px-5 py-2.5 rounded-full">
+              <span className="material-icons-round text-primary text-base">add_circle</span>
+              And 1000+ more students successfully placed
+            </div>
+            <p className="text-gray-400 text-sm">
+              You could be next — both on this list and in Germany.
+            </p>
           </div>
         </div>
       </section>
 
       {/* ── Blog Preview ── */}
-      <section className="py-20 bg-white">
+      <section className="pt-10 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Latest from Our Blog</div>

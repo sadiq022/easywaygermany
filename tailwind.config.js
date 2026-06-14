@@ -15,7 +15,7 @@ export default {
         success: '#27ae60',
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"DM Sans"', 'system-ui', 'sans-serif'],
         sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       boxShadow: {

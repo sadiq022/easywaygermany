@@ -132,7 +132,7 @@ export default function ProductDetail() {
 
   async function handleSubmitReview(e) {
     e.preventDefault()
-    if (!user || !purchased) return
+    if (!user) return
     setSubmittingReview(true)
     const payload = { product_id: product.id, user_id: user.id, rating: reviewRating, comment: reviewComment.trim() || null }
     const { error } = myReview
@@ -352,13 +352,14 @@ export default function ProductDetail() {
               )}
             </div>
 
-            {/* Review form for buyers */}
-            {purchased && (
+            {/* Review form */}
+            {user ? (
               <div className="bg-gray-50 rounded-2xl p-6 mb-8">
-                <h3 className="font-semibold text-gray-900 mb-4">{myReview ? 'Update Your Review' : 'Leave a Review'}</h3>
+                <h3 className="font-semibold text-gray-900 mb-1">{myReview ? 'Update Your Review' : 'Write a Review'}</h3>
+                <p className="text-sm text-gray-400 mb-4">Share your honest experience to help other students.</p>
                 <form onSubmit={handleSubmitReview} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Your Rating</label>
                     <div className="flex gap-1">
                       {[1,2,3,4,5].map(star => (
                         <button key={star} type="button"
@@ -366,7 +367,7 @@ export default function ProductDetail() {
                           onMouseLeave={() => setHoverRating(0)}
                           onClick={() => setReviewRating(star)}
                           className="focus:outline-none">
-                          <span className={`material-icons-round text-2xl transition-colors ${star <= (hoverRating || reviewRating) ? 'text-yellow-400' : 'text-gray-300'}`}>star</span>
+                          <span className={`material-icons-round text-3xl transition-colors ${star <= (hoverRating || reviewRating) ? 'text-yellow-400' : 'text-gray-200'}`}>star</span>
                         </button>
                       ))}
                     </div>
@@ -385,6 +386,14 @@ export default function ProductDetail() {
                     {myReview ? 'Update Review' : 'Submit Review'}
                   </button>
                 </form>
+              </div>
+            ) : (
+              <div className="flex items-center gap-3 bg-gray-50 border border-gray-100 rounded-2xl px-6 py-5 mb-8">
+                <span className="material-icons-round text-primary text-2xl">rate_review</span>
+                <p className="text-sm text-gray-600">
+                  <Link to={`/login?next=/products/${slug}`} className="text-primary font-semibold hover:underline">Log in</Link>
+                  {' '}to write a review for this product.
+                </p>
               </div>
             )}
 
@@ -420,7 +429,10 @@ export default function ProductDetail() {
           {/* Related */}
           {related.length > 0 && (
             <div>
-              <h2 className="font-serif text-2xl font-bold text-gray-900 mb-6">You Might Also Like</h2>
+              <div className="text-center mb-10">
+                <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">More Products</div>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">You Might Also Like</h2>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {related.map((p) => <ProductCard key={p.id} product={p} />)}
               </div>

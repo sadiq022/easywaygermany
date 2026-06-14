@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminRoute from './components/AdminRoute'
 
@@ -10,6 +12,12 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Services from './pages/Services'
+import SOPWriting from './pages/services/SOPWriting'
+import UniversityShortlisting from './pages/services/UniversityShortlisting'
+import LORWriting from './pages/services/LORWriting'
+import CVPreparation from './pages/services/CVPreparation'
+import VisaSOP from './pages/services/VisaSOP'
+import VisaCoverLetter from './pages/services/VisaCoverLetter'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
@@ -30,11 +38,14 @@ import AdminCoupons from './pages/admin/AdminCoupons'
 import AdminReviews from './pages/admin/AdminReviews'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
+import ChatBot from './components/ChatBot'
 
 export default function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <HelmetProvider>
+      <AuthProvider>
+        <BrowserRouter>
+        <ScrollToTop />
         <Toaster
           position="top-right"
           toastOptions={{
@@ -49,6 +60,12 @@ export default function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:slug" element={<ProductDetail />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/university-shortlisting" element={<UniversityShortlisting />} />
+            <Route path="/services/sop-writing" element={<SOPWriting />} />
+            <Route path="/services/lor-writing" element={<LORWriting />} />
+            <Route path="/services/cv-preparation" element={<CVPreparation />} />
+            <Route path="/services/visa-sop" element={<VisaSOP />} />
+            <Route path="/services/visa-cover-letter" element={<VisaCoverLetter />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blogs />} />
@@ -74,7 +91,9 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
-      </BrowserRouter>
-    </AuthProvider>
+        <ChatBot />
+        </BrowserRouter>
+      </AuthProvider>
+    </HelmetProvider>
   )
 }

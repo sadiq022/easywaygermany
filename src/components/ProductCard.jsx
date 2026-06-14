@@ -28,7 +28,7 @@ export default function ProductCard({ product }) {
 
   return (
     <Link to={`/products/${product.slug}`}
-      className="group block bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden no-underline">
+      className="group flex flex-col h-full bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden no-underline">
       {/* Image area */}
       <div className="relative aspect-[16/10] overflow-hidden bg-gray-50">
         {product.preview_image ? (
@@ -53,7 +53,7 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Body */}
-      <div className="p-5">
+      <div className="p-5 flex flex-col flex-1">
         <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">{catName}</div>
         <h3 className="font-serif text-gray-900 font-semibold text-base leading-snug mb-2 line-clamp-2">{product.title}</h3>
         <p className="text-gray-500 text-sm leading-relaxed mb-3 line-clamp-2">{product.short_description}</p>
@@ -71,14 +71,14 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto pt-2">
           <div className="flex items-baseline gap-2">
             <span className="text-xl font-bold text-gray-900">₹{Number(product.price).toFixed(2)}</span>
             {product.original_price && (
               <span className="text-sm text-gray-400 line-through">₹{Number(product.original_price).toFixed(2)}</span>
             )}
           </div>
-          <span className="text-primary text-sm font-semibold transition-colors">
+          <span className="bg-primary text-white text-sm font-semibold px-8 py-2 rounded-lg transition-colors group-hover:bg-primary-dark">
             Buy Now
           </span>
         </div>

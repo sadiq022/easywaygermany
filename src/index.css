@@ -7,7 +7,7 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', system-ui, sans-serif; }
-  h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; }
+  h1, h2, h3, h4 { font-family: 'DM Sans', system-ui, sans-serif; font-weight: bold; }
   p { font-size: 1.0625rem; line-height: 1.7; color: #4b5563; }
 }
 
@@ -15,7 +15,7 @@
 @layer utilities {
   .text-red { color: #C0392B; }
   .bg-red { background-color: #C0392B; }
-  .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+  .font-serif { font-family: 'DM Sans', system-ui, sans-serif; }
 }
 
 /* ── Hero ──────────────────────────────────────────────────────────── */
