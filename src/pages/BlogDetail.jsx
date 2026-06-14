@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { Helmet } from 'react-helmet-async'
 import { supabase, isSupabaseConfigured } from '../supabase'
 
 export default function BlogDetail() {
@@ -119,8 +120,45 @@ export default function BlogDetail() {
 
   if (!blog) return null
 
+  const pageUrl = `https://easywaygermany.com/blog/${blog.slug}`
+  const metaTitle = blog.seo_title || blog.title
+  const metaDescription = blog.seo_description || blog.excerpt || blog.title
+  const metaKeywords = blog.seo_keywords || `study in germany, ${blog.category || ''}, germany university, indian students germany`
+  const ogImage = blog.og_image || blog.image || 'https://easywaygermany.com/og-image.jpg'
+
   return (
     <div className="bg-white min-h-screen">
+      <Helmet>
+        <title>{metaTitle} | EasyWay Germany</title>
+        <meta name="description" content={metaDescription} />
+        <meta name="keywords" content={metaKeywords} />
+        {blog.focus_keyword && <meta name="news_keywords" content={blog.focus_keyword} />}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="article:published_time" content={blog.date || blog.created_at} />
+        <meta property="article:section" content={blog.category || 'Study in Germany'} />
+        {blog.focus_keyword && <meta property="article:tag" content={blog.focus_keyword} />}
+        <link rel="canonical" href={pageUrl} />
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: metaTitle,
+          description: metaDescription,
+          image: ogImage,
+          keywords: metaKeywords,
+          datePublished: blog.date || blog.created_at,
+          author: { '@type': 'Organization', name: 'EasyWay Germany' },
+          publisher: {
+            '@type': 'Organization',
+            name: 'EasyWay Germany',
+            logo: { '@type': 'ImageObject', url: 'https://easywaygermany.com/favicon.svg' }
+          },
+          mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl }
+        })}</script>
+      </Helmet>
       {/* Blog Hero/Header Section */}
       <header className="bg-gradient-to-b from-gray-50 via-gray-50/50 to-white pt-24 pb-12 border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-6">
@@ -176,7 +214,7 @@ export default function BlogDetail() {
             <div className="rounded-[2rem] overflow-hidden shadow-2xl mb-12 max-h-[500px] bg-gray-50 border-4 border-white flex items-center justify-center transition-all hover:shadow-3xl duration-300">
               <img
                 src={blog.image}
-                alt={blog.title}
+                alt={blog.image_alt || blog.title}
                 className="w-full h-full object-cover select-none"
               />
             </div>

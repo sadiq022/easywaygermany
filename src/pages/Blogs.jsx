@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { Helmet } from 'react-helmet-async'
 import { supabase, isSupabaseConfigured } from '../supabase'
 
 const PER_PAGE = 9
@@ -97,6 +98,16 @@ export default function Blogs() {
 
   return (
     <>
+      <Helmet>
+        <title>Study in Germany Blog – Tips, Guides & Advice | EasyWay Germany</title>
+        <meta name="description" content="Read expert guides on studying in Germany — SOP tips, university selection, visa process, blocked account, and life in Germany for Indian students." />
+        <meta name="keywords" content="study in germany blog, germany university tips, SOP writing tips, german student visa guide, masters in germany indian students, life in germany for students" />
+        <meta property="og:title" content="Study in Germany Blog | EasyWay Germany" />
+        <meta property="og:description" content="Expert articles and guides for Indian students planning to study in Germany. Visa, SOP, universities and more." />
+        <meta property="og:url" content="https://easywaygermany.com/blog" />
+        <link rel="canonical" href="https://easywaygermany.com/blog" />
+      </Helmet>
+
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Knowledge Base</div>

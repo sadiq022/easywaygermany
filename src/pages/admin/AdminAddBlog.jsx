@@ -31,6 +31,15 @@ export default function AdminAddBlog() {
   const [excerpt, setExcerpt] = useState('')
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
 
+  // SEO states
+  const [seoTitle, setSeoTitle] = useState('')
+  const [seoDescription, setSeoDescription] = useState('')
+  const [seoKeywords, setSeoKeywords] = useState('')
+  const [focusKeyword, setFocusKeyword] = useState('')
+  const [imageAlt, setImageAlt] = useState('')
+  const [ogImage, setOgImage] = useState('')
+  const [isPublished, setIsPublished] = useState(true)
+
   // Cover image states
   const fileInputRef = useRef(null)
   const [imageFile, setImageFile] = useState(null)
@@ -125,6 +134,13 @@ export default function AdminAddBlog() {
         setExcerpt(blog.excerpt || '')
         setDate(blog.date || new Date().toISOString().split('T')[0])
         setInitialContent(blog.content || '')
+        setSeoTitle(blog.seo_title || '')
+        setSeoDescription(blog.seo_description || '')
+        setSeoKeywords(blog.seo_keywords || '')
+        setFocusKeyword(blog.focus_keyword || '')
+        setImageAlt(blog.image_alt || '')
+        setOgImage(blog.og_image || '')
+        setIsPublished(blog.is_published !== false)
         setLoadingData(false)
       }
     }
@@ -201,6 +217,13 @@ export default function AdminAddBlog() {
       excerpt: excerpt.trim() || null,
       content: editorContent,
       date,
+      seo_title: seoTitle.trim() || null,
+      seo_description: seoDescription.trim() || null,
+      seo_keywords: seoKeywords.trim() || null,
+      focus_keyword: focusKeyword.trim() || null,
+      image_alt: imageAlt.trim() || null,
+      og_image: ogImage.trim() || null,
+      is_published: isPublished,
     }
 
     let error
@@ -402,6 +425,134 @@ export default function AdminAddBlog() {
               <label className="block text-sm font-semibold text-gray-700">Rich Text Blog Content *</label>
               <div className="border border-gray-200 rounded-xl overflow-hidden min-h-[300px] flex flex-col">
                 <div id="editor-container" className="flex-1 min-h-[260px] text-sm" />
+              </div>
+            </div>
+
+            {/* SEO Section */}
+            <div className="bg-white rounded-2xl shadow-card p-6 space-y-5">
+              <div className="flex items-center gap-3 pb-3 border-b border-gray-100">
+                <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <span className="material-icons-round text-primary text-base">travel_explore</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 text-base">SEO Settings</h3>
+                  <p className="text-xs text-gray-400">Control how this post appears on Google and social media</p>
+                </div>
+              </div>
+
+              {/* Focus Keyword */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Focus Keyword
+                  <span className="ml-2 text-xs font-normal text-gray-400">The main keyword this post targets</span>
+                </label>
+                <input
+                  type="text" value={focusKeyword}
+                  onChange={e => setFocusKeyword(e.target.value)}
+                  placeholder="e.g. SOP writing for Germany"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+
+              {/* SEO Title */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1 flex items-center justify-between">
+                  <span>SEO Title <span className="text-xs font-normal text-gray-400">Appears as the blue link in Google (max 60 chars)</span></span>
+                  <span className={`text-xs font-mono ${seoTitle.length > 60 ? 'text-red-500' : 'text-gray-400'}`}>{seoTitle.length}/60</span>
+                </label>
+                <input
+                  type="text" value={seoTitle}
+                  onChange={e => setSeoTitle(e.target.value)}
+                  placeholder={title || 'Leave blank to use the blog title'}
+                  className={`w-full px-4 py-3 border rounded-xl text-sm focus:outline-none transition-colors ${seoTitle.length > 60 ? 'border-red-300 focus:border-red-400' : 'border-gray-200 focus:border-primary'}`}
+                />
+                {seoTitle.length > 60 && <p className="text-xs text-red-500 mt-1">Too long — Google will truncate after 60 characters</p>}
+              </div>
+
+              {/* SEO Description */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1 flex items-center justify-between">
+                  <span>SEO Description <span className="text-xs font-normal text-gray-400">The grey text shown below the link (max 160 chars)</span></span>
+                  <span className={`text-xs font-mono ${seoDescription.length > 160 ? 'text-red-500' : 'text-gray-400'}`}>{seoDescription.length}/160</span>
+                </label>
+                <textarea
+                  rows={3} value={seoDescription}
+                  onChange={e => setSeoDescription(e.target.value)}
+                  placeholder={excerpt || 'Leave blank to use the excerpt'}
+                  className={`w-full px-4 py-3 border rounded-xl text-sm focus:outline-none transition-colors resize-none ${seoDescription.length > 160 ? 'border-red-300 focus:border-red-400' : 'border-gray-200 focus:border-primary'}`}
+                />
+                {seoDescription.length > 160 && <p className="text-xs text-red-500 mt-1">Too long — Google will truncate after 160 characters</p>}
+              </div>
+
+              {/* SEO Keywords */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  SEO Keywords
+                  <span className="ml-2 text-xs font-normal text-gray-400">Comma-separated — e.g. study in germany, SOP writing, german university</span>
+                </label>
+                <input
+                  type="text" value={seoKeywords}
+                  onChange={e => setSeoKeywords(e.target.value)}
+                  placeholder="study in germany, SOP writing, german university admission"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+
+              {/* Image Alt Text */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Cover Image Alt Text
+                  <span className="ml-2 text-xs font-normal text-gray-400">Describes the image for Google Image Search & screen readers</span>
+                </label>
+                <input
+                  type="text" value={imageAlt}
+                  onChange={e => setImageAlt(e.target.value)}
+                  placeholder="e.g. Student writing SOP for German university application"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+
+              {/* OG / Social Image */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-1">
+                  Social Share Image URL
+                  <span className="ml-2 text-xs font-normal text-gray-400">Shown when shared on WhatsApp, LinkedIn, Twitter (leave blank to use cover image)</span>
+                </label>
+                <input
+                  type="url" value={ogImage}
+                  onChange={e => setOgImage(e.target.value)}
+                  placeholder="https://... (optional, defaults to cover image)"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
+                />
+              </div>
+
+              {/* Google Preview */}
+              <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">Google Preview</p>
+                <div className="space-y-0.5">
+                  <p className="text-xs text-gray-400">easywaygermany.com › blog › {slug || 'your-post-slug'}</p>
+                  <p className="text-blue-700 text-base font-medium leading-snug">
+                    {seoTitle || title || 'Your Blog Post Title'}
+                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {seoDescription || excerpt || 'Your meta description will appear here. Write something that makes people want to click.'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Published toggle */}
+              <div className="flex items-center justify-between pt-2 border-t border-gray-100">
+                <div>
+                  <p className="text-sm font-semibold text-gray-700">Published</p>
+                  <p className="text-xs text-gray-400">Unpublished posts won't appear on the site or in the sitemap</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsPublished(p => !p)}
+                  className={`relative w-12 h-6 rounded-full transition-colors ${isPublished ? 'bg-primary' : 'bg-gray-300'}`}
+                >
+                  <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-all ${isPublished ? 'left-7' : 'left-1'}`} />
+                </button>
               </div>
             </div>
 
