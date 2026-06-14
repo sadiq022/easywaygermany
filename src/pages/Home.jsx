@@ -102,6 +102,24 @@ const STATS = [
   { num: '10+', label: 'Years of Experience' },
 ]
 
+function TestimonialCard({ initials, name, program, text, featured: feat }) {
+  return (
+    <div className={`rounded-2xl p-7 shadow-card h-full ${feat ? 'testimonial-featured' : 'bg-white'}`}>
+      <div className={`font-serif text-6xl leading-none mb-4 ${feat ? 'text-white/30' : 'text-gray-200'}`}>"</div>
+      <p className={`text-sm leading-relaxed mb-6 ${feat ? 'text-white' : 'text-gray-600'}`}>{text}</p>
+      <div className="flex items-center gap-3">
+        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${feat ? 'bg-white/20 text-white' : 'bg-primary text-white'}`}>
+          {initials}
+        </div>
+        <div>
+          <div className={`font-semibold text-sm ${feat ? 'text-white' : 'text-gray-900'}`}>{name}</div>
+          <div className={`text-xs ${feat ? 'text-white/70' : 'text-gray-500'}`}>{program}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function TestimonialsCarousel() {
   const [current, setCurrent] = useState(0)
   const touchStartX = useRef(null)
@@ -119,17 +137,16 @@ function TestimonialsCarousel() {
     touchStartX.current = null
   }
 
-  const { initials, name, program, text, featured: feat } = TESTIMONIALS[current]
+  const desktopCards = [0, 1, 2].map(i => TESTIMONIALS[(current + i) % total])
 
   return (
     <section className="py-20 bg-gray-50">
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Student Success Stories</div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Real Students. Real Stories.</h2>
         </div>
 
-        {/* Card + Arrows */}
         <div className="relative flex items-center gap-4">
           {/* Left arrow — desktop only */}
           <button
@@ -140,23 +157,18 @@ function TestimonialsCarousel() {
             <span className="material-icons-round">chevron_left</span>
           </button>
 
-          {/* Card */}
+          {/* Desktop: 3 cards */}
+          <div className="hidden md:grid grid-cols-3 gap-6 flex-1">
+            {desktopCards.map((t, i) => <TestimonialCard key={i} {...t} />)}
+          </div>
+
+          {/* Mobile: 1 card, swipeable */}
           <div
-            className={`flex-1 rounded-2xl p-8 shadow-card select-none ${feat ? 'testimonial-featured' : 'bg-white'}`}
+            className="md:hidden flex-1 select-none"
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
           >
-            <div className={`font-serif text-6xl leading-none mb-4 ${feat ? 'text-white/30' : 'text-gray-200'}`}>"</div>
-            <p className={`text-sm leading-relaxed mb-6 ${feat ? 'text-white' : 'text-gray-600'}`}>{text}</p>
-            <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${feat ? 'bg-white/20 text-white' : 'bg-primary text-white'}`}>
-                {initials}
-              </div>
-              <div>
-                <div className={`font-semibold text-sm ${feat ? 'text-white' : 'text-gray-900'}`}>{name}</div>
-                <div className={`text-xs ${feat ? 'text-white/70' : 'text-gray-500'}`}>{program}</div>
-              </div>
-            </div>
+            <TestimonialCard {...TESTIMONIALS[current]} />
           </div>
 
           {/* Right arrow — desktop only */}

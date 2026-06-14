@@ -68,13 +68,13 @@ const GermanyFlag = () => (
 
 const TEAM = [
   {
-    name: 'Founder Name',
-    role: 'Founder',
+    name: 'Zainab Zamir',
+    role: 'Founder & CEO',
     location: 'Dresden, Germany',
     bio: ['Moved to Dresden, Germany in October 2023', 'Nearly 3 years of on-ground experience in Germany', 'Helps students with SOPs, shortlisting & visa docs'],
   },
   {
-    name: 'Co-Founder Name',
+    name: 'Sadiq Ali',
     role: 'Co-Founder',
     location: 'Dresden, Germany',
     bio: ['Based in Dresden, Germany', 'Handles student onboarding & document preparation', 'Your first point of contact when you reach out'],
