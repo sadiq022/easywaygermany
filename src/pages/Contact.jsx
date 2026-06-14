@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { Helmet } from 'react-helmet-async'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', field: '', message: '' })
@@ -17,6 +18,15 @@ export default function Contact() {
 
   return (
     <>
+      <Helmet>
+        <title>Contact Us – Book a Free Consultation | EasyWay Germany</title>
+        <meta name="description" content="Get in touch with EasyWay Germany. Book a free consultation for studying in Germany. Reach us via email, phone, or WhatsApp. Based in Dresden, Germany." />
+        <meta property="og:title" content="Contact EasyWay Germany – Book Your Free Consultation" />
+        <meta property="og:description" content="Talk to our experts about studying in Germany. Free consultation available via WhatsApp, email, or our contact form." />
+        <meta property="og:url" content="https://easywaygermany.com/contact" />
+        <link rel="canonical" href="https://easywaygermany.com/contact" />
+      </Helmet>
+
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Get In Touch</div>

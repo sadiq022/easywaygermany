@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { supabase, isSupabaseConfigured } from '../supabase'
 import ProductCard from '../components/ProductCard'
 
@@ -224,6 +225,15 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>EasyWay Germany – #1 Study in Germany Consultancy for Indian Students</title>
+        <meta name="description" content="EasyWay Germany helps Indian students study in Germany. Expert SOP writing, university shortlisting, LOR writing, CV preparation, and visa SOP — from a team based in Dresden, Germany." />
+        <meta property="og:title" content="EasyWay Germany – Study in Germany Consultancy" />
+        <meta property="og:description" content="Expert guidance for Indian students applying to German universities. SOP writing, university shortlisting, LOR, CV, and visa SOP — from people who live in Germany." />
+        <meta property="og:url" content="https://easywaygermany.com/" />
+        <link rel="canonical" href="https://easywaygermany.com/" />
+      </Helmet>
+
       {/* ── Hero ── */}
       <section className="hero">
         <div className="hero-bg">

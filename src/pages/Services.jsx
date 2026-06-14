@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 const SERVICES = [
   {
@@ -48,6 +49,15 @@ const SERVICES = [
 export default function Services() {
   return (
     <>
+      <Helmet>
+        <title>Our Services – SOP, LOR, CV, University Shortlisting | EasyWay Germany</title>
+        <meta name="description" content="EasyWay Germany offers SOP writing, LOR writing, CV preparation, university shortlisting, Visa SOP, and Visa Cover Letter services for Indian students applying to Germany. Starting from ₹1,000." />
+        <meta property="og:title" content="Study in Germany Services – SOP, LOR, CV & More | EasyWay Germany" />
+        <meta property="og:description" content="Expert document services for German university applications. SOP ₹2,500 · LOR ₹1,250 · CV ₹1,000 · Visa SOP ₹1,500 · Visa Cover Letter ₹1,500." />
+        <meta property="og:url" content="https://easywaygermany.com/services" />
+        <link rel="canonical" href="https://easywaygermany.com/services" />
+      </Helmet>
+
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">What We Offer</div>

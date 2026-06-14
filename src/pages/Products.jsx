@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import { Helmet } from 'react-helmet-async'
 import { supabase, isSupabaseConfigured } from '../supabase'
 import ProductCard from '../components/ProductCard'
 
@@ -84,6 +85,15 @@ export default function Products() {
 
   return (
     <>
+      <Helmet>
+        <title>Study in Germany Services & Packages | EasyWay Germany</title>
+        <meta name="description" content="Browse EasyWay Germany's service packages — SOP writing, LOR, CV preparation, university shortlisting, Visa SOP, and more. Affordable prices starting from ₹1,000." />
+        <meta property="og:title" content="Study in Germany Services & Packages | EasyWay Germany" />
+        <meta property="og:description" content="Affordable document services for German university applications. SOP, LOR, CV, Visa SOP and more." />
+        <meta property="og:url" content="https://easywaygermany.com/products" />
+        <link rel="canonical" href="https://easywaygermany.com/products" />
+      </Helmet>
+
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Our Digital Store</div>

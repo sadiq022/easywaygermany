@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 const TIMELINE = [
   {
@@ -71,12 +72,14 @@ const TEAM = [
     name: 'Zainab Zamir',
     role: 'Founder & CEO',
     location: 'Dresden, Germany',
+    img: '/images/zuzzu.webp',
     bio: ['Moved to Dresden, Germany in October 2023', 'Nearly 3 years of on-ground experience in Germany', 'Helps students with SOPs, shortlisting & visa docs'],
   },
   {
     name: 'Sadiq Ali',
     role: 'Co-Founder',
     location: 'Dresden, Germany',
+    img: '/images/sadiq.webp',
     bio: ['Based in Dresden, Germany', 'Handles student onboarding & document preparation', 'Your first point of contact when you reach out'],
   },
 ]
@@ -84,6 +87,15 @@ const TEAM = [
 export default function About() {
   return (
     <>
+      <Helmet>
+        <title>About Us – EasyWay Germany | Study in Germany Consultancy</title>
+        <meta name="description" content="Meet the team behind EasyWay Germany. Founded by Indian students living in Dresden, Germany — we help students navigate the German university application process with honest, affordable guidance." />
+        <meta property="og:title" content="About EasyWay Germany – Founded by Students, for Students" />
+        <meta property="og:description" content="EasyWay Germany was started by an Indian student who moved to Dresden in 2023. We offer SOP, LOR, CV, university shortlisting and visa SOP services." />
+        <meta property="og:url" content="https://easywaygermany.com/about" />
+        <link rel="canonical" href="https://easywaygermany.com/about" />
+      </Helmet>
+
       {/* Hero */}
       <div className="page-hero">
         <div className="max-w-7xl mx-auto px-6">
@@ -155,10 +167,10 @@ export default function About() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {TEAM.map(({ name, role, location, bio }) => (
+            {TEAM.map(({ name, role, location, img, bio }) => (
               <div key={name} className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-card transition-shadow">
-                <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-5">
-                  <span className="material-icons-round text-white text-6xl">person</span>
+                <div className="w-40 h-40 rounded-2xl overflow-hidden mb-5 bg-gradient-to-br from-primary to-primary-dark">
+                  <img src={img} alt={name} className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="flex items-start justify-between mb-1">
                   <h3 className="font-serif text-xl font-bold text-gray-900">{name}</h3>
