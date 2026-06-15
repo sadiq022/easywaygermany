@@ -18,16 +18,14 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="py-14">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="py-8 md:py-14">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
 
           {/* Brand — full width on mobile */}
-          <div className="col-span-2 lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4 no-underline">
-              <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center text-primary font-bold font-serif text-sm">EW</div>
-              <div className="leading-tight">
-                <div className="font-bold text-white font-serif">EasyWay</div>
-                <div className="text-xs text-gray-400">Germany</div>
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
+            <Link to="/" className="flex items-center mb-4 no-underline">
+              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
+                <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="h-12 w-12 object-contain" />
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
@@ -123,6 +121,7 @@ export default function Footer() {
                 { to: '/privacy-policy', label: 'Privacy Policy' },
                 { to: '/terms-conditions', label: 'Terms & Conditions' },
                 { to: '/refund-policy', label: 'Refund Policy' },
+                { to: '/shipping-policy', label: 'Shipping & Delivery' },
               ].map(({ to, label }) => (
                 <li key={to}>
                   <Link to={to} className="text-gray-400 text-sm hover:text-white transition-colors">{label}</Link>

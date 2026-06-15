@@ -91,10 +91,10 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-2 no-underline">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold font-serif text-base">EW</div>
+            <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="h-10 w-auto object-contain" />
             <div className="leading-tight">
               <div className="font-bold text-gray-900 font-serif text-lg">EasyWay</div>
-              <div className="text-xs text-gray-500 -mt-0.5">Germany</div>
+              <div className="text-xs text-primary -mt-0.5 font-semibold">Germany</div>
             </div>
           </Link>
 

@@ -160,8 +160,13 @@
 .page-hero {
   background: linear-gradient(135deg, #1a1a1a 0%, #C0392B 100%);
   color: white;
-  padding: 5rem 1.5rem 3rem;
+  padding: 2.5rem 1.5rem 1.75rem;
   text-align: center;
+}
+@media (min-width: 768px) {
+  .page-hero {
+    padding: 5rem 1.5rem 3rem;
+  }
 }
 
 /* ── Testimonial featured ───────────────────────────────────────────── */

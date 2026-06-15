@@ -39,6 +39,10 @@ import AdminReviews from './pages/admin/AdminReviews'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import ChatBot from './components/ChatBot'
+import PrivacyPolicy from './pages/legal/PrivacyPolicy'
+import TermsConditions from './pages/legal/TermsConditions'
+import RefundPolicy from './pages/legal/RefundPolicy'
+import ShippingPolicy from './pages/legal/ShippingPolicy'
 
 export default function App() {
   return (
@@ -87,6 +91,10 @@ export default function App() {
             <Route path="/admin/coupons"          element={<AdminRoute><AdminCoupons /></AdminRoute>} />
             <Route path="/admin/reviews"          element={<AdminRoute><AdminReviews /></AdminRoute>} />
             <Route path="/profile"               element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/privacy-policy"        element={<PrivacyPolicy />} />
+            <Route path="/terms-conditions"      element={<TermsConditions />} />
+            <Route path="/refund-policy"         element={<RefundPolicy />} />
+            <Route path="/shipping-policy"       element={<ShippingPolicy />} />
             <Route path="*"                      element={<NotFound />} />
           </Routes>
         </main>

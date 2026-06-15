@@ -66,7 +66,7 @@ export default function Services() {
         </div>
       </div>
 
-      <section className="py-16 bg-white">
+      <section className="py-8 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 space-y-16">
           {SERVICES.map(({ n, img, title, desc, bullets, cta, ctaLink }, idx) => (
             <div

@@ -106,7 +106,7 @@ export default function About() {
       </div>
 
       {/* Origin story */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-14 items-center">
             <div className="rounded-2xl overflow-hidden shadow-card-hover">
@@ -158,9 +158,9 @@ export default function About() {
       </section>
 
       {/* Founder + Team */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-10 md:py-20 bg-gray-50">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 md:mb-14">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">The People Behind It</div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">A Small Team.<br />A Big Commitment.</h2>
             <p className="text-gray-500 max-w-xl mx-auto">We're not a faceless consultancy. We're two people who genuinely care about getting you to Germany.</p>
@@ -196,9 +196,9 @@ export default function About() {
       </section>
 
       {/* Journey / Timeline */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 md:mb-14">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Our Journey</div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">From India to Germany —<br />And We're Still Here for You</h2>
           </div>
@@ -226,9 +226,9 @@ export default function About() {
       </section>
 
       {/* Why trust us */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-10 md:py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 md:mb-14">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Why Students Choose Us</div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">What Makes Us Different</h2>
           </div>
@@ -245,7 +245,7 @@ export default function About() {
       </section>
 
       {/* The reality check — curiosity / trust section */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-gray-900 rounded-3xl p-10 md:p-14 text-center relative overflow-hidden">
             {/* subtle background pattern */}

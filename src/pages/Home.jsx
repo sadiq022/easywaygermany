@@ -69,12 +69,12 @@ const PROCESS = [
 ]
 
 const UNIVERSITIES = [
-  { abbr: 'TUM', name: 'Technical University of Munich', color: '#0066CC' },
-  { abbr: 'LMU', name: 'Ludwig Maximilian University', color: '#1a5276' },
-  { abbr: 'RWTH', name: 'RWTH Aachen University', color: '#1abc9c' },
-  { abbr: 'KIT', name: 'Karlsruhe Institute of Technology', color: '#16a085' },
-  { abbr: 'HU', name: 'Heidelberg University', color: '#8e44ad' },
-  { abbr: 'UM', name: 'University of Mannheim', color: '#C0392B' },
+  { abbr: 'TUM',  name: 'Technical University of Munich',    color: '#0066CC', logo: '/universities/tum_logo.png',            square: true,  scale: 1     },
+  { abbr: 'KIT',  name: 'Karlsruhe Institute of Technology', color: '#009682', logo: '/universities/KIT-logo.jpg',            square: true,  scale: 1.15  },
+  { abbr: 'RWTH', name: 'RWTH Aachen University',            color: '#006AB3', logo: '/universities/rwth-aachen.webp',        square: true,  scale: 1     },
+  { abbr: 'TUB',  name: 'TU Berlin',                         color: '#CC0000', logo: '/universities/tu-berlin-logo.webp',     square: false, scale: 1.45  },
+  { abbr: 'HU',   name: 'Heidelberg University',              color: '#C1272D', logo: '/universities/heidelberg-uni-logo.png', square: false, scale: 1.5   },
+  { abbr: 'TUD',  name: 'TU Dresden',                         color: '#009AD4', logo: '/universities/tu-dresden-logo.jpg',    square: false, scale: 1     },
 ]
 
 const TESTIMONIALS = [
@@ -86,14 +86,14 @@ const TESTIMONIALS = [
 
 
 const SUCCESS_STORIES = [
-  { name: 'Student Name',  photo: '/images/success-stories/student1.jpg', course: 'MSc Computer Science',        university: 'TU Munich',              intake: 'Winter 2024' },
-  { name: 'Student Name',  photo: '/images/success-stories/student2.jpg', course: 'MSc Mechanical Engineering',  university: 'RWTH Aachen',            intake: 'Winter 2024' },
-  { name: 'Student Name',  photo: '/images/success-stories/student3.jpg', course: 'MSc Data Science',            university: 'TU Berlin',              intake: 'Summer 2024' },
-  { name: 'Student Name',  photo: '/images/success-stories/student4.jpg', course: 'MSc Electrical Engineering',  university: 'KIT Karlsruhe',          intake: 'Winter 2024' },
-  { name: 'Student Name',  photo: '/images/success-stories/student5.jpg', course: 'MSc Biotechnology',           university: 'Heidelberg University',  intake: 'Winter 2023' },
-  { name: 'Student Name',  photo: '/images/success-stories/student6.jpg', course: 'MBA',                         university: 'University of Mannheim', intake: 'Summer 2024' },
-  { name: 'Student Name',  photo: '/images/success-stories/student7.jpg', course: 'MSc Civil Engineering',       university: 'TU Darmstadt',           intake: 'Winter 2024' },
-  { name: 'Student Name',  photo: '/images/success-stories/student8.jpg', course: 'MSc Finance',                 university: 'Frankfurt University',   intake: 'Winter 2023' },
+  { name: 'Ali Abbas',                photo: '/students/ali-abbas.jpg',              course: 'MEng Electrical Engineering',                university: 'Hochschule Kempten' },
+  { name: 'Anchal Singh',             photo: '/students/anchal-singh.jpg',           course: 'Masters in Agrobiotechnology',               university: 'Justus-Liebig-Universität Gießen' },
+  { name: 'Gowtham Basvawajappa',     photo: '/students/gowtham-basvawajappa.jpeg',  course: "Master's in Engineering & Management",       university: 'Berlin School of Business and Innovation' },
+  { name: 'Meghana Ratnam',           photo: '/students/meghana-ratnam.jpeg',        course: 'MEng Mechanical Engineering',                university: 'Hochschule Ravensburg-Weingarten' },
+  { name: 'Prathamesh',               photo: '/students/prathamesh.jpg',             course: 'M.Sc Computational Modeling & Simulation',   university: 'Technical University of Dresden' },
+  { name: 'Preeti Sharma',            photo: '/students/preeti-sharma.webp',         course: 'M.Sc Information Technology',                university: 'Technische Hochschule OWL' },
+  { name: 'Ricky Martin',             photo: '/students/ricky-martin.jpg',           course: 'M.Sc Computational Engineering',             university: 'Friedrich-Alexander-Universität Erlangen-Nürnberg' },
+  { name: 'Pooja Sharma',             photo: null,                                   course: 'MSc International Management',               university: 'Hochschule Wismar' },
 ]
 
 const STATS = [
@@ -121,74 +121,137 @@ function TestimonialCard({ initials, name, program, text, featured: feat }) {
   )
 }
 
-function TestimonialsCarousel() {
-  const [current, setCurrent] = useState(0)
-  const touchStartX = useRef(null)
-  const total = TESTIMONIALS.length
+function UniversityCard({ abbr, name, color, logo, square, scale }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  return (
+    <div className="flex flex-col items-center justify-between gap-3 p-4 bg-white rounded-2xl border border-gray-100 hover:shadow-card transition-shadow text-center">
+      <div className={`w-full overflow-hidden flex items-center justify-center ${square ? 'h-20' : 'h-16'}`}>
+        {!imgFailed ? (
+          <img
+            src={logo}
+            alt={name}
+            className="w-full h-full object-contain"
+            style={scale && scale !== 1 ? { transform: `scale(${scale})` } : undefined}
+            onError={() => setImgFailed(true)}
+          />
+        ) : (
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+            style={{ backgroundColor: color }}>
+            {abbr}
+          </div>
+        )}
+      </div>
+      <span className="text-sm text-gray-600 leading-tight font-medium">{name}</span>
+    </div>
+  )
+}
 
-  function prev() { setCurrent(i => (i - 1 + total) % total) }
-  function next() { setCurrent(i => (i + 1) % total) }
+function TestimonialsCarousel() {
+  const N = TESTIMONIALS.length
+
+  // V = how many cards are visible at once (3 on desktop, 1 on mobile)
+  const [V, setV] = useState(window.innerWidth >= 768 ? 3 : 1)
+
+  useEffect(() => {
+    function onResize() {
+      const next = window.innerWidth >= 768 ? 3 : 1
+      if (next !== V) { setV(next); setAnimated(false); setIdx(next) }
+    }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [V])
+
+  // Clone V cards from each end so the loop never shows a blank
+  const loopCards = [...TESTIMONIALS.slice(-V), ...TESTIMONIALS, ...TESTIMONIALS.slice(0, V)]
+  const loopTotal = loopCards.length
+
+  const [idx, setIdx] = useState(V)   // start at first real card
+  const [animated, setAnimated] = useState(true)
+  const touchStartX = useRef(null)
+
+  function goPrev() { setAnimated(true); setIdx(i => i - 1) }
+  function goNext() { setAnimated(true); setIdx(i => i + 1) }
+
+  // After sliding into a clone region, silently snap to the real equivalent
+  useEffect(() => {
+    if (idx < V) {
+      const t = setTimeout(() => { setAnimated(false); setIdx(idx + N) }, 500)
+      return () => clearTimeout(t)
+    }
+    if (idx >= V + N) {
+      const t = setTimeout(() => { setAnimated(false); setIdx(idx - N) }, 500)
+      return () => clearTimeout(t)
+    }
+  }, [idx, V, N])
+
+  useEffect(() => {
+    if (!animated) {
+      const t = setTimeout(() => setAnimated(true), 50)
+      return () => clearTimeout(t)
+    }
+  }, [animated])
+
+  // Which real card is centred in the viewport
+  const dotActive = (idx - Math.ceil(V / 2) + N * 100) % N
 
   function onTouchStart(e) { touchStartX.current = e.touches[0].clientX }
   function onTouchEnd(e) {
     if (touchStartX.current === null) return
     const diff = touchStartX.current - e.changedTouches[0].clientX
-    if (diff > 40) next()
-    else if (diff < -40) prev()
+    if (diff > 40) goNext()
+    else if (diff < -40) goPrev()
     touchStartX.current = null
   }
 
-  const desktopCards = [0, 1, 2].map(i => TESTIMONIALS[(current + i) % total])
-
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-10 md:py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Student Success Stories</div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Real Students. Real Stories.</h2>
         </div>
 
-        <div className="relative flex items-center gap-4">
-          {/* Left arrow — desktop only */}
+        <div className="relative flex items-center gap-3">
           <button
-            onClick={prev}
-            className="hidden md:flex w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
+            onClick={goPrev}
+            className="w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
             aria-label="Previous"
           >
             <span className="material-icons-round">chevron_left</span>
           </button>
 
-          {/* Desktop: 3 cards */}
-          <div className="hidden md:grid grid-cols-3 gap-6 flex-1">
-            {desktopCards.map((t, i) => <TestimonialCard key={i} {...t} />)}
+          <div className="overflow-hidden flex-1" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <div
+              className="flex items-stretch"
+              style={{
+                width: `${loopTotal * 100 / V}%`,
+                transform: `translateX(-${idx * 100 / loopTotal}%)`,
+                transition: animated ? 'transform 0.45s ease-in-out' : 'none',
+              }}
+            >
+              {loopCards.map((t, i) => (
+                <div key={i} style={{ width: `${100 / loopTotal}%` }} className="px-2 box-border">
+                  <TestimonialCard {...t} featured={i === idx + Math.floor(V / 2)} />
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Mobile: 1 card, swipeable */}
-          <div
-            className="md:hidden flex-1 select-none"
-            onTouchStart={onTouchStart}
-            onTouchEnd={onTouchEnd}
-          >
-            <TestimonialCard {...TESTIMONIALS[current]} />
-          </div>
-
-          {/* Right arrow — desktop only */}
           <button
-            onClick={next}
-            className="hidden md:flex w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
+            onClick={goNext}
+            className="w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
             aria-label="Next"
           >
             <span className="material-icons-round">chevron_right</span>
           </button>
         </div>
 
-        {/* Dot indicators */}
         <div className="flex justify-center gap-2 mt-6">
           {TESTIMONIALS.map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2.5 bg-primary' : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'}`}
+              onClick={() => { setAnimated(true); setIdx(i + V) }}
+              className={`rounded-full transition-all duration-300 ${i === dotActive ? 'w-6 h-2.5 bg-primary' : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400'}`}
               aria-label={`Go to review ${i + 1}`}
             />
           ))}
@@ -305,7 +368,7 @@ export default function Home() {
 
 
       {/* ── Featured Products ── */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-10 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Our Digital Products</div>
@@ -343,7 +406,7 @@ export default function Home() {
       </section>
 
       {/* ── Services ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">What We Do</div>
@@ -370,9 +433,9 @@ export default function Home() {
       </section>
 
       {/* ── Process ── */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-10 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 md:mb-14">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Our Process</div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Your Journey, Step by Step</h2>
           </div>
@@ -394,21 +457,15 @@ export default function Home() {
       </section>
 
       {/* ── Universities ── */}
-      <section className="py-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Top Universities in Germany</div>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Study at Best. Learn from the Best.</h2>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
-            {UNIVERSITIES.map(({ abbr, name, color }) => (
-              <div key={abbr} className="flex flex-col items-center gap-3 p-4 bg-gray-50 rounded-2xl hover:shadow-card transition-shadow text-center">
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center text-white font-bold font-serif text-sm"
-                  style={{ backgroundColor: color }}>
-                  {abbr}
-                </div>
-                <span className="text-xs text-gray-600 leading-tight">{name}</span>
-              </div>
+            {UNIVERSITIES.map(({ abbr, name, color, logo, square, scale }) => (
+              <UniversityCard key={abbr} abbr={abbr} name={name} color={color} logo={logo} square={square} scale={scale} />
             ))}
           </div>
           <div className="text-center">
@@ -424,7 +481,7 @@ export default function Home() {
       <TestimonialsCarousel />
 
       {/* ── Success Stories ── */}
-      <section className="pt-20 pb-10 bg-white">
+      <section className="pt-10 md:pt-20 pb-10 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Success Stories</div>
@@ -442,12 +499,8 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center space-y-3">
-            <div className="inline-flex items-center gap-2 text-gray-400 text-sm bg-gray-50 border border-gray-100 px-5 py-2.5 rounded-full">
-              <span className="material-icons-round text-primary text-base">add_circle</span>
-              And 1000+ more students successfully placed
-            </div>
-            <p className="text-gray-400 text-sm">
+          <div className="text-center">
+            <p className="inline-block text-primary font-bold text-base bg-primary/8 border border-primary/20 px-6 py-3 rounded-full">
               You could be next — both on this list and in Germany.
             </p>
           </div>
@@ -455,7 +508,7 @@ export default function Home() {
       </section>
 
       {/* ── Blog Preview ── */}
-      <section className="pt-10 pb-20 bg-white">
+      <section className="pt-10 pb-10 md:pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Latest from Our Blog</div>
