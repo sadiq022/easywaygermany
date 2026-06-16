@@ -4,6 +4,54 @@ import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
 import { supabase, isSupabaseConfigured } from '../supabase'
 
+function wrapCtaSections(html) {
+  if (!html || typeof window === 'undefined') return html || ''
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  const body = doc.body
+
+  const ctaLinks = Array.from(body.querySelectorAll('a')).filter(link => {
+    const href = (link.getAttribute('href') || '').toLowerCase()
+    const text = (link.textContent || '').toLowerCase()
+    return href.includes('wa.me') || href.includes('whatsapp') ||
+           text.includes('whatsapp') || text.includes('contact us')
+  })
+
+  ctaLinks.forEach(link => {
+    const linkPara = link.closest('p') || link.parentElement
+    if (!linkPara?.parentElement) return
+    if (linkPara.parentElement.classList.contains('blog-cta-box')) return
+
+    const parent = linkPara.parentElement
+    const siblings = Array.from(parent.children)
+    const linkIdx = siblings.indexOf(linkPara)
+    if (linkIdx === -1) return
+
+    // Find nearest heading: real h2/h3/h4 OR <p><strong>...</strong></p> bold-as-heading
+    let startIdx = Math.max(0, linkIdx - 5)
+    for (let i = linkIdx - 1; i >= 0; i--) {
+      const el = siblings[i]
+      const tag = el.tagName?.toLowerCase()
+      if (tag === 'h2' || tag === 'h3' || tag === 'h4') { startIdx = i; break }
+      if (tag === 'p') {
+        const nonEmpty = Array.from(el.childNodes).filter(
+          n => n.nodeType !== 3 || n.textContent.trim()
+        )
+        if (nonEmpty.length === 1 &&
+            (nonEmpty[0].nodeName === 'STRONG' || nonEmpty[0].nodeName === 'B')) {
+          startIdx = i; break
+        }
+      }
+    }
+
+    const wrapper = doc.createElement('div')
+    wrapper.className = 'blog-cta-box'
+    parent.insertBefore(wrapper, siblings[startIdx])
+    for (let i = startIdx; i <= linkIdx; i++) wrapper.appendChild(siblings[i])
+  })
+
+  return body.innerHTML
+}
+
 export default function BlogDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -59,6 +107,7 @@ export default function BlogDetail() {
         setLoading(false)
       })
   }, [slug, navigate])
+
 
   async function handleSubscribe(e) {
     e.preventDefault()
@@ -161,7 +210,7 @@ export default function BlogDetail() {
       </Helmet>
       {/* Blog Hero/Header Section */}
       <header className="bg-gradient-to-b from-gray-50 via-gray-50/50 to-white pt-10 pb-7 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6">
           {/* Breadcrumb & Navigation */}
           <div className="flex items-center justify-between mb-5">
             <Link
@@ -208,7 +257,7 @@ export default function BlogDetail() {
 
       {/* Blog Article Layout */}
       <main className="py-8 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6">
           {/* Main Cover Image */}
           {blog.image && (
             <div className="rounded-2xl overflow-hidden shadow-lg mb-8 bg-gray-50">
@@ -223,7 +272,7 @@ export default function BlogDetail() {
           {/* Rich Text Content */}
           <div
             className="blog-content mb-6"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
+            dangerouslySetInnerHTML={{ __html: wrapCtaSections(blog.content) }}
           />
 
           {/* Share/Footer Strip */}
@@ -259,12 +308,9 @@ export default function BlogDetail() {
                 <span className="inline-block bg-primary/20 text-primary border border-primary/30 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
                   Exclusive Updates
                 </span>
-                <h3 className="font-serif font-extrabold text-2xl md:text-3xl text-white mb-4 leading-tight">
+                <h3 className="font-serif font-extrabold text-2xl md:text-3xl text-white leading-tight">
                   Get the EasyWay Guide directly to your inbox
                 </h3>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                  Subscribe to our newsletter for the latest updates on German university admission deadlines, visa regulations, blocked accounts, and expert student guides. No spam, unsubscribe anytime.
-                </p>
               </div>
               <div className="lg:col-span-2">
                 <form onSubmit={handleSubscribe} className="space-y-3">
@@ -301,7 +347,10 @@ export default function BlogDetail() {
           {/* Related Articles */}
           {related.length > 0 && (
             <section className="mt-8 pt-6 border-t border-gray-100">
-              <h3 className="font-bold text-gray-900 text-xl mb-5">Related Articles</h3>
+              <div className="mb-6">
+                <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Keep Reading</div>
+                <h3 className="font-serif text-2xl md:text-3xl font-bold text-gray-900">Related Articles</h3>
+              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {related.map((b) => (
                   <Link

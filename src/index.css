@@ -368,6 +368,85 @@
   font-size: 0.9rem !important;
 }
 
+/* ── Blog Tables ────────────────────────────────────────────────────── */
+.blog-content table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  font-size: 0.9rem !important;
+  overflow-x: auto !important;
+  display: block !important;
+}
+.blog-content thead tr {
+  background: #f3f4f6 !important;
+}
+.blog-content th {
+  font-weight: 700 !important;
+  color: #111827 !important;
+  padding: 0.7rem 1rem !important;
+  text-align: left !important;
+  border-bottom: 2px solid #e5e7eb !important;
+  white-space: nowrap !important;
+}
+.blog-content td {
+  padding: 0.6rem 1rem !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  color: #374151 !important;
+  vertical-align: top !important;
+  line-height: 1.5 !important;
+}
+.blog-content tbody tr:hover td {
+  background: #f9fafb !important;
+}
+.blog-content tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ── Blog CTA Box (WhatsApp sections) ──────────────────────────────── */
+.blog-cta-box {
+  background: #e0f7fa !important;
+  border-radius: 12px !important;
+  padding: 1.5rem 1.75rem !important;
+  margin: 2rem 0 !important;
+}
+.blog-cta-box h2,
+.blog-cta-box h3,
+.blog-cta-box h4,
+.blog-cta-box p:has(> strong:only-child),
+.blog-cta-box p:has(> b:only-child) {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.6rem !important;
+}
+.blog-cta-box p:has(> strong:only-child) strong,
+.blog-cta-box p:has(> b:only-child) b {
+  font-size: 1.15rem !important;
+  color: #111827 !important;
+}
+.blog-cta-box p {
+  color: #155e75 !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.75rem !important;
+}
+.blog-cta-box a[href*="wa.me"],
+.blog-cta-box a[href*="whatsapp"] {
+  display: inline-block !important;
+  background: #F59E0B !important;
+  color: #111827 !important;
+  font-weight: 700 !important;
+  padding: 0.55rem 1.25rem !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  font-size: 0.95rem !important;
+  margin-top: 0.25rem !important;
+}
+.blog-cta-box a[href*="wa.me"]:hover,
+.blog-cta-box a[href*="whatsapp"]:hover {
+  background: #d97706 !important;
+}
+
 /* ── Infinite Marquee Ticker ───────────────────────────────────────── */
 .marquee-container {
   overflow: hidden;

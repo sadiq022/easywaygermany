@@ -48,7 +48,7 @@ export default function App() {
   return (
     <HelmetProvider>
       <AuthProvider>
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
         <ScrollToTop />
         <Toaster
           position="top-right"
