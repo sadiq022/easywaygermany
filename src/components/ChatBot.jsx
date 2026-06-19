@@ -54,6 +54,30 @@ const FAQ = [
     followUp: ['Visa SOP', 'Visa Cover Letter', 'Talk to an expert'],
   },
   {
+    id: 'packages',
+    keywords: ['package', 'packages', 'admission package', 'bundle', 'plan', 'basic', 'standard', 'premium'],
+    answer: `We offer 3 Admission Packages for Indian students applying to German universities:\n\n• Basic – ₹19,999\n  University shortlisting (5), SOP, 1 LOR, CV editing, application help\n\n• Standard – ₹34,999 ⭐ Most Popular\n  10 universities, 2 LORs, visa docs guide, blocked account help\n\n• Premium – ₹44,999\n  Unlimited universities, 3 LORs, education loan, pre-departure briefing\n\nAll plans support 2-month installments!`,
+    followUp: ['Admission Package details', 'Visa Package', 'Talk to an expert'],
+  },
+  {
+    id: 'admission-package-detail',
+    keywords: ['admission package details', 'admission package detail', 'what is included in package', 'what is in the package'],
+    answer: `Our Admission Packages include SOP writing, LOR preparation, CV editing, university shortlisting, and application filling assistance — all in one bundled price.\n\nBasic (₹19,999) — 5 universities, 1 LOR\nStandard (₹34,999) — 10 universities, 2 LORs + visa docs\nPremium (₹44,999) — Unlimited universities, 3 LORs + full post-admission support\n\nWant to know which plan suits you?`,
+    followUp: ['Talk to an expert', 'Book Consultation', 'Visa Package'],
+  },
+  {
+    id: 'visa-package',
+    keywords: ['visa package', 'visa plan', 'visa assistance', 'visa help', 'blocked account', 'vfs', 'aps', 'mock interview', 'visa process'],
+    answer: `Our Visa Package costs ₹7,999 (one-time).\n\nIt includes:\n📝 Visa SOP (different from university SOP)\n📋 Document checklist & verification\n🏦 Blocked account guidance (€11,904)\n🏥 Health insurance setup\n📅 VFS appointment booking\n🎤 Mock visa interview\n\nIt can be taken standalone or combined with any admission plan.`,
+    followUp: ['Admission Package', 'Talk to an expert', 'Book Consultation'],
+  },
+  {
+    id: 'installment',
+    keywords: ['installment', 'emi', 'pay in parts', 'monthly', 'split payment'],
+    answer: `Yes! All our admission packages support 2-month installment payments:\n\n• Basic: ₹11,000 × 2\n• Standard: ₹17,500 × 2\n• Premium: ₹22,500 × 2\n\nFirst installment is due when you sign up; second after applications are submitted. Message us on WhatsApp to get started.`,
+    followUp: ['Talk to an expert', 'View Packages'],
+  },
+  {
     id: 'products',
     keywords: ['product', 'buy', 'purchase', 'download', 'template', 'sample', 'guide'],
     answer: `We have a range of digital products including SOP samples, LOR templates, university lists, CV templates, and application guides — available at affordable prices in our store.`,
@@ -62,8 +86,8 @@ const FAQ = [
   {
     id: 'cost',
     keywords: ['price', 'cost', 'fee', 'charge', 'how much', 'pricing', 'rate'],
-    answer: `Here's a full price summary:\n\n• University Shortlisting – ₹2,500\n• SOP Writing – ₹2,500\n• LOR Writing – ₹1,250/letter\n• CV Preparation – ₹1,000\n• Visa SOP – ₹1,500\n• Visa Cover Letter – ₹1,500`,
-    followUp: ['Talk to an expert', 'Book Consultation', 'What other services do you offer?'],
+    answer: `Here's a full price summary:\n\n📦 Admission Packages:\n• Basic – ₹19,999\n• Standard – ₹34,999 (Most Popular)\n• Premium – ₹44,999\n\n🛂 Visa Package – ₹7,999\n\n📄 Individual Services:\n• University Shortlisting – ₹2,500\n• SOP Writing – ₹2,500\n• LOR Writing – ₹1,250/letter\n• CV Preparation – ₹1,000\n• Visa SOP – ₹1,500\n• Visa Cover Letter – ₹1,500`,
+    followUp: ['Admission Package', 'Visa Package', 'Talk to an expert'],
   },
   {
     id: 'contact',
@@ -86,11 +110,11 @@ const FAQ = [
 ]
 
 const QUICK_ACTIONS = [
+  'What packages do you offer?',
+  'Visa Package details',
   'What services do you offer?',
-  'SOP Writing price',
-  'University Shortlisting',
-  'Visa SOP vs university SOP',
   'Prices & fees',
+  'Visa SOP vs university SOP',
 ]
 
 const WELCOME = "Hi! I'm the EasyWay Germany assistant. Ask me anything about our services, pricing, or studying in Germany."
@@ -135,6 +159,22 @@ function BotMessage({ content, followUp, onFollowUp, onClose }) {
                   <Link key={q} to="/products" onClick={onClose}
                     className="text-xs px-2.5 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors">
                     View Products
+                  </Link>
+                )
+              }
+              if (q === 'View Packages' || q === 'Admission Package details' || q === 'Admission Package') {
+                return (
+                  <Link key={q} to="/pricing" onClick={onClose}
+                    className="text-xs px-2.5 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors">
+                    View Admission Packages
+                  </Link>
+                )
+              }
+              if (q === 'Visa Package' || q === 'Visa Package details') {
+                return (
+                  <Link key={q} to="/visa-package" onClick={onClose}
+                    className="text-xs px-2.5 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary hover:bg-primary/20 transition-colors">
+                    View Visa Package
                   </Link>
                 )
               }

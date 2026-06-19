@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
+import { supabase } from '../supabase'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', field: '', message: '' })
@@ -9,10 +10,19 @@ export default function Contact() {
   async function handleSubmit(e) {
     e.preventDefault()
     setSending(true)
-    // Simulate sending (integrate email service like Resend/EmailJS here)
-    await new Promise(r => setTimeout(r, 1200))
-    toast.success('Message sent! We\'ll get back to you within 24 hours.')
-    setForm({ name: '', email: '', phone: '', field: '', message: '' })
+    const { error } = await supabase.from('leads').insert({
+      name: form.name.trim(),
+      email: form.email.trim().toLowerCase(),
+      phone: form.phone.trim() || null,
+      field: form.field || null,
+      message: form.message.trim() || null,
+    })
+    if (error) {
+      toast.error('Failed to send message. Please try WhatsApp instead.')
+    } else {
+      toast.success("Message sent! We'll get back to you within 24 hours.")
+      setForm({ name: '', email: '', phone: '', field: '', message: '' })
+    }
     setSending(false)
   }
 

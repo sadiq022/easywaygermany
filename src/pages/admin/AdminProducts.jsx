@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { supabase } from '../../supabase'
+import AdminLayout from '../../components/AdminLayout'
 
 export default function AdminProducts() {
   const [products, setProducts] = useState([])
@@ -42,44 +43,22 @@ export default function AdminProducts() {
     }
   }
 
-  const AdminNav = () => (
-    <div className="flex flex-wrap gap-1 bg-white rounded-xl shadow-card p-1 mb-8 w-fit">
-      {[
-        { to: '/admin', label: 'Overview', icon: 'dashboard' },
-        { to: '/admin/products', label: 'Products', icon: 'store', active: true },
-        { to: '/admin/categories', label: 'Product Categories', icon: 'category' },
-        { to: '/admin/blogs', label: 'Blogs', icon: 'article' },
-        { to: '/admin/blog-categories', label: 'Blog Categories', icon: 'bookmarks' },
-      ].map(({ to, label, icon, active }) => (
-        <Link key={to} to={to}
-          className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${active ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'}`}>
-          <span className="material-icons-round text-base">{icon}</span>
-          {label}
-        </Link>
-      ))}
-    </div>
-  )
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="page-hero !py-12 border-b border-primary/20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center gap-4">
+    <AdminLayout>
+      <div className="bg-gradient-to-br from-[#7a0000] via-primary to-[#c0392b] py-16 px-6 text-center relative">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-4">
           <div>
-            <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Administrative Center</div>
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-2">Products</h1>
-            <p className="text-white/75 text-sm max-w-xl mx-auto">{products.length} total products</p>
+            <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">Admin Panel</p>
+            <h1 className="font-serif text-4xl font-bold text-white mb-1">Products</h1>
+            <p className="text-white/70 text-sm">{products.length} total products in your store</p>
           </div>
-          <div className="mt-2">
-            <Link to="/admin/products/add" className="flex items-center gap-1.5 bg-white text-primary px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-50 transition-colors shadow-sm w-fit">
-              <span className="material-icons-round text-base">add</span> Add Product
-            </Link>
-          </div>
+          <Link to="/admin/products/add" className="flex items-center gap-1.5 bg-white text-primary px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-red-50 transition-colors shadow-sm">
+            <span className="material-icons-round text-base">add</span> Add Product
+          </Link>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <AdminNav />
 
         <div className="bg-white rounded-2xl shadow-card overflow-hidden">
           <div className="overflow-x-auto">
@@ -163,6 +142,6 @@ export default function AdminProducts() {
           </div>
         </div>
       </div>
-    </div>
+    </AdminLayout>
   )
 }

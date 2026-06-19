@@ -11,6 +11,7 @@ export default function Navbar() {
   const [categories, setCategories] = useState([])
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
+  const [mobilePackagesOpen, setMobilePackagesOpen] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -101,7 +102,30 @@ export default function Navbar() {
           {/* Desktop nav links */}
           <ul className="hidden md:flex items-center gap-7 list-none m-0 p-0">
             <li><NavLink to="/" end className={navLinkClass}>Home</NavLink></li>
-            
+
+            {/* Packages Dropdown */}
+            <li className="relative group py-2">
+              <span className={`${navLinkClass({ isActive: false })} cursor-default select-none`}>Packages <span className="material-icons-round text-sm align-middle">expand_more</span></span>
+              <div className="absolute left-0 top-full mt-0 w-64 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="p-3 space-y-1">
+                  <Link to="/pricing" className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">
+                    <span className="material-icons-round text-base text-primary">school</span>
+                    <div>
+                      <div className="font-semibold">Admission Packages</div>
+                      <div className="text-xs text-gray-400 font-normal">SOP, LOR, university applications</div>
+                    </div>
+                  </Link>
+                  <Link to="/visa-package" className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">
+                    <span className="material-icons-round text-base text-primary">flight_takeoff</span>
+                    <div>
+                      <div className="font-semibold">Visa Package</div>
+                      <div className="text-xs text-gray-400 font-normal">Visa SOP, blocked account, VFS</div>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            </li>
+
             {/* Products Dropdown */}
             <li className="relative group py-2">
               <NavLink to="/products" className={navLinkClass}>Products <span className="material-icons-round text-sm align-middle">expand_more</span></NavLink>
@@ -142,6 +166,7 @@ export default function Navbar() {
                 </div>
               </div>
             </li>
+
             <li><NavLink to="/blog" className={navLinkClass}>Blogs</NavLink></li>
             <li><NavLink to="/about" className={navLinkClass}>About</NavLink></li>
             <li><NavLink to="/contact" className={navLinkClass}>Contact</NavLink></li>
@@ -204,7 +229,13 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div className={`fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl transform transition-transform duration-300 md:hidden ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between p-5 border-b">
-          <span className="font-bold font-serif text-gray-900">EasyWay Germany</span>
+          <Link to="/" onClick={() => setDrawerOpen(false)} className="flex items-center gap-2 no-underline">
+            <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="h-8 w-auto object-contain" />
+            <div className="leading-tight">
+              <div className="font-bold text-gray-900 font-serif text-base">EasyWay</div>
+              <div className="text-xs font-semibold text-primary -mt-0.5">Germany</div>
+            </div>
+          </Link>
           <button onClick={() => setDrawerOpen(false)} className="text-gray-500 hover:text-gray-900">
             <span className="material-icons-round">close</span>
           </button>
@@ -214,7 +245,23 @@ export default function Navbar() {
             <li>
               <NavLink to="/" end onClick={() => setDrawerOpen(false)} className={({ isActive }) => `block py-2.5 px-3 rounded-lg font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-700 hover:bg-gray-100'}`}>Home</NavLink>
             </li>
-            
+
+            {/* Mobile Packages Dropdown */}
+            <li>
+              <div className="flex items-center justify-between">
+                <span className="flex-1 py-2.5 px-3 rounded-lg font-medium text-gray-700">Packages</span>
+                <button onClick={() => setMobilePackagesOpen(!mobilePackagesOpen)} className="p-2 text-gray-500">
+                  <span className={`material-icons-round transition-transform ${mobilePackagesOpen ? 'rotate-180' : ''}`}>expand_more</span>
+                </button>
+              </div>
+              {mobilePackagesOpen && (
+                <ul className="pl-6 mt-1 space-y-1 mb-2">
+                  <li><Link to="/pricing" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">Admission Packages</Link></li>
+                  <li><Link to="/visa-package" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">Visa Package</Link></li>
+                </ul>
+              )}
+            </li>
+
             {/* Mobile Products Dropdown */}
             <li>
               <div className="flex items-center justify-between">
@@ -253,7 +300,6 @@ export default function Navbar() {
                 </ul>
               )}
             </li>
-
             <li><NavLink to="/blog" onClick={() => setDrawerOpen(false)} className={({ isActive }) => `block py-2.5 px-3 rounded-lg font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-700 hover:bg-gray-100'}`}>Blogs</NavLink></li>
             <li><NavLink to="/about" onClick={() => setDrawerOpen(false)} className={({ isActive }) => `block py-2.5 px-3 rounded-lg font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-700 hover:bg-gray-100'}`}>About</NavLink></li>
             <li><NavLink to="/contact" onClick={() => setDrawerOpen(false)} className={({ isActive }) => `block py-2.5 px-3 rounded-lg font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-700 hover:bg-gray-100'}`}>Contact</NavLink></li>

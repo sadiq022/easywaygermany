@@ -2,17 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { supabase } from '../../supabase'
-
-const ADMIN_TABS = [
-  { to: '/admin',              label: 'Overview',          icon: 'dashboard' },
-  { to: '/admin/products',     label: 'Products',          icon: 'store' },
-  { to: '/admin/categories',   label: 'Product Categories', icon: 'category' },
-  { to: '/admin/blogs',        label: 'Blogs',             icon: 'article' },
-  { to: '/admin/blog-categories', label: 'Blog Categories', icon: 'bookmarks' },
-  { to: '/admin/coupons',      label: 'Coupons',           icon: 'local_offer' },
-  { to: '/admin/reviews',      label: 'Reviews',           icon: 'star' },
-  { to: '/admin/settings',     label: 'Settings',          icon: 'settings' },
-]
+import AdminLayout from '../../components/AdminLayout'
 
 export default function AdminSettings() {
   const [keyId, setKeyId] = useState('')
@@ -54,25 +44,14 @@ export default function AdminSettings() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="page-hero !py-12 border-b border-primary/20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center">
-          <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Administrative Center</div>
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-2">Admin Dashboard</h1>
-          <p className="text-white/75 text-sm">EasyWay Germany management panel</p>
-        </div>
+    <AdminLayout>
+      <div className="bg-gradient-to-br from-[#7a0000] via-primary to-[#c0392b] py-16 px-6 text-center">
+        <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">Admin Panel</p>
+        <h1 className="font-serif text-4xl font-bold text-white mb-1">Settings</h1>
+        <p className="text-white/70 text-sm">Payment gateway configuration</p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="flex flex-wrap gap-1 bg-white rounded-xl shadow-card p-1 mb-8 w-fit overflow-x-auto">
-          {ADMIN_TABS.map(({ to, label, icon }) => (
-            <Link key={to} to={to}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${to === '/admin/settings' ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'}`}>
-              <span className="material-icons-round text-base">{icon}</span>
-              {label}
-            </Link>
-          ))}
-        </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">
@@ -143,6 +122,6 @@ export default function AdminSettings() {
           </div>
         )}
       </div>
-    </div>
+    </AdminLayout>
   )
 }

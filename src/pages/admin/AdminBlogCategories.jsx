@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { supabase } from '../../supabase'
+import AdminLayout from '../../components/AdminLayout'
 
 function toSlug(str) {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
@@ -58,33 +59,14 @@ export default function AdminBlogCategories() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="page-hero !py-12 border-b border-primary/20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center">
-          <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Administrative Center</div>
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-2">Blog Categories</h1>
-          <p className="text-white/75 text-sm max-w-xl mx-auto">Manage categories for your blogs</p>
-        </div>
+    <AdminLayout>
+      <div className="bg-gradient-to-br from-[#7a0000] via-primary to-[#c0392b] py-16 px-6 text-center">
+        <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">Admin Panel</p>
+        <h1 className="font-serif text-4xl font-bold text-white mb-1">Blog Categories</h1>
+        <p className="text-white/70 text-sm">Manage categories for your blogs</p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Nav Tabs (5-tab navigation) */}
-        <div className="flex flex-wrap gap-1 bg-white rounded-xl shadow-card p-1 mb-8 w-fit">
-          {[
-            { to: '/admin', label: 'Overview', icon: 'dashboard' },
-            { to: '/admin/products', label: 'Products', icon: 'store' },
-            { to: '/admin/categories', label: 'Product Categories', icon: 'category' },
-            { to: '/admin/blogs', label: 'Blogs', icon: 'article' },
-            { to: '/admin/blog-categories', label: 'Blog Categories', icon: 'bookmarks', active: true },
-          ].map(({ to, label, icon, active }) => (
-            <Link key={to} to={to}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${active ? 'bg-primary text-white' : 'text-gray-600 hover:bg-gray-100'}`}>
-              <span className="material-icons-round text-base">{icon}</span>
-              {label}
-            </Link>
-          ))}
-        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           {/* Add Form */}
@@ -152,6 +134,6 @@ export default function AdminBlogCategories() {
           </div>
         </div>
       </div>
-    </div>
+    </AdminLayout>
   )
 }

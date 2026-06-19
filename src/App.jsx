@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './context/AuthContext'
@@ -24,6 +24,8 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
 import Checkout from './pages/Checkout'
+import Pricing from './pages/Pricing'
+import VisaPackage from './pages/VisaPackage'
 import Blogs from './pages/Blogs'
 import BlogDetail from './pages/BlogDetail'
 import AdminDashboard from './pages/admin/AdminDashboard'
@@ -36,6 +38,7 @@ import AdminBlogCategories from './pages/admin/AdminBlogCategories'
 import AdminSettings from './pages/admin/AdminSettings'
 import AdminCoupons from './pages/admin/AdminCoupons'
 import AdminReviews from './pages/admin/AdminReviews'
+import AdminLeads from './pages/admin/AdminLeads'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import ChatBot from './components/ChatBot'
@@ -44,62 +47,76 @@ import TermsConditions from './pages/legal/TermsConditions'
 import RefundPolicy from './pages/legal/RefundPolicy'
 import ShippingPolicy from './pages/legal/ShippingPolicy'
 
+function Layout() {
+  const { pathname } = useLocation()
+  const isAdmin = pathname.startsWith('/admin')
+
+  return (
+    <>
+      <ScrollToTop />
+      {!isAdmin && <Navbar />}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:slug" element={<ProductDetail />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/services/university-shortlisting" element={<UniversityShortlisting />} />
+          <Route path="/services/sop-writing" element={<SOPWriting />} />
+          <Route path="/services/lor-writing" element={<LORWriting />} />
+          <Route path="/services/cv-preparation" element={<CVPreparation />} />
+          <Route path="/services/visa-sop" element={<VisaSOP />} />
+          <Route path="/services/visa-cover-letter" element={<VisaCoverLetter />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/visa-package" element={<VisaPackage />} />
+          <Route path="/blog" element={<Blogs />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/checkout/:id" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
+          <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+          <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
+          <Route path="/admin/products/add" element={<AdminRoute><AdminAddProduct /></AdminRoute>} />
+          <Route path="/admin/products/edit/:id" element={<AdminRoute><AdminAddProduct /></AdminRoute>} />
+          <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
+          <Route path="/admin/blogs" element={<AdminRoute><AdminBlogs /></AdminRoute>} />
+          <Route path="/admin/blogs/add" element={<AdminRoute><AdminAddBlog /></AdminRoute>} />
+          <Route path="/admin/blogs/edit/:id" element={<AdminRoute><AdminAddBlog /></AdminRoute>} />
+          <Route path="/admin/blog-categories" element={<AdminRoute><AdminBlogCategories /></AdminRoute>} />
+          <Route path="/admin/settings"        element={<AdminRoute><AdminSettings /></AdminRoute>} />
+          <Route path="/admin/coupons"          element={<AdminRoute><AdminCoupons /></AdminRoute>} />
+          <Route path="/admin/reviews"          element={<AdminRoute><AdminReviews /></AdminRoute>} />
+          <Route path="/admin/leads"            element={<AdminRoute><AdminLeads /></AdminRoute>} />
+          <Route path="/profile"               element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+          <Route path="/privacy-policy"        element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions"      element={<TermsConditions />} />
+          <Route path="/refund-policy"         element={<RefundPolicy />} />
+          <Route path="/shipping-policy"       element={<ShippingPolicy />} />
+          <Route path="*"                      element={<NotFound />} />
+        </Routes>
+      </main>
+      {!isAdmin && <Footer />}
+      {!isAdmin && <ChatBot />}
+    </>
+  )
+}
+
 export default function App() {
   return (
     <HelmetProvider>
       <AuthProvider>
         <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
-        <ScrollToTop />
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            duration: 4000,
-            style: { fontFamily: '"DM Sans", sans-serif', fontSize: '14px' },
-          }}
-        />
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:slug" element={<ProductDetail />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/university-shortlisting" element={<UniversityShortlisting />} />
-            <Route path="/services/sop-writing" element={<SOPWriting />} />
-            <Route path="/services/lor-writing" element={<LORWriting />} />
-            <Route path="/services/cv-preparation" element={<CVPreparation />} />
-            <Route path="/services/visa-sop" element={<VisaSOP />} />
-            <Route path="/services/visa-cover-letter" element={<VisaCoverLetter />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blogs />} />
-            <Route path="/blog/:slug" element={<BlogDetail />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/checkout/:id" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
-            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
-            <Route path="/admin/products" element={<AdminRoute><AdminProducts /></AdminRoute>} />
-            <Route path="/admin/products/add" element={<AdminRoute><AdminAddProduct /></AdminRoute>} />
-            <Route path="/admin/products/edit/:id" element={<AdminRoute><AdminAddProduct /></AdminRoute>} />
-            <Route path="/admin/categories" element={<AdminRoute><AdminCategories /></AdminRoute>} />
-            <Route path="/admin/blogs" element={<AdminRoute><AdminBlogs /></AdminRoute>} />
-            <Route path="/admin/blogs/add" element={<AdminRoute><AdminAddBlog /></AdminRoute>} />
-            <Route path="/admin/blogs/edit/:id" element={<AdminRoute><AdminAddBlog /></AdminRoute>} />
-            <Route path="/admin/blog-categories" element={<AdminRoute><AdminBlogCategories /></AdminRoute>} />
-            <Route path="/admin/settings"        element={<AdminRoute><AdminSettings /></AdminRoute>} />
-            <Route path="/admin/coupons"          element={<AdminRoute><AdminCoupons /></AdminRoute>} />
-            <Route path="/admin/reviews"          element={<AdminRoute><AdminReviews /></AdminRoute>} />
-            <Route path="/profile"               element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="/privacy-policy"        element={<PrivacyPolicy />} />
-            <Route path="/terms-conditions"      element={<TermsConditions />} />
-            <Route path="/refund-policy"         element={<RefundPolicy />} />
-            <Route path="/shipping-policy"       element={<ShippingPolicy />} />
-            <Route path="*"                      element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-        <ChatBot />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              duration: 4000,
+              style: { fontFamily: '"DM Sans", sans-serif', fontSize: '14px' },
+            }}
+          />
+          <Layout />
         </BrowserRouter>
       </AuthProvider>
     </HelmetProvider>
