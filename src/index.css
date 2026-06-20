@@ -348,6 +348,7 @@
   font-style: italic !important;
   color: #4b5563 !important;
 }
+
 .blog-content img {
   border-radius: 12px !important;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1) !important;
@@ -359,13 +360,65 @@
   border-top: 1px solid #e5e7eb !important;
   margin: 2rem 0 !important;
 }
-.blog-content pre {
-  background: #1f2937 !important;
-  color: #f9fafb !important;
-  padding: 1rem !important;
-  border-radius: 8px !important;
+/* Code blocks */
+.blog-content pre,
+.blog-content .ql-syntax {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  padding: 1.25rem 1.5rem !important;
+  border-radius: 12px !important;
   overflow-x: auto !important;
-  font-size: 0.9rem !important;
+  font-size: 0.875rem !important;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace !important;
+  line-height: 1.7 !important;
+  margin: 1.5rem 0 !important;
+  border: 1px solid #1e293b !important;
+}
+
+/* Inline code */
+.blog-content code {
+  background: #fef2f2 !important;
+  color: #C0392B !important;
+  padding: 0.15rem 0.45rem !important;
+  border-radius: 5px !important;
+  font-family: 'Fira Code', 'Consolas', monospace !important;
+  font-size: 0.875em !important;
+  font-weight: 600 !important;
+  border: 1px solid #fecaca !important;
+}
+.blog-content pre code {
+  background: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border: none !important;
+  font-size: inherit !important;
+}
+
+/* Font sizes from Quill size picker */
+.blog-content .ql-size-small { font-size: 0.8rem !important; }
+.blog-content .ql-size-large { font-size: 1.25rem !important; }
+.blog-content .ql-size-huge  { font-size: 1.6rem !important; font-weight: 600 !important; }
+
+/* Text alignment */
+.blog-content .ql-align-center  { text-align: center !important; }
+.blog-content .ql-align-right   { text-align: right !important; }
+.blog-content .ql-align-justify { text-align: justify !important; }
+
+/* Indent levels */
+.blog-content .ql-indent-1 { padding-left: 2rem !important; }
+.blog-content .ql-indent-2 { padding-left: 4rem !important; }
+.blog-content .ql-indent-3 { padding-left: 6rem !important; }
+.blog-content .ql-indent-4 { padding-left: 8rem !important; }
+
+/* Responsive video embeds */
+.blog-content .ql-video,
+.blog-content iframe {
+  display: block !important;
+  width: 100% !important;
+  aspect-ratio: 16/9 !important;
+  border-radius: 12px !important;
+  margin: 1.5rem 0 !important;
+  border: none !important;
 }
 
 /* ── Blog Tables ────────────────────────────────────────────────────── */

@@ -84,11 +84,16 @@ export default function AdminAddBlog() {
       theme: 'snow',
       modules: {
         toolbar: [
-          [{ header: [1, 2, 3, false] }],
+          [{ header: [1, 2, 3, 4, false] }],
+          [{ size: ['small', false, 'large', 'huge'] }],
           ['bold', 'italic', 'underline', 'strike'],
+          [{ color: [] }, { background: [] }],
+          [{ align: [] }],
           [{ list: 'ordered' }, { list: 'bullet' }],
-          ['link', 'image'],
-          ['clean']
+          [{ indent: '-1' }, { indent: '+1' }],
+          ['blockquote', 'code-block'],
+          ['link', 'image', 'video'],
+          ['clean'],
         ]
       }
     })
@@ -433,7 +438,7 @@ export default function AdminAddBlog() {
 
             {/* Quill.js Rich Text Content */}
             <div className="bg-white rounded-2xl shadow-card p-6 space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Rich Text Blog Content *</label>
+              <label className="block text-sm font-semibold text-gray-700 mb-1">Rich Text Blog Content *</label>
               <div className="border border-gray-200 rounded-xl overflow-hidden min-h-[300px] flex flex-col">
                 <div id="editor-container" className="flex-1 min-h-[260px] text-sm" />
               </div>
