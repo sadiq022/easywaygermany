@@ -50,6 +50,7 @@ export default function AdminAddBlog() {
   const [quillLoaded, setQuillLoaded] = useState(false)
   const quillRef = useRef(null)
   const [initialContent, setInitialContent] = useState('')
+  const contentModifiedRef = useRef(false)
 
   // Load Quill via CDN dynamically
   useEffect(() => {
@@ -93,10 +94,15 @@ export default function AdminAddBlog() {
     })
 
     quillRef.current = editor
+    contentModifiedRef.current = false
 
     if (initialContent) {
       editor.root.innerHTML = initialContent
     }
+
+    editor.on('text-change', () => {
+      contentModifiedRef.current = true
+    })
   }, [quillLoaded, loadingData, initialContent])
 
   // Load Categories & Blog Data
@@ -184,7 +190,12 @@ export default function AdminAddBlog() {
       return
     }
 
-    const editorContent = quillRef.current ? quillRef.current.root.innerHTML : ''
+    // If editing and the user never touched the editor, preserve the original DB content
+    // to avoid Quill stripping unsupported HTML (tables, custom divs, callouts, etc.)
+    const editorContent = (isEdit && !contentModifiedRef.current)
+      ? initialContent
+      : (quillRef.current ? quillRef.current.root.innerHTML : '')
+
     if (!editorContent || editorContent === '<p><br></p>') {
       toast.error('Blog content is required.')
       return
