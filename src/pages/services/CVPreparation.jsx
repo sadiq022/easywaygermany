@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
 /*
@@ -108,7 +108,7 @@ export default function CVPreparation() {
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <div className="page-hero">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
             Professional CV Preparation Service
           </h1>
@@ -121,7 +121,7 @@ export default function CVPreparation() {
 
       {/* ── Overview + Features ───────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
             {/* CV sample image — place at: public/images/services/cv_sample.png */}
@@ -133,13 +133,8 @@ export default function CVPreparation() {
                   className="w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-5 py-3 shadow-lg flex items-baseline gap-2">
-                  <span className="text-gray-500 text-sm">Just</span>
-                  <span className="text-2xl font-bold text-primary">₹1,000</span>
-                  <span className="text-gray-500 text-sm">per CV</span>
-                </div>
               </div>
-              <p className="text-center text-xs text-gray-400 mt-3">
+              <p className="text-center text-sm text-gray-900 mt-3">
                 Sample Europass CV layout · Your final CV will be personalised
               </p>
             </div>
@@ -148,10 +143,15 @@ export default function CVPreparation() {
             <div className="md:w-1/2">
               <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">What You Get</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Everything in One CV</h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-gray-900 mb-4">
                 Delivered in <strong className="text-gray-700">1–2 working days</strong>&nbsp;·&nbsp;
                 <span className="text-green-600 font-semibold">Unlimited Edits</span>
               </p>
+              <div className="inline-flex items-baseline gap-2 bg-primary/10 border-2 border-primary/20 rounded-xl px-5 py-3 mb-6">
+                <span className="text-sm font-medium text-gray-900">Just</span>
+                <span className="text-3xl font-black text-primary">₹1,000</span>
+                <span className="text-sm font-medium text-gray-900">per CV</span>
+              </div>
               <ul className="space-y-3 mb-8">
                 {[
                   'Formatted to European (Europass) or university-specific standards',
@@ -180,7 +180,7 @@ export default function CVPreparation() {
 
       {/* ── European CV is Mandatory ──────────────────────────────────── */}
       <section className="py-14 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="bg-gradient-to-br from-gray-900 to-primary rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
               <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center">
@@ -206,11 +206,11 @@ export default function CVPreparation() {
 
       {/* ── What Goes Into Your CV ────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">CV Structure</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">What Goes Into Your CV</h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
+            <p className="text-gray-900 max-w-xl mx-auto">
               A strong German application CV covers six key areas. We make sure every section is clear, complete, and impactful.
             </p>
           </div>
@@ -222,7 +222,7 @@ export default function CVPreparation() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm">{label}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{sub}</p>
+                  <p className="text-gray-900 text-sm mt-0.5">{sub}</p>
                 </div>
               </div>
             ))}
@@ -232,11 +232,11 @@ export default function CVPreparation() {
 
       {/* ── What We Need From You ─────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Getting Started</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">What We Need From You</h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
+            <p className="text-gray-900 max-w-xl mx-auto">
               No complicated forms. Share these details and we will handle the rest.
             </p>
           </div>
@@ -248,14 +248,14 @@ export default function CVPreparation() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm">{label}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{sub}</p>
+                  <p className="text-gray-900 text-sm mt-0.5">{sub}</p>
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
             <a
-              href="https://wa.me/919119740154?text=Hi%20EasyWayGermany%2C%20I%20want%20to%20order%20your%20CV%20preparation%20service."
+              href="https://wa.me/4915236738625?text=Hi%20EasyWayGermany%2C%20I%20want%20to%20order%20your%20CV%20preparation%20service."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-colors shadow-lg"
@@ -269,7 +269,7 @@ export default function CVPreparation() {
 
       {/* ── Why Choose Us ────────────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Our Edge</div>
             <h2 className="text-3xl font-bold text-gray-900">Why Choose Our CV Service?</h2>
@@ -279,7 +279,7 @@ export default function CVPreparation() {
               <div key={title} className={`${bg} rounded-2xl p-8 border border-gray-100 text-center hover:shadow-card transition-shadow`}>
                 <span className={`material-icons-round text-5xl mb-4 ${color}`}>{icon}</span>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -288,7 +288,7 @@ export default function CVPreparation() {
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Got Questions?</div>
             <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
@@ -306,7 +306,7 @@ export default function CVPreparation() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === i ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

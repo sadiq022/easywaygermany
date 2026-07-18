@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
 /*
@@ -131,7 +131,7 @@ export default function UniversityShortlisting() {
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <div className="page-hero">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
             Expert University Shortlisting Service
           </h1>
@@ -144,7 +144,7 @@ export default function UniversityShortlisting() {
 
       {/* ── Overview + Image ─────────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
             {/* Image — place file at: public/images/services/university.jpg */}
@@ -157,9 +157,9 @@ export default function UniversityShortlisting() {
                   loading="lazy"
                 />
                 <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-5 py-3 shadow-lg flex items-baseline gap-2">
-                  <span className="text-gray-500 text-sm">Just</span>
+                  <span className="text-gray-900 text-sm">Just</span>
                   <span className="text-2xl font-bold text-primary">₹2,500</span>
-                  <span className="text-gray-500 text-sm">per profile</span>
+                  <span className="text-gray-900 text-sm">per profile</span>
                 </div>
               </div>
             </div>
@@ -168,7 +168,7 @@ export default function UniversityShortlisting() {
             <div className="md:w-1/2">
               <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">What You Get</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Everything in One Report</h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-gray-900 mb-6">
                 Delivered in <strong className="text-gray-700">2–3 working days</strong>&nbsp;·&nbsp;
                 <span className="text-green-600 font-semibold">One-on-One Consultation</span>
               </p>
@@ -199,7 +199,7 @@ export default function UniversityShortlisting() {
 
       {/* ── Public Universities Only ──────────────────────────────────── */}
       <section className="py-14 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="bg-gradient-to-br from-gray-900 to-primary rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
               <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center">
@@ -224,11 +224,11 @@ export default function UniversityShortlisting() {
 
       {/* ── Dream / Target / Safe Tiers ──────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Balanced Strategy</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">A List Built to Get You In</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">
+            <p className="text-gray-900 max-w-2xl mx-auto">
               Applying only to top-tier universities risks rejection. Applying only to safe ones means missing better opportunities.
               We create a balanced portfolio across three tiers.
             </p>
@@ -266,7 +266,7 @@ export default function UniversityShortlisting() {
                   <span className="font-bold text-gray-900 text-lg">{label}</span>
                   <span className={`material-icons-round ${color} ml-auto`}>{icon}</span>
                 </div>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -275,11 +275,11 @@ export default function UniversityShortlisting() {
 
       {/* ── Sample Report Table ───────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Sample Preview</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">Your Shortlist Report Includes</h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
+            <p className="text-gray-900 max-w-xl mx-auto">
               Here's a glimpse of what your personalised report looks like. Every row is filled with verified, up-to-date data.
             </p>
           </div>
@@ -300,11 +300,11 @@ export default function UniversityShortlisting() {
                   <tr key={r.uni} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                     <td className="px-4 py-4 font-bold text-gray-900 whitespace-nowrap">{r.uni}</td>
                     <td className="px-4 py-4 text-gray-700 whitespace-nowrap">{r.course}</td>
-                    <td className="px-4 py-4 text-gray-600 whitespace-nowrap">{r.summer}</td>
-                    <td className="px-4 py-4 text-gray-600 whitespace-nowrap">{r.winter}</td>
-                    <td className="px-4 py-4 text-gray-600 whitespace-nowrap">{r.lang}</td>
-                    <td className="px-4 py-4 text-gray-600 whitespace-nowrap">{r.proc}</td>
-                    <td className="px-4 py-4 text-gray-600">{r.docs}</td>
+                    <td className="px-4 py-4 text-gray-900 whitespace-nowrap">{r.summer}</td>
+                    <td className="px-4 py-4 text-gray-900 whitespace-nowrap">{r.winter}</td>
+                    <td className="px-4 py-4 text-gray-900 whitespace-nowrap">{r.lang}</td>
+                    <td className="px-4 py-4 text-gray-900 whitespace-nowrap">{r.proc}</td>
+                    <td className="px-4 py-4 text-gray-900">{r.docs}</td>
                     <td className="px-4 py-4">
                       <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
                         r.remarks.toLowerCase().includes('competitive')
@@ -322,7 +322,7 @@ export default function UniversityShortlisting() {
             </table>
           </div>
 
-          <p className="text-center text-xs text-gray-400 mt-4">
+          <p className="text-center text-sm text-gray-900 mt-4">
             * Sample data for illustration only. Your actual report will have course links, official deadlines, and personalised remarks.
           </p>
         </div>
@@ -330,11 +330,11 @@ export default function UniversityShortlisting() {
 
       {/* ── What We Need From You ─────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Getting Started</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">What We Need From You</h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
+            <p className="text-gray-900 max-w-xl mx-auto">
               No lengthy forms. Just share these 6 things and we'll take it from there.
             </p>
           </div>
@@ -346,14 +346,14 @@ export default function UniversityShortlisting() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm">{label}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{sub}</p>
+                  <p className="text-gray-900 text-sm mt-0.5">{sub}</p>
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
             <a
-              href="https://wa.me/919119740154?text=Hi%20EasyWayGermany%2C%20I%20want%20to%20order%20your%20university%20shortlisting%20service."
+              href="https://wa.me/4915236738625?text=Hi%20EasyWayGermany%2C%20I%20want%20to%20order%20your%20university%20shortlisting%20service."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-colors shadow-lg"
@@ -367,7 +367,7 @@ export default function UniversityShortlisting() {
 
       {/* ── Why Choose Us ────────────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Our Edge</div>
             <h2 className="text-3xl font-bold text-gray-900">Why Choose Us?</h2>
@@ -377,7 +377,7 @@ export default function UniversityShortlisting() {
               <div key={title} className={`${bg} rounded-2xl p-8 border border-gray-100 text-center hover:shadow-card transition-shadow`}>
                 <span className={`material-icons-round text-5xl mb-4 ${color}`}>{icon}</span>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -386,7 +386,7 @@ export default function UniversityShortlisting() {
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Got Questions?</div>
             <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
@@ -404,7 +404,7 @@ export default function UniversityShortlisting() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === i ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

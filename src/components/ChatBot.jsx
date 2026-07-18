@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
+﻿import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const WHATSAPP = 'https://wa.me/919119740154'
+const WHATSAPP = 'https://wa.me/4915236738625'
 
 // Each entry: { id, keywords[], answer (string or JSX fn), followUp[] }
 const FAQ = [
@@ -92,7 +92,7 @@ const FAQ = [
   {
     id: 'contact',
     keywords: ['contact', 'reach', 'email', 'phone', 'whatsapp', 'call'],
-    answer: `You can reach us at:\n\n📧 info@easywaygermany.com\n📞 +49 1521 1234567\n💬 WhatsApp: +91 9119740154\n🕐 Mon–Sat: 9 AM – 6 PM CET`,
+    answer: `You can reach us at:\n\n📧 info@easywaygermany.com\n📞 +49 1521 1234567\n💬 WhatsApp: +49 152 3673 8625\n🕐 Mon–Sat: 9 AM – 6 PM CET`,
     followUp: ['Talk to an expert', 'Book Consultation'],
   },
   {

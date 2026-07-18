@@ -29,11 +29,13 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contact Us – Book a Free Consultation | EasyWay Germany</title>
-        <meta name="description" content="Get in touch with EasyWay Germany. Book a free consultation for studying in Germany. Reach us via email, phone, or WhatsApp. Based in Dresden, Germany." />
-        <meta property="og:title" content="Contact EasyWay Germany – Book Your Free Consultation" />
-        <meta property="og:description" content="Talk to our experts about studying in Germany. Free consultation available via WhatsApp, email, or our contact form." />
+        <title>Book a Free Consultation – Study in Germany | EasyWay Germany</title>
+        <meta name="description" content="Get a free consultation with EasyWay Germany's experts for studying in Germany. We'll evaluate your profile, suggest universities, and guide you on APS certificate, blocked account, and student visa. Contact us via WhatsApp, email, or form." />
+        <meta name="keywords" content="free consultation study in germany, book free counselling germany study, germany study abroad consultancy contact, germany education consultants" />
+        <meta property="og:title" content="Free Consultation – Study in Germany | EasyWay Germany" />
+        <meta property="og:description" content="Book your free profile evaluation with EasyWay Germany. Get expert advice on university admissions, APS certificate, blocked account, and student visa." />
         <meta property="og:url" content="https://easywaygermany.com/contact" />
+        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
         <link rel="canonical" href="https://easywaygermany.com/contact" />
       </Helmet>
 

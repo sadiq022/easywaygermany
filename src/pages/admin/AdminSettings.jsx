@@ -65,7 +65,7 @@ export default function AdminSettings() {
                   <span className="material-icons-round text-white text-base">payment</span>
                 </div>
                 <div>
-                  <h2 className="font-semibold text-gray-900">Razorpay Payment Gateway</h2>
+                  <h2 className="font-semibold text-gray-900">Payment Gateway</h2>
                   <p className="text-xs text-gray-500">Keys are stored securely in the database</p>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function AdminSettings() {
                     <input
                       type={showSecret ? 'text' : 'password'} value={keySecret}
                       onChange={e => setKeySecret(e.target.value)}
-                      placeholder="Your Razorpay Key Secret"
+                      placeholder="Your Key Secret"
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary font-mono pr-11"
                     />
                     <button type="button" onClick={() => setShowSecret(v => !v)}

@@ -289,11 +289,14 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>EasyWay Germany – #1 Study in Germany Consultancy for Indian Students</title>
-        <meta name="description" content="EasyWay Germany helps Indian students study in Germany. Expert SOP writing, university shortlisting, LOR writing, CV preparation, and visa SOP — from a team based in Dresden, Germany." />
-        <meta property="og:title" content="EasyWay Germany – Study in Germany Consultancy" />
-        <meta property="og:description" content="Expert guidance for Indian students applying to German universities. SOP writing, university shortlisting, LOR, CV, and visa SOP — from people who live in Germany." />
+        <title>Study in Germany Consultancy 2026 | EasyWay Germany – Experts Based in Germany</title>
+        <meta name="description" content="EasyWay Germany helps Indian, Bangladeshi & Nepali students study at top German universities. Expert SOP writing, university shortlisting, APS certificate guidance, blocked account help, and student visa support — from a team that lives in Dresden, Germany. Free consultation." />
+        <meta name="keywords" content="study in germany consultancy, study in germany from india, germany university admission, APS certificate help, blocked account germany, germany student visa consultants, SOP writing germany, masters in germany indian students" />
+        <meta property="og:title" content="Study in Germany Consultancy 2026 | EasyWay Germany" />
+        <meta property="og:description" content="Expert guidance for Indian students applying to German universities — from consultants who actually live in Germany. SOP, LOR, CV, APS certificate, blocked account & visa support." />
         <meta property="og:url" content="https://easywaygermany.com/" />
+        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:type" content="website" />
         <link rel="canonical" href="https://easywaygermany.com/" />
       </Helmet>
 

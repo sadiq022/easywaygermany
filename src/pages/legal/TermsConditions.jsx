@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 const LAST_UPDATED = 'June 15, 2026'
@@ -49,7 +49,7 @@ export default function TermsConditions() {
 
             <div>
               <h2 className="text-xl font-bold text-gray-900 mb-3">4. Payments</h2>
-              <p>Payments are processed securely through <strong>Razorpay</strong>. By making a payment, you agree to Razorpay's terms of service. All prices are listed in Indian Rupees (INR) inclusive of applicable taxes.</p>
+              <p>Payments are processed securely through our payment gateway. All prices are listed in Indian Rupees (INR) inclusive of applicable taxes.</p>
             </div>
 
             <div>
@@ -96,7 +96,7 @@ export default function TermsConditions() {
               <h2 className="text-xl font-bold text-gray-900 mb-3">13. Contact</h2>
               <p>For questions about these terms, contact us at:<br />
               <strong>Email:</strong> <a href="mailto:info@easywaygermany.com" className="text-primary">info@easywaygermany.com</a><br />
-              <strong>WhatsApp:</strong> +91 9119740154</p>
+              <strong>WhatsApp:</strong> +49 152 3673 8625</p>
             </div>
 
           </div>

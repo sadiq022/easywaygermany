@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 
 const LAST_UPDATED = 'June 15, 2026'
 
@@ -89,7 +89,7 @@ export default function ShippingPolicy() {
               <p>If you have not received your digital product or document within the stated timeframe, please contact us immediately:</p>
               <ul className="list-disc pl-5 mt-2 space-y-1">
                 <li><strong>Email:</strong> <a href="mailto:info@easywaygermany.com" className="text-primary">info@easywaygermany.com</a></li>
-                <li><strong>WhatsApp:</strong> +91 9119740154</li>
+                <li><strong>WhatsApp:</strong> +49 152 3673 8625</li>
               </ul>
             </div>
 

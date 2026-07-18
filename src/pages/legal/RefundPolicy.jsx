@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 
 const LAST_UPDATED = 'June 15, 2026'
 
@@ -82,7 +82,7 @@ export default function RefundPolicy() {
               <p>To request a refund, contact us within the eligible time window:</p>
               <ul className="list-disc pl-5 mt-2 space-y-1">
                 <li><strong>Email:</strong> <a href="mailto:info@easywaygermany.com" className="text-primary">info@easywaygermany.com</a></li>
-                <li><strong>WhatsApp:</strong> +91 9119740154</li>
+                <li><strong>WhatsApp:</strong> +49 152 3673 8625</li>
               </ul>
               <p className="mt-3">Please include your order ID, registered email address, and reason for the refund request. Approved refunds are processed within <strong>5–7 business days</strong> to the original payment method.</p>
             </div>

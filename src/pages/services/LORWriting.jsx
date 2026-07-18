@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
 /*
@@ -120,7 +120,7 @@ export default function LORWriting() {
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
       <div className="page-hero">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
             Professional LOR Writing Service
           </h1>
@@ -133,7 +133,7 @@ export default function LORWriting() {
 
       {/* ── Overview + Image ─────────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
             {/* Image — place file at: public/images/services/LOR_Image.jpg */}
@@ -145,11 +145,6 @@ export default function LORWriting() {
                   className="w-full h-[360px] object-cover"
                   loading="lazy"
                 />
-                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-5 py-3 shadow-lg flex items-baseline gap-2">
-                  <span className="text-gray-500 text-sm">Just</span>
-                  <span className="text-2xl font-bold text-primary">₹1,250</span>
-                  <span className="text-gray-500 text-sm">per LOR</span>
-                </div>
               </div>
             </div>
 
@@ -157,10 +152,15 @@ export default function LORWriting() {
             <div className="md:w-1/2">
               <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">What You Get</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Everything in One LOR</h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-gray-900 mb-4">
                 Delivered in <strong className="text-gray-700">2–3 working days</strong>&nbsp;·&nbsp;
                 <span className="text-green-600 font-semibold">Unlimited Revisions</span>
               </p>
+              <div className="inline-flex items-baseline gap-2 bg-primary/10 border-2 border-primary/20 rounded-xl px-5 py-3 mb-6">
+                <span className="text-sm font-medium text-gray-900">Just</span>
+                <span className="text-3xl font-black text-primary">₹1,250</span>
+                <span className="text-sm font-medium text-gray-900">per LOR</span>
+              </div>
               <ul className="space-y-3 mb-8">
                 {[
                   'Customized LORs for professors, supervisors, or employers',
@@ -189,18 +189,18 @@ export default function LORWriting() {
 
       {/* ── Who Signs the LOR ────────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-4">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Written On Their Behalf</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-3">We Write It. They Sign It.</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">
+            <p className="text-gray-900 max-w-2xl mx-auto">
               We work with all types of recommenders. Just tell us who is writing your LOR
               and we will craft a letter that matches their voice and authority.
             </p>
           </div>
 
           {/* highlight strip */}
-          <div className="my-8 bg-primary/8 border border-primary/20 rounded-2xl px-6 py-5 flex items-start gap-4 max-w-3xl mx-auto">
+          <div className="my-8 bg-primary/8 border border-primary/20 rounded-2xl px-6 py-5 flex items-start gap-4">
             <span className="material-icons-round text-primary text-3xl mt-0.5 flex-shrink-0">tips_and_updates</span>
             <p className="text-gray-700 leading-relaxed">
               <strong className="text-gray-900">Did you know?</strong> Most applicants ask us to ghost-write
@@ -217,7 +217,7 @@ export default function LORWriting() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 text-sm">{label}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{sub}</p>
+                  <p className="text-gray-900 text-sm mt-0.5">{sub}</p>
                 </div>
               </div>
             ))}
@@ -227,7 +227,7 @@ export default function LORWriting() {
 
       {/* ── How It Works ─────────────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Simple Process</div>
             <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
@@ -241,14 +241,14 @@ export default function LORWriting() {
                 </div>
                 <div className="text-xs font-bold text-primary/50 uppercase tracking-widest mb-1">{num}</div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
             <a
-              href="https://wa.me/919119740154?text=Hi%20EasyWayGermany%2C%20I%20want%20to%20order%20your%20LOR%20writing%20service."
+              href="https://wa.me/4915236738625?text=Hi%20EasyWayGermany%2C%20I%20want%20to%20order%20your%20LOR%20writing%20service."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg transition-colors shadow-lg"
@@ -262,7 +262,7 @@ export default function LORWriting() {
 
       {/* ── Why Choose Us ────────────────────────────────────────────── */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Our Edge</div>
             <h2 className="text-3xl font-bold text-gray-900">Why Choose Our LOR Service?</h2>
@@ -272,7 +272,7 @@ export default function LORWriting() {
               <div key={title} className={`${bg} rounded-2xl p-8 border border-gray-100 text-center hover:shadow-card transition-shadow`}>
                 <span className={`material-icons-round text-5xl mb-4 ${color}`}>{icon}</span>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -281,7 +281,7 @@ export default function LORWriting() {
 
       {/* ── FAQ ──────────────────────────────────────────────────────── */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Got Questions?</div>
             <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
@@ -299,7 +299,7 @@ export default function LORWriting() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === i ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

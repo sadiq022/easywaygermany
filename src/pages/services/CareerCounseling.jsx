@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -37,7 +37,7 @@ export default function CareerCounseling() {
 
       {/* Hero Section */}
       <div className="page-hero">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Service 01</div>
           <h1 className="text-4xl md:text-5xl text-white mb-6">Expert Career Counseling</h1>
           <p className="text-xl text-white/80 mb-8 leading-relaxed">
@@ -51,7 +51,7 @@ export default function CareerCounseling() {
 
       {/* Details Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl mb-6 text-gray-900">Why You Need Professional Counseling</h2>
           <p className="text-lg text-gray-700 mb-8">
             Germany offers thousands of degree programs across hundreds of universities. Finding the one that perfectly aligns with your academic background, GPA, language skills, and career goals is overwhelming. Our career counseling service eliminates the confusion. We don't just tell you what's popular; we analyze your unique profile to find what's *right for you*.
@@ -60,12 +60,12 @@ export default function CareerCounseling() {
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-4xl mb-4">analytics</span>
               <h3 className="text-xl mb-3 text-gray-900">Profile Evaluation</h3>
-              <p className="text-gray-600">Thorough analysis of your academic transcripts, work experience, and extracurriculars to identify your strengths and weaknesses.</p>
+              <p className="text-gray-900">Thorough analysis of your academic transcripts, work experience, and extracurriculars to identify your strengths and weaknesses.</p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-4xl mb-4">route</span>
               <h3 className="text-xl mb-3 text-gray-900">Path Planning</h3>
-              <p className="text-gray-600">Strategic planning for course selection, public vs. private university choices, and timeline management for intakes.</p>
+              <p className="text-gray-900">Strategic planning for course selection, public vs. private university choices, and timeline management for intakes.</p>
             </div>
           </div>
         </div>
@@ -73,14 +73,14 @@ export default function CareerCounseling() {
 
       {/* Pricing Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl mb-4 text-gray-900">Transparent Pricing</h2>
-          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">High-quality guidance doesn't have to be prohibitively expensive. Choose the plan that fits your needs.</p>
+          <p className="text-gray-900 mb-12 max-w-2xl mx-auto">High-quality guidance doesn't have to be prohibitively expensive. Choose the plan that fits your needs.</p>
           
           <div className="max-w-md mx-auto bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-xl relative overflow-hidden">
             <div className="absolute top-0 left-0 right-0 h-2 bg-primary"></div>
             <h3 className="text-2xl mb-2 text-gray-900">Comprehensive Package</h3>
-            <div className="text-4xl text-primary mb-6 mt-4">€99 <span className="text-base text-gray-500 font-normal">/ one-time</span></div>
+            <div className="text-4xl text-primary mb-6 mt-4">€99 <span className="text-base text-gray-900 font-normal">/ one-time</span></div>
             <ul className="text-left space-y-4 mb-8">
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Detailed profile evaluation</li>
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> 3 One-on-one video sessions (45 mins each)</li>
@@ -96,10 +96,10 @@ export default function CareerCounseling() {
 
       {/* FAQ Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl mb-4 text-gray-900">Frequently Asked Questions</h2>
-            <p className="text-gray-600">Everything you need to know about our counseling services.</p>
+            <p className="text-gray-900">Everything you need to know about our counseling services.</p>
           </div>
           
           <div className="space-y-4">
@@ -115,7 +115,7 @@ export default function CareerCounseling() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === index ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
 const STEPS = [
@@ -81,7 +81,7 @@ export default function VisaSOP() {
 
       {/* Hero */}
       <div className="page-hero">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
             Visa SOP Writing Service
           </h1>
@@ -93,7 +93,7 @@ export default function VisaSOP() {
 
       {/* Overview */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
@@ -103,21 +103,21 @@ export default function VisaSOP() {
                   className="w-full h-[360px] object-cover"
                   loading="lazy"
                 />
-                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-5 py-3 shadow-lg flex items-baseline gap-2">
-                  <span className="text-gray-500 text-sm">Just</span>
-                  <span className="text-2xl font-bold text-primary">₹1,500</span>
-                  <span className="text-gray-500 text-sm">per Visa SOP</span>
-                </div>
               </div>
             </div>
 
             <div className="md:w-1/2">
               <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">What You Get</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Embassy-Ready Visa SOP</h2>
-              <p className="text-gray-500 mb-6">
+              <p className="text-gray-900 mb-4">
                 Delivered in <strong className="text-gray-700">2–3 working days</strong> &nbsp;·&nbsp;
                 <span className="text-green-600 font-semibold">Unlimited Revisions</span>
               </p>
+              <div className="inline-flex items-baseline gap-2 bg-primary/10 border-2 border-primary/20 rounded-xl px-5 py-3 mb-6">
+                <span className="text-sm font-medium text-gray-900">Just</span>
+                <span className="text-3xl font-black text-primary">₹1,500</span>
+                <span className="text-sm font-medium text-gray-900">per Visa SOP</span>
+              </div>
               <ul className="space-y-3 mb-8">
                 {[
                   'Addressed directly to the German embassy/consulate',
@@ -145,7 +145,7 @@ export default function VisaSOP() {
 
       {/* Visa SOP vs University SOP */}
       <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-10">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Know the Difference</div>
             <h2 className="text-3xl font-bold text-gray-900">Visa SOP vs University SOP</h2>
@@ -173,7 +173,7 @@ export default function VisaSOP() {
             </div>
             <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
               <h3 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
-                <span className="material-icons-round text-gray-500">school</span>
+                <span className="material-icons-round text-gray-900">school</span>
                 University SOP (Separate Service)
               </h3>
               <ul className="space-y-2">
@@ -184,8 +184,8 @@ export default function VisaSOP() {
                   'Persuasive, storytelling format',
                   'Required for university admission',
                 ].map(p => (
-                  <li key={p} className="flex items-start gap-2 text-gray-600 text-sm">
-                    <span className="material-icons-round text-gray-400 text-base mt-0.5">check</span>
+                  <li key={p} className="flex items-start gap-2 text-gray-900 text-sm">
+                    <span className="material-icons-round text-gray-900 text-base mt-0.5">check</span>
                     {p}
                   </li>
                 ))}
@@ -197,7 +197,7 @@ export default function VisaSOP() {
 
       {/* How It Works */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Simple Process</div>
             <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
@@ -211,7 +211,7 @@ export default function VisaSOP() {
                 </div>
                 <div className="text-xs font-bold text-primary/50 uppercase tracking-widest mb-1">{num}</div>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -220,7 +220,7 @@ export default function VisaSOP() {
 
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Our Edge</div>
             <h2 className="text-3xl font-bold text-gray-900">Why Choose Us?</h2>
@@ -230,7 +230,7 @@ export default function VisaSOP() {
               <div key={title} className={`${bg} rounded-2xl p-8 border border-gray-100 text-center hover:shadow-card transition-shadow`}>
                 <span className={`material-icons-round text-5xl mb-4 ${color}`}>{icon}</span>
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+                <p className="text-gray-900 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -239,7 +239,7 @@ export default function VisaSOP() {
 
       {/* FAQ */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Got Questions?</div>
             <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
@@ -257,7 +257,7 @@ export default function VisaSOP() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === i ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

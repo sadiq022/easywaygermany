@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -33,7 +33,7 @@ export default function ApplicationSupport() {
 
       {/* Hero Section */}
       <div className="page-hero">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Service 04</div>
           <h1 className="text-4xl md:text-5xl text-white mb-6">Application & Portal Support</h1>
           <p className="text-xl text-white/80 mb-8 leading-relaxed">
@@ -47,7 +47,7 @@ export default function ApplicationSupport() {
 
       {/* Details Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl mb-6 text-gray-900">Zero Errors. Zero Rejections Due to Missing Documents.</h2>
           <p className="text-lg text-gray-700 mb-8">
             A large percentage of international student applications are rejected simply because of incorrect formatting, missing apostilles, or misunderstanding the Uni-Assist portal. Our team has handled thousands of applications. We review every single PDF before you hit submit.
@@ -56,12 +56,12 @@ export default function ApplicationSupport() {
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-4xl mb-4">find_in_page</span>
               <h3 className="text-xl mb-3 text-gray-900">Document Review</h3>
-              <p className="text-gray-600">We verify that your transcripts, degree certificates, grading scales, and language certificates meet the strict German formatting requirements.</p>
+              <p className="text-gray-900">We verify that your transcripts, degree certificates, grading scales, and language certificates meet the strict German formatting requirements.</p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-4xl mb-4">web</span>
               <h3 className="text-xl mb-3 text-gray-900">Portal Guidance</h3>
-              <p className="text-gray-600">Live screen-sharing sessions to help you navigate Uni-Assist, apply for VPD, or use the university's proprietary application portal (CampusNet, etc.).</p>
+              <p className="text-gray-900">Live screen-sharing sessions to help you navigate Uni-Assist, apply for VPD, or use the university's proprietary application portal (CampusNet, etc.).</p>
             </div>
           </div>
         </div>
@@ -69,12 +69,12 @@ export default function ApplicationSupport() {
 
       {/* Pricing Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl mb-4 text-gray-900">Application Support Pricing</h2>
           
           <div className="max-w-md mx-auto mt-12 bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-xl relative overflow-hidden">
             <h3 className="text-2xl mb-2 text-gray-900">Comprehensive Support</h3>
-            <div className="text-4xl text-primary mb-6 mt-4">€199 <span className="text-base text-gray-500 font-normal">/ up to 5 applications</span></div>
+            <div className="text-4xl text-primary mb-6 mt-4">€199 <span className="text-base text-gray-900 font-normal">/ up to 5 applications</span></div>
             <ul className="text-left space-y-4 mb-8">
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Document formatting & review</li>
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Uni-Assist & VPD support</li>
@@ -90,7 +90,7 @@ export default function ApplicationSupport() {
 
       {/* FAQ Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl mb-4 text-gray-900">Frequently Asked Questions</h2>
           </div>
@@ -108,7 +108,7 @@ export default function ApplicationSupport() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === index ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

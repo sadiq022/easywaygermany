@@ -26,6 +26,8 @@ import Dashboard from './pages/Dashboard'
 import Checkout from './pages/Checkout'
 import Pricing from './pages/Pricing'
 import VisaPackage from './pages/VisaPackage'
+import StudyInGermany from './pages/StudyInGermany'
+import BlockedAccountGermany from './pages/BlockedAccountGermany'
 import Blogs from './pages/Blogs'
 import BlogDetail from './pages/BlogDetail'
 import AdminDashboard from './pages/admin/AdminDashboard'
@@ -69,6 +71,8 @@ function Layout() {
           <Route path="/services/visa-cover-letter" element={<VisaCoverLetter />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/study-in-germany" element={<StudyInGermany />} />
+          <Route path="/blocked-account-germany" element={<BlockedAccountGermany />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/visa-package" element={<VisaPackage />} />
           <Route path="/blog" element={<Blogs />} />

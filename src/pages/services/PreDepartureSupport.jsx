@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -32,7 +32,7 @@ export default function PreDepartureSupport() {
       </Helmet>
 
       <div className="page-hero">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Service 06</div>
           <h1 className="text-4xl md:text-5xl text-white mb-6">Pre-Departure & Arrival Support</h1>
           <p className="text-xl text-white/80 mb-8 leading-relaxed">
@@ -45,7 +45,7 @@ export default function PreDepartureSupport() {
       </div>
 
       <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl mb-6 text-gray-900">Arrive in Germany with Confidence</h2>
           <p className="text-lg text-gray-700 mb-8">
             Moving to a new country with a different language and bureaucratic system can be incredibly stressful. Our pre-departure support takes away the anxiety. We ensure you have a place to stay, insurance sorted, and a clear checklist of what to do the moment you land.
@@ -54,23 +54,23 @@ export default function PreDepartureSupport() {
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-4xl mb-4">home</span>
               <h3 className="text-xl mb-3 text-gray-900">Accommodation Support</h3>
-              <p className="text-gray-600">Guidance on applying for student dorms, WG-Gesucht strategies, and recognizing rental scams.</p>
+              <p className="text-gray-900">Guidance on applying for student dorms, WG-Gesucht strategies, and recognizing rental scams.</p>
             </div>
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-4xl mb-4">health_and_safety</span>
               <h3 className="text-xl mb-3 text-gray-900">Health Insurance & Admin</h3>
-              <p className="text-gray-600">Setup your German health insurance and get a checklist for Anmeldung (city registration) and residence permit applications.</p>
+              <p className="text-gray-900">Setup your German health insurance and get a checklist for Anmeldung (city registration) and residence permit applications.</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl mb-4 text-gray-900">Pricing</h2>
           <div className="max-w-md mx-auto mt-12 bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-xl relative overflow-hidden">
             <h3 className="text-2xl mb-2 text-gray-900">Transition Package</h3>
-            <div className="text-4xl text-primary mb-6 mt-4">€99 <span className="text-base text-gray-500 font-normal">/ complete</span></div>
+            <div className="text-4xl text-primary mb-6 mt-4">€99 <span className="text-base text-gray-900 font-normal">/ complete</span></div>
             <ul className="text-left space-y-4 mb-8">
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Accommodation search templates & guides</li>
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Health insurance registration assistance</li>
@@ -85,7 +85,7 @@ export default function PreDepartureSupport() {
       </section>
 
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl mb-4 text-gray-900">Frequently Asked Questions</h2>
           </div>
@@ -103,7 +103,7 @@ export default function PreDepartureSupport() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === index ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

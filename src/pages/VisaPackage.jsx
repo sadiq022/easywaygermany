@@ -1,7 +1,7 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 
-const WA = 'https://wa.me/919119740154?text=Hi%20EasyWay%20Germany%2C%20I%20am%20interested%20in%20your%20visa%20assistance%20package.'
+const WA = 'https://wa.me/4915236738625?text=Hi%20EasyWay%20Germany%2C%20I%20am%20interested%20in%20your%20visa%20assistance%20package.'
 
 const FAQS = [
   {

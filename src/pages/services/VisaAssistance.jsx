@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async'
+﻿import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
@@ -32,7 +32,7 @@ export default function VisaAssistance() {
       </Helmet>
 
       <div className="page-hero">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="inline-block text-xs font-bold text-white/60 uppercase tracking-widest mb-2">Service 05</div>
           <h1 className="text-4xl md:text-5xl text-white mb-6">Visa Assistance</h1>
           <p className="text-xl text-white/80 mb-8 leading-relaxed">
@@ -45,7 +45,7 @@ export default function VisaAssistance() {
       </div>
 
       <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl mb-6 text-gray-900">Don't Let Bad Documentation Ruin Your Dream</h2>
           <p className="text-lg text-gray-700 mb-8">
             The German visa process is notoriously strict about documentation. A single missing paper or incorrect format can lead to delays or rejections. Our visa experts know exactly what the embassy requires. We provide a tailored checklist, review your documents, and prepare you for any questions the consular officer might ask.
@@ -54,28 +54,28 @@ export default function VisaAssistance() {
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-3xl mb-4">fact_check</span>
               <h3 className="text-lg mb-2 text-gray-900">Document Review</h3>
-              <p className="text-gray-600 text-sm">Meticulous check of your motivation letter for visa, forms, and financial proofs.</p>
+              <p className="text-gray-900 text-sm">Meticulous check of your motivation letter for visa, forms, and financial proofs.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-3xl mb-4">account_balance</span>
               <h3 className="text-lg mb-2 text-gray-900">Blocked Account</h3>
-              <p className="text-gray-600 text-sm">Step-by-step guidance on setting up your Sperrkonto quickly and safely.</p>
+              <p className="text-gray-900 text-sm">Step-by-step guidance on setting up your Sperrkonto quickly and safely.</p>
             </div>
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
               <span className="material-icons-round text-primary text-3xl mb-4">record_voice_over</span>
               <h3 className="text-lg mb-2 text-gray-900">Interview Prep</h3>
-              <p className="text-gray-600 text-sm">Mock sessions to build your confidence and ensure you answer concisely.</p>
+              <p className="text-gray-900 text-sm">Mock sessions to build your confidence and ensure you answer concisely.</p>
             </div>
           </div>
         </div>
       </section>
 
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl mb-4 text-gray-900">Visa Support Pricing</h2>
           <div className="max-w-md mx-auto mt-12 bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-xl relative overflow-hidden">
             <h3 className="text-2xl mb-2 text-gray-900">Visa Package</h3>
-            <div className="text-4xl text-primary mb-6 mt-4">€129 <span className="text-base text-gray-500 font-normal">/ complete</span></div>
+            <div className="text-4xl text-primary mb-6 mt-4">€129 <span className="text-base text-gray-900 font-normal">/ complete</span></div>
             <ul className="text-left space-y-4 mb-8">
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Personalized document checklist</li>
               <li className="flex items-start gap-3 text-gray-700"><span className="material-icons-round text-success text-xl">check_circle</span> Review of Motivation Letter for Visa</li>
@@ -90,7 +90,7 @@ export default function VisaAssistance() {
       </section>
 
       <section className="py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl mb-4 text-gray-900">Frequently Asked Questions</h2>
           </div>
@@ -108,7 +108,7 @@ export default function VisaAssistance() {
                   </span>
                 </button>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === index ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
-                  <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}

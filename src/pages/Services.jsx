@@ -50,11 +50,13 @@ export default function Services() {
   return (
     <>
       <Helmet>
-        <title>Our Services – SOP, LOR, CV, University Shortlisting | EasyWay Germany</title>
-        <meta name="description" content="EasyWay Germany offers SOP writing, LOR writing, CV preparation, university shortlisting, Visa SOP, and Visa Cover Letter services for Indian students applying to Germany. Starting from ₹1,000." />
-        <meta property="og:title" content="Study in Germany Services – SOP, LOR, CV & More | EasyWay Germany" />
-        <meta property="og:description" content="Expert document services for German university applications. SOP ₹2,500 · LOR ₹1,250 · CV ₹1,000 · Visa SOP ₹1,500 · Visa Cover Letter ₹1,500." />
+        <title>Study in Germany Services 2026 | SOP, LOR, Visa, University Shortlisting | EasyWay Germany</title>
+        <meta name="description" content="End-to-end Germany study abroad services: SOP writing (₹2,500), LOR writing (₹1,250), CV preparation, university shortlisting, Visa SOP, and visa cover letter. Expert help from consultants based in Germany." />
+        <meta name="keywords" content="SOP writing service germany, LOR writing germany, CV preparation germany, university shortlisting service germany, germany visa SOP writing service, study in germany services" />
+        <meta property="og:title" content="Study in Germany Services 2026 – SOP, LOR, CV & Visa | EasyWay Germany" />
+        <meta property="og:description" content="Professional SOP, LOR, CV, university shortlisting and visa services for Indian students applying to Germany. Affordable prices, unlimited revisions." />
         <meta property="og:url" content="https://easywaygermany.com/services" />
+        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
         <link rel="canonical" href="https://easywaygermany.com/services" />
       </Helmet>
 

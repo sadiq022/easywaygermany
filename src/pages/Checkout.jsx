@@ -275,7 +275,7 @@ export default function Checkout() {
             <div className="bg-white rounded-2xl shadow-card p-6">
               <h2 className="font-serif font-bold text-gray-900 text-lg mb-2">Complete Your Purchase</h2>
               <p className="text-gray-500 text-sm mb-6">
-                Secure payment powered by Razorpay. You get instant access to download after payment.
+                Your payment is processed securely. You get instant access to download after payment.
               </p>
 
               {!razorpayKeyId && (
@@ -294,7 +294,7 @@ export default function Checkout() {
                 {processing ? (
                   <><div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> Processing…</>
                 ) : (
-                  <><span className="material-icons-round">lock</span> Pay ₹{finalAmount.toFixed(2)} with Razorpay</>
+                  <><span className="material-icons-round">lock</span> Pay ₹{finalAmount.toFixed(2)} Securely</>
                 )}
               </button>
 
