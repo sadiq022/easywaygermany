@@ -381,7 +381,7 @@ export default function StudyInGermany() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-semibold text-sm text-gray-900">{item.label}</span>
-                    <span className={`font-bold text-sm whitespace-nowrap ${item.label === 'Total per Month' ? 'text-primary' : item.color}`}>{item.value}</span>
+                    <span className={`font-bold text-sm text-right ${item.label === 'Total per Month' ? 'text-primary' : item.color}`}>{item.value}</span>
                   </div>
                   <p className="text-sm text-gray-900 mt-0.5">{item.note}</p>
                 </div>
