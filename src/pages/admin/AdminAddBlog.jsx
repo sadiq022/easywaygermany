@@ -250,21 +250,14 @@ export default function AdminAddBlog() {
         .eq('id', id)
       error = err
     } else {
-      // Find maximum ID to autoincrement integer ID in legacy DB schema
-      const { data: maxIdData } = await supabase
-        .from('blogs')
-        .select('id')
-        .order('id', { ascending: false })
-        .limit(1)
-
-      const nextId = maxIdData && maxIdData.length > 0 ? Number(maxIdData[0].id) + 1 : 1
       const { error: err } = await supabase
         .from('blogs')
-        .insert({ id: nextId, ...payload })
+        .insert(payload)
       error = err
     }
 
     if (error) {
+      console.error('Supabase blog save error:', error)
       toast.error(error.message.includes('unique') ? 'A blog post with this slug already exists.' : 'Failed to save blog post.')
     } else {
       toast.success(isEdit ? 'Blog post updated successfully!' : 'Blog post created successfully!')
