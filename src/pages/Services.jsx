@@ -168,6 +168,11 @@ export default function Services() {
                 DAAD Scholarship for Masters in Germany — Indian Students Guide
               </Link>
             </li>
+            <li>
+              <Link to="/blog/best-consultancy-for-masters-in-germany-easyway-germany" className="text-primary font-semibold hover:underline">
+                Best Consultancy for Masters in Germany — Why Students Choose EasyWay Germany
+              </Link>
+            </li>
           </ul>
         </div>
       </section>

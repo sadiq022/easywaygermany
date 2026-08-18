@@ -460,6 +460,9 @@ export default function Home() {
             <Link to="/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026" className="text-primary font-semibold hover:underline text-sm">
               How to Study in Germany from India — Step by Step →
             </Link>
+            <Link to="/blog/best-consultancy-for-masters-in-germany-easyway-germany" className="text-primary font-semibold hover:underline text-sm">
+              Best Consultancy for Masters in Germany — Why EasyWay Germany →
+            </Link>
           </div>
         </div>
       </section>
