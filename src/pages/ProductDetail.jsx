@@ -82,7 +82,7 @@ export default function ProductDetail() {
         .eq('category_id', p.category_id)
         .eq('is_active', true)
         .neq('id', p.id)
-        .limit(4)
+        .limit(3)
       setRelated(rel || [])
 
       // Fetch reviews
@@ -433,7 +433,7 @@ export default function ProductDetail() {
                 <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">More Products</div>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">You Might Also Like</h2>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {related.map((p) => <ProductCard key={p.id} product={p} />)}
               </div>
             </div>

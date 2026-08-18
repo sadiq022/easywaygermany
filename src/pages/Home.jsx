@@ -239,7 +239,7 @@ function TestimonialsCarousel() {
         <div className="relative flex items-center gap-3">
           <button
             onClick={goPrev}
-            className="w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
+            className="hidden md:flex w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
             aria-label="Previous"
           >
             <span className="material-icons-round">chevron_left</span>
@@ -255,7 +255,7 @@ function TestimonialsCarousel() {
               }}
             >
               {loopCards.map((t, i) => (
-                <div key={i} style={{ width: `${100 / loopTotal}%` }} className="px-2 box-border">
+                <div key={i} style={{ width: `${100 / loopTotal}%` }} className="px-0 md:px-2 box-border">
                   <TestimonialCard {...t} featured={i === idx + Math.floor(V / 2)} />
                 </div>
               ))}
@@ -264,7 +264,7 @@ function TestimonialsCarousel() {
 
           <button
             onClick={goNext}
-            className="w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
+            className="hidden md:flex w-11 h-11 rounded-full bg-white border border-gray-200 shadow-sm items-center justify-center text-gray-500 hover:text-primary hover:border-primary transition-colors flex-shrink-0"
             aria-label="Next"
           >
             <span className="material-icons-round">chevron_right</span>
