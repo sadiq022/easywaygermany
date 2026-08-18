@@ -292,7 +292,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!isSupabaseConfigured) return
-    
+
     // Fetch featured products
     supabase
       .from('products')
@@ -395,7 +395,7 @@ export default function Home() {
               Masters &amp; Bachelors in Germany<br />
               <span className="text-yellow-400">Made Easy!</span>
             </h1>
-            
+
             {/* Paragraph (only visible on desktop, moved to image overlay on mobile) */}
             <p className="hidden md:block text-white/85 text-lg md:text-xl mb-8 leading-relaxed text-center">
               We simplify your journey to top German universities.<br />
@@ -413,56 +413,6 @@ export default function Home() {
                 Explore Products
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why Masters in Germany ── */}
-      <section className="py-10 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Why Germany</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Why Indian Students Choose Masters in Germany</h2>
-          </div>
-          <div className="space-y-4 text-gray-600 leading-relaxed">
-            <p>
-              Germany is one of the top destinations for Indian students pursuing a Masters degree abroad.
-              Public universities in Germany charge no tuition fees for Masters programs — even for international students.
-              Students only pay a semester contribution of €100–€350 which covers public transport and administrative costs.
-            </p>
-            <p>
-              Germany offers over 1,800 English-taught Masters programs across engineering, computer science,
-              management, and natural sciences. After completing your Masters in Germany, you receive an 18-month
-              post-study work visa to find employment — one of the most generous in Europe.
-            </p>
-            <p>
-              Indian students are among the largest international student communities in Germany, with universities
-              like TU Munich, RWTH Aachen, TU Dresden, and Heidelberg consistently ranked among the world's best.
-              EasyWay Germany helps you navigate the entire process — from university shortlisting to visa approval —
-              from our base in Dresden, Germany.
-            </p>
-            <p>
-              Wondering how to do a Masters in Germany from India, or whether an MS in Germany for Indian students
-              makes sense for your profile? We walk every applicant through the full journey — from choosing a
-              program to receiving your visa.
-            </p>
-          </div>
-          <div className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-2">
-            <Link to="/blog/masters-in-germany-for-indian-students-complete-guide-2026" className="text-primary font-semibold hover:underline text-sm">
-              Masters in Germany for Indian Students — Complete Guide →
-            </Link>
-            <Link to="/blog/is-masters-in-germany-free-for-international-students-2026" className="text-primary font-semibold hover:underline text-sm">
-              Is a Masters in Germany Really Free? →
-            </Link>
-            <Link to="/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown" className="text-primary font-semibold hover:underline text-sm">
-              Masters in Germany Cost in Indian Rupees — Full Breakdown →
-            </Link>
-            <Link to="/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026" className="text-primary font-semibold hover:underline text-sm">
-              How to Study in Germany from India — Step by Step →
-            </Link>
-            <Link to="/blog/best-consultancy-for-masters-in-germany-easyway-germany" className="text-primary font-semibold hover:underline text-sm">
-              Best Consultancy for Masters in Germany — Why EasyWay Germany →
-            </Link>
           </div>
         </div>
       </section>
@@ -526,24 +476,6 @@ export default function Home() {
                     Learn More
                   </Link>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── How We Help You ── */}
-      <section className="py-10 md:py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">In Detail</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">How EasyWay Germany Helps You Get Admitted</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-            {HOW_WE_HELP.map(({ title, body }) => (
-              <div key={title}>
-                <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
@@ -625,27 +557,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section className="py-10 md:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">FAQ</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions — Masters &amp; Bachelors in Germany</h2>
-          </div>
-          <div className="divide-y divide-gray-100">
-            {HOME_FAQS.map(({ q, a }) => (
-              <details key={q} className="group py-4">
-                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-gray-900">
-                  {q}
-                  <span className="material-icons-round text-primary text-xl flex-shrink-0 transition-transform group-open:rotate-45">add</span>
-                </summary>
-                <p className="text-gray-600 text-sm leading-relaxed mt-3">{a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Blog Preview ── */}
       <section className="pt-10 pb-10 md:pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -702,6 +613,95 @@ export default function Home() {
                 </div>
               ))
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Why Masters in Germany ── */}
+      <section className="py-10 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Why Germany</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Why Indian Students Choose Masters in Germany</h2>
+          </div>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Germany is one of the top destinations for Indian students pursuing a Masters degree abroad.
+              Public universities in Germany charge no tuition fees for Masters programs — even for international students.
+              Students only pay a semester contribution of €100–€350 which covers public transport and administrative costs.
+            </p>
+            <p>
+              Germany offers over 1,800 English-taught Masters programs across engineering, computer science,
+              management, and natural sciences. After completing your Masters in Germany, you receive an 18-month
+              post-study work visa to find employment — one of the most generous in Europe.
+            </p>
+            <p>
+              Indian students are among the largest international student communities in Germany, with universities
+              like TU Munich, RWTH Aachen, TU Dresden, and Heidelberg consistently ranked among the world's best.
+              EasyWay Germany helps you navigate the entire process — from university shortlisting to visa approval —
+              from our base in Dresden, Germany.
+            </p>
+            <p>
+              Wondering how to do a Masters in Germany from India, or whether an MS in Germany for Indian students
+              makes sense for your profile? We walk every applicant through the full journey — from choosing a
+              program to receiving your visa.
+            </p>
+          </div>
+          <div className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-2">
+            <Link to="/blog/masters-in-germany-for-indian-students-complete-guide-2026" className="text-primary font-semibold hover:underline text-sm">
+              Masters in Germany for Indian Students — Complete Guide →
+            </Link>
+            <Link to="/blog/is-masters-in-germany-free-for-international-students-2026" className="text-primary font-semibold hover:underline text-sm">
+              Is a Masters in Germany Really Free? →
+            </Link>
+            <Link to="/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown" className="text-primary font-semibold hover:underline text-sm">
+              Masters in Germany Cost in Indian Rupees — Full Breakdown →
+            </Link>
+            <Link to="/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026" className="text-primary font-semibold hover:underline text-sm">
+              How to Study in Germany from India — Step by Step →
+            </Link>
+            <Link to="/blog/best-consultancy-for-masters-in-germany-easyway-germany" className="text-primary font-semibold hover:underline text-sm">
+              Best Consultancy for Masters in Germany — Why EasyWay Germany →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── How We Help You ── */}
+      <section className="py-10 md:py-20 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">In Detail</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">How EasyWay Germany Helps You Get Admitted</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+            {HOW_WE_HELP.map(({ title, body }) => (
+              <div key={title}>
+                <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-10 md:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">FAQ</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions — Masters &amp; Bachelors in Germany</h2>
+          </div>
+          <div className="divide-y divide-gray-100">
+            {HOME_FAQS.map(({ q, a }) => (
+              <details key={q} className="group py-4">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-gray-900">
+                  {q}
+                  <span className="material-icons-round text-primary text-xl flex-shrink-0 transition-transform group-open:rotate-45">add</span>
+                </summary>
+                <p className="text-gray-600 text-sm leading-relaxed mt-3">{a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
