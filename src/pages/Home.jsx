@@ -114,6 +114,9 @@ const HOME_FAQS = [
   { q: 'How long does Germany student visa processing take from India?', a: 'Germany student visa processing from Indian embassies typically takes 6–12 weeks after the appointment. Appointment slots at German embassies in Delhi, Mumbai, Kolkata, Chennai, and Bangalore can take 2–4 months to secure. Start your visa process immediately after receiving your university admission letter.' },
   { q: 'Is GRE required for Masters in Germany?', a: 'GRE is generally not required for Masters programs at German public universities. A small number of internationally ranked programs may request GRE scores as part of a competitive selection process, but most programs rely on undergraduate GPA, language scores, SOP, and LORs for admission decisions.' },
   { q: 'How much does living in Germany cost for Indian students?', a: 'The average cost of living in Germany for international students is €800–€1,200 per month, including rent, food, transport, health insurance, and personal expenses. Costs vary by city — Dresden and Leipzig are significantly more affordable than Munich or Frankfurt.' },
+  { q: 'How many years is a Masters in Germany for Indian students?', a: 'Most Masters programs in Germany run for 2 years (4 semesters). A smaller number of specialised or professional programs are 1 year (2 semesters) — always check the specific program page, since duration affects both cost and visa validity.' },
+  { q: 'What is the Masters in Germany cost in Indian Rupees?', a: 'For a 2-year Masters at a public university outside Baden-Württemberg, expect roughly ₹19–₹28 lakh total for living costs, with no tuition fees. The blocked account deposit (~₹11.3 lakh) is separate — it is your own money, returned to you monthly.' },
+  { q: 'Can Indian students get a scholarship for Masters in Germany?', a: "Yes. DAAD offers several scholarship programs covering a monthly stipend and health insurance for eligible students. Since public university tuition is already free, many Indian students study without a scholarship, funding living costs through a blocked account instead." },
 ]
 
 const HOW_WE_HELP = [
@@ -438,6 +441,25 @@ export default function Home() {
               EasyWay Germany helps you navigate the entire process — from university shortlisting to visa approval —
               from our base in Dresden, Germany.
             </p>
+            <p>
+              Wondering how to do a Masters in Germany from India, or whether an MS in Germany for Indian students
+              makes sense for your profile? We walk every applicant through the full journey — from choosing a
+              program to receiving your visa.
+            </p>
+          </div>
+          <div className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-2">
+            <Link to="/blog/masters-in-germany-for-indian-students-complete-guide-2026" className="text-primary font-semibold hover:underline text-sm">
+              Masters in Germany for Indian Students — Complete Guide →
+            </Link>
+            <Link to="/blog/is-masters-in-germany-free-for-international-students-2026" className="text-primary font-semibold hover:underline text-sm">
+              Is a Masters in Germany Really Free? →
+            </Link>
+            <Link to="/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown" className="text-primary font-semibold hover:underline text-sm">
+              Masters in Germany Cost in Indian Rupees — Full Breakdown →
+            </Link>
+            <Link to="/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026" className="text-primary font-semibold hover:underline text-sm">
+              How to Study in Germany from India — Step by Step →
+            </Link>
           </div>
         </div>
       </section>

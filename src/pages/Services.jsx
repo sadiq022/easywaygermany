@@ -92,6 +92,14 @@ export default function Services() {
             (document verification for all Indian applicants) and setting up a <strong>blocked account</strong>{' '}
             (Sperrkonto) for the student visa. Ask us about either during your free consultation.
           </p>
+          <p className="text-gray-600 leading-relaxed mt-4">
+            Not sure how to apply for a Masters in Germany from India, or what documents are required for a
+            Masters in Germany application? Every service below maps to a real step in that process — see our{' '}
+            <Link to="/blog/masters-in-germany-for-indian-students-complete-guide-2026" className="text-primary font-semibold hover:underline">complete guide on how to apply for MS in Germany from India</Link>{' '}
+            for the full checklist, or our{' '}
+            <Link to="/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown" className="text-primary font-semibold hover:underline">Masters degree in Germany cost breakdown</Link>{' '}
+            to budget your application.
+          </p>
         </div>
       </section>
 
@@ -143,6 +151,21 @@ export default function Services() {
             <li>
               <Link to="/blog/germany-student-visa-without-blocked-account-alternatives-2026" className="text-primary font-semibold hover:underline">
                 Germany Student Visa Without Blocked Account — 4 Legal Alternatives
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/masters-in-germany-for-indian-students-complete-guide-2026" className="text-primary font-semibold hover:underline">
+                Masters in Germany for Indian Students — Complete Guide
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown" className="text-primary font-semibold hover:underline">
+                Masters in Germany Cost in Indian Rupees — Full Breakdown
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog/daad-scholarship-for-masters-in-germany-indian-students-guide-2026" className="text-primary font-semibold hover:underline">
+                DAAD Scholarship for Masters in Germany — Indian Students Guide
               </Link>
             </li>
           </ul>
