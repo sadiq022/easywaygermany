@@ -103,7 +103,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-sm">
                 <span className="material-icons-round text-base text-gray-500 mt-0.5">phone</span>
-                <a href="https://wa.me/4915236738625" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">+49 1521 1234567</a>
+                <a href="https://wa.me/4915236738625" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">+49 152 3673 8625</a>
               </li>
               <li className="flex items-start gap-2 text-gray-400 text-sm">
                 <span className="material-icons-round text-base text-gray-500 mt-0.5">location_on</span>

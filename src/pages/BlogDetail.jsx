@@ -173,7 +173,7 @@ export default function BlogDetail() {
   const metaTitle = blog.seo_title || blog.title
   const metaDescription = blog.seo_description || blog.excerpt || blog.title
   const metaKeywords = blog.seo_keywords || `study in germany, ${blog.category || ''}, germany university, indian students germany`
-  const ogImage = blog.og_image || blog.image || 'https://easywaygermany.com/og-image.jpg'
+  const ogImage = blog.og_image || blog.image || 'https://easywaygermany.com/images/easyway-logo.png'
 
   return (
     <div className="bg-white min-h-screen">
@@ -193,18 +193,21 @@ export default function BlogDetail() {
         <link rel="canonical" href={pageUrl} />
         <script type="application/ld+json">{JSON.stringify({
           '@context': 'https://schema.org',
-          '@type': 'Article',
+          '@type': 'BlogPosting',
           headline: metaTitle,
           description: metaDescription,
           image: ogImage,
           keywords: metaKeywords,
           datePublished: blog.date || blog.created_at,
-          author: { '@type': 'Organization', name: 'EasyWay Germany' },
+          dateModified: blog.updated_at || blog.date || blog.created_at,
+          author: { '@type': 'Organization', name: 'EasyWay Germany', url: 'https://easywaygermany.com' },
           publisher: {
             '@type': 'Organization',
             name: 'EasyWay Germany',
-            logo: { '@type': 'ImageObject', url: 'https://easywaygermany.com/favicon.svg' }
+            url: 'https://easywaygermany.com',
+            logo: { '@type': 'ImageObject', url: 'https://easywaygermany.com/images/easyway-logo.png' }
           },
+          url: pageUrl,
           mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl }
         })}</script>
       </Helmet>

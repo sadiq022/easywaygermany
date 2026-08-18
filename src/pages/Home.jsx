@@ -103,6 +103,28 @@ const STATS = [
   { num: '10+', label: 'Years of Experience' },
 ]
 
+const HOME_FAQS = [
+  { q: 'Can Indian students do Masters in Germany for free?', a: "Yes. Public universities in Germany charge no tuition fees for Masters programs, including for international students from India. Students pay only a semester contribution of €100–€350 per semester, which covers public transport and administrative fees. Private universities do charge tuition but are the minority." },
+  { q: 'Do I need IELTS for Masters in Germany?', a: 'Not always. Many German universities accept English-taught Masters programs without IELTS if you can prove English proficiency through your undergraduate medium of instruction, a Duolingo English Test, or a university-administered test. Some programs specifically waive IELTS for students from English-medium Indian universities.' },
+  { q: 'Is the APS certificate mandatory for Indian students?', a: 'Yes. The APS (Akademische Prüfstelle) certificate is mandatory for all Indian students applying to German universities. It involves document verification and a short interview at the APS India centre in New Delhi or Mumbai. Processing typically takes 6–8 weeks.' },
+  { q: 'How much does a blocked account cost for Germany?', a: 'You need to deposit €11,904 into a blocked account for 2026 German student visa applications. This is your own money — it is released in monthly instalments of €992 after you arrive in Germany. The account setup fee varies by provider: Expatrio and Fintiba both charge a one-time €49 fee.' },
+  { q: 'What documents do I need for a Germany student visa from India?', a: 'Key documents include: university admission letter, APS certificate, valid passport, blocked account confirmation, health insurance proof, SOP for visa, academic transcripts, and proof of language proficiency. Requirements may vary by the German embassy handling your application.' },
+  { q: 'Can I apply for Bachelors in Germany from India?', a: 'Yes. Indian students can apply for Bachelors programs in Germany after completing Class 12. However, most public German universities require either a German language certificate (B2/C1) or a one-year foundation course (Studienkolleg) before full admission into a Bachelors program.' },
+  { q: 'What is the application deadline for German universities?', a: 'Most German universities have two intake periods: Winter Semester (starting October, deadline June–July) and Summer Semester (starting April, deadline January). Application deadlines vary by university and program. We recommend starting your application process at least 9–12 months before your intended start date.' },
+  { q: 'How long does Germany student visa processing take from India?', a: 'Germany student visa processing from Indian embassies typically takes 6–12 weeks after the appointment. Appointment slots at German embassies in Delhi, Mumbai, Kolkata, Chennai, and Bangalore can take 2–4 months to secure. Start your visa process immediately after receiving your university admission letter.' },
+  { q: 'Is GRE required for Masters in Germany?', a: 'GRE is generally not required for Masters programs at German public universities. A small number of internationally ranked programs may request GRE scores as part of a competitive selection process, but most programs rely on undergraduate GPA, language scores, SOP, and LORs for admission decisions.' },
+  { q: 'How much does living in Germany cost for Indian students?', a: 'The average cost of living in Germany for international students is €800–€1,200 per month, including rent, food, transport, health insurance, and personal expenses. Costs vary by city — Dresden and Leipzig are significantly more affordable than Munich or Frankfurt.' },
+]
+
+const HOW_WE_HELP = [
+  { title: 'SOP Writing for German Universities', body: "Your Statement of Purpose for a Masters in Germany must address academic motivation, research alignment, and your long-term career goals in Germany. Our SOP writers have reviewed hundreds of successful applications to German universities and know exactly what the admissions committee looks for." },
+  { title: 'APS Certificate Guidance for Indian Students', body: 'The APS certificate (Akademische Prüfstelle) is mandatory for Indian students applying for a Masters or Bachelors in Germany. The process involves document verification and an interview at the APS centre in New Delhi or Mumbai. We guide you through every step — document checklist, interview preparation, and submission.' },
+  { title: 'University Shortlisting for Masters in Germany', body: 'Choosing the right German university for your Masters is critical. We analyse your academic profile, GPA, language scores, and work experience to shortlist 5–8 universities across different tiers — ensuring you have strong options without over-applying.' },
+  { title: 'Blocked Account Setup', body: 'Every Indian student needs a German blocked account (Sperrkonto) to apply for a student visa. The current required amount in 2026 is €11,904 per year. We guide you through choosing the right provider (Expatrio or Fintiba), completing the setup, and submitting the confirmation with your visa application.' },
+  { title: 'Germany Student Visa SOP', body: 'The visa SOP (Letter of Motivation for visa) is different from your university SOP. It must address your financial situation, ties to home country, and intention to return. Our consultants — based in Germany — know what German embassies expect and help you write a visa SOP that avoids common rejection reasons.' },
+  { title: 'LOR Writing Support', body: 'Letters of Recommendation for German university applications must highlight academic and professional capabilities in a format familiar to German professors. We help your recommenders draft LORs that align with German admission standards.' },
+]
+
 function TestimonialCard({ initials, name, program, text, featured: feat }) {
   return (
     <div className={`rounded-2xl p-7 shadow-card h-full ${feat ? 'testimonial-featured' : 'bg-white'}`}>
@@ -289,15 +311,39 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Study in Germany Consultancy 2026 | EasyWay Germany – Experts Based in Germany</title>
-        <meta name="description" content="EasyWay Germany helps Indian, Bangladeshi & Nepali students study at top German universities. Expert SOP writing, university shortlisting, APS certificate guidance, blocked account help, and student visa support — from a team that lives in Dresden, Germany. Free consultation." />
-        <meta name="keywords" content="study in germany consultancy, study in germany from india, germany university admission, APS certificate help, blocked account germany, germany student visa consultants, SOP writing germany, masters in germany indian students" />
-        <meta property="og:title" content="Study in Germany Consultancy 2026 | EasyWay Germany" />
+        <title>Masters & Bachelors in Germany Consultancy | EasyWay Germany — Expert Help from Dresden</title>
+        <meta name="description" content="Planning Masters or Bachelors in Germany? Get expert help from consultants who actually live in Germany — SOP writing, APS certificate, university shortlisting, blocked account, and visa SOP. Free consultation available." />
+        <meta name="keywords" content="masters in germany, bachelors in germany, study in germany consultancy, study in germany from india, germany university admission, APS certificate help, blocked account germany, germany student visa consultants, SOP writing germany, masters in germany indian students" />
+        <meta property="og:title" content="Masters & Bachelors in Germany Consultancy | EasyWay Germany" />
         <meta property="og:description" content="Expert guidance for Indian students applying to German universities — from consultants who actually live in Germany. SOP, LOR, CV, APS certificate, blocked account & visa support." />
         <meta property="og:url" content="https://easywaygermany.com/" />
-        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://easywaygermany.com/" />
+
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'LocalBusiness',
+          name: 'EasyWay Germany',
+          description: 'Study abroad consultancy for Masters and Bachelors in Germany for Indian, Bangladeshi, and Nepali students. Based in Dresden, Germany.',
+          url: 'https://easywaygermany.com',
+          email: 'info@easywaygermany.com',
+          telephone: '+49-152-3673-8625',
+          address: { '@type': 'PostalAddress', addressLocality: 'Dresden', addressRegion: 'Saxony', addressCountry: 'DE' },
+          areaServed: ['India', 'Bangladesh', 'Nepal'],
+          serviceType: 'Study Abroad Consultancy',
+          priceRange: '$$',
+        })}</script>
+
+        <script type="application/ld+json">{JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: HOME_FAQS.map(({ q, a }) => ({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: { '@type': 'Answer', text: a },
+          })),
+        })}</script>
       </Helmet>
 
       {/* ── Hero ── */}
@@ -306,7 +352,7 @@ export default function Home() {
           <div className="hero-overlay" />
           <img
             src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1600&q=80"
-            alt="Brandenburg Gate Berlin"
+            alt="EasyWay Germany — Masters and Bachelors in Germany consultancy for Indian students"
             className="w-full h-full object-cover"
             loading="eager"
           />
@@ -321,7 +367,7 @@ export default function Home() {
               Your Easy Way to Study in Germany
             </div>
             <h1 className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
-              Study in Germany<br />
+              Masters &amp; Bachelors in Germany<br />
               <span className="text-white">Made Easy!</span>
             </h1>
             <p className="text-white/90 text-xs leading-relaxed max-w-[280px] text-center font-normal">
@@ -343,7 +389,7 @@ export default function Home() {
             </div>
             {/* Desktop-only Heading */}
             <h1 className="hidden md:block font-serif text-5xl md:text-6xl font-black leading-tight mb-4 text-center">
-              Study in Germany<br />
+              Masters &amp; Bachelors in Germany<br />
               <span className="text-yellow-400">Made Easy!</span>
             </h1>
             
@@ -368,7 +414,33 @@ export default function Home() {
         </div>
       </section>
 
-
+      {/* ── Why Masters in Germany ── */}
+      <section className="py-10 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Why Germany</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Why Indian Students Choose Masters in Germany</h2>
+          </div>
+          <div className="space-y-4 text-gray-600 leading-relaxed">
+            <p>
+              Germany is one of the top destinations for Indian students pursuing a Masters degree abroad.
+              Public universities in Germany charge no tuition fees for Masters programs — even for international students.
+              Students only pay a semester contribution of €100–€350 which covers public transport and administrative costs.
+            </p>
+            <p>
+              Germany offers over 1,800 English-taught Masters programs across engineering, computer science,
+              management, and natural sciences. After completing your Masters in Germany, you receive an 18-month
+              post-study work visa to find employment — one of the most generous in Europe.
+            </p>
+            <p>
+              Indian students are among the largest international student communities in Germany, with universities
+              like TU Munich, RWTH Aachen, TU Dresden, and Heidelberg consistently ranked among the world's best.
+              EasyWay Germany helps you navigate the entire process — from university shortlisting to visa approval —
+              from our base in Dresden, Germany.
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* ── Featured Products ── */}
       <section className="py-10 md:py-20 bg-gray-50">
@@ -429,6 +501,24 @@ export default function Home() {
                     Learn More
                   </Link>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── How We Help You ── */}
+      <section className="py-10 md:py-20 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">In Detail</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">How EasyWay Germany Helps You Get Admitted</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+            {HOW_WE_HELP.map(({ title, body }) => (
+              <div key={title}>
+                <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
@@ -506,6 +596,27 @@ export default function Home() {
             <p className="inline-block text-primary font-bold text-base bg-primary/8 border border-primary/20 px-6 py-3 rounded-full">
               You could be next — both on this list and in Germany.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-10 md:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">FAQ</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions — Masters &amp; Bachelors in Germany</h2>
+          </div>
+          <div className="divide-y divide-gray-100">
+            {HOME_FAQS.map(({ q, a }) => (
+              <details key={q} className="group py-4">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-gray-900">
+                  {q}
+                  <span className="material-icons-round text-primary text-xl flex-shrink-0 transition-transform group-open:rotate-45">add</span>
+                </summary>
+                <p className="text-gray-600 text-sm leading-relaxed mt-3">{a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

@@ -35,7 +35,7 @@ export default function Contact() {
         <meta property="og:title" content="Free Consultation – Study in Germany | EasyWay Germany" />
         <meta property="og:description" content="Book your free profile evaluation with EasyWay Germany. Get expert advice on university admissions, APS certificate, blocked account, and student visa." />
         <meta property="og:url" content="https://easywaygermany.com/contact" />
-        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <link rel="canonical" href="https://easywaygermany.com/contact" />
       </Helmet>
 
@@ -61,7 +61,7 @@ export default function Contact() {
             <div className="space-y-5">
               {[
                 { icon: 'mail', label: 'Email', value: 'info@easywaygermany.com' },
-                { icon: 'phone', label: 'Phone / WhatsApp', value: '+49 1521 1234567' },
+                { icon: 'phone', label: 'Phone / WhatsApp', value: '+49 152 3673 8625' },
                 { icon: 'location_on', label: 'Location', value: 'Berlin, Germany' },
                 { icon: 'schedule', label: 'Working Hours', value: 'Mon–Sat: 9:00 AM – 6:00 PM CET' },
               ].map(({ icon, label, value }) => (

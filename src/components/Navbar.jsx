@@ -67,7 +67,7 @@ export default function Navbar() {
             </span>
             <span className="flex items-center gap-1">
               <span className="material-icons-round text-sm">phone</span>
-              +49 1521 1234567
+              +49 152 3673 8625
             </span>
           </div>
           <div className="flex items-center gap-5">
