@@ -192,7 +192,7 @@ export default function Blogs() {
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {blogs.map((b) => (
                     <article key={b.id} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-shadow group flex flex-col h-full">
-                      <div className="relative h-48 overflow-hidden bg-gray-100 flex-shrink-0">
+                      <Link to={`/blog/${b.slug}`} className="relative h-48 overflow-hidden bg-gray-100 flex-shrink-0 block">
                         {b.image ? (
                           <img
                             src={b.image}
@@ -208,7 +208,7 @@ export default function Blogs() {
                         <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
                           {b.category}
                         </div>
-                      </div>
+                      </Link>
                       <div className="p-5 flex flex-col flex-1">
                         <div className="flex items-center gap-3 text-xs text-gray-400 mb-3 font-semibold">
                           <span className="flex items-center gap-1">
@@ -220,9 +220,11 @@ export default function Blogs() {
                             {b.read_time}
                           </span>
                         </div>
-                        <h3 className="font-serif font-bold text-gray-900 text-lg leading-snug mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                          {b.title}
-                        </h3>
+                        <Link to={`/blog/${b.slug}`}>
+                          <h3 className="font-serif font-bold text-gray-900 text-lg leading-snug mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                            {b.title}
+                          </h3>
+                        </Link>
                         <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">
                           {b.excerpt}
                         </p>
