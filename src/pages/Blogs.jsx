@@ -105,7 +105,7 @@ export default function Blogs() {
         <meta property="og:title" content="Study in Germany Blog 2026 – Expert Guides & Tips | EasyWay Germany" />
         <meta property="og:description" content="Comprehensive guides on APS certificate, Germany student visa, blocked account, university admissions and life in Germany — written by consultants who live there." />
         <meta property="og:url" content="https://easywaygermany.com/blog" />
-        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <link rel="canonical" href="https://easywaygermany.com/blog" />
       </Helmet>
 

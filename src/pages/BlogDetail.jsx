@@ -108,6 +108,13 @@ export default function BlogDetail() {
       })
   }, [slug, navigate])
 
+  // The seo-meta edge function injects a BlogPosting JSON-LD into the raw HTML for
+  // non-JS crawlers. Once React is running, <Helmet> below renders the (richer)
+  // BlogPosting itself, so drop the edge copy to avoid duplicate schema.
+  useEffect(() => {
+    document.querySelectorAll('script[data-ssr-schema]').forEach((el) => el.remove())
+  }, [slug, blog])
+
 
   async function handleSubscribe(e) {
     e.preventDefault()
@@ -178,7 +185,7 @@ export default function BlogDetail() {
   return (
     <div className="bg-white min-h-screen">
       <Helmet>
-        <title>{metaTitle} | EasyWay Germany</title>
+        <title>{metaTitle.includes('EasyWay Germany') ? metaTitle : `${metaTitle} | EasyWay Germany`}</title>
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={metaKeywords} />
         {blog.focus_keyword && <meta name="news_keywords" content={blog.focus_keyword} />}

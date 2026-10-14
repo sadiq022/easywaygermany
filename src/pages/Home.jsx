@@ -369,10 +369,10 @@ export default function Home() {
               </svg>
               Your Easy Way to Study in Germany
             </div>
-            <h1 className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
+            <div aria-hidden="true" className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
               Masters &amp; Bachelors in Germany<br />
               <span className="text-white">Made Easy!</span>
-            </h1>
+            </div>
             <p className="text-white/90 text-xs leading-relaxed max-w-[280px] text-center font-normal">
               We simplify your journey to top German universities. From university selection to visa – we handle it all.
             </p>
@@ -391,7 +391,7 @@ export default function Home() {
               Your Easy Way to Study in Germany
             </div>
             {/* Desktop-only Heading */}
-            <h1 className="hidden md:block font-serif text-5xl md:text-6xl font-black leading-tight mb-4 text-center">
+            <h1 className="sr-only md:not-sr-only font-serif text-5xl md:text-6xl font-black leading-tight md:mb-4 text-center">
               Masters &amp; Bachelors in Germany<br />
               <span className="text-yellow-400">Made Easy!</span>
             </h1>
@@ -527,38 +527,8 @@ export default function Home() {
       </section>
 
 
-      {/* ── Testimonials ── */}
-      <TestimonialsCarousel />
-
-      {/* ── Success Stories ── */}
-      <section className="pt-10 md:pt-20 pb-10 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Success Stories</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-              Students Who Made It to Germany
-            </h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
-              Real students, real admissions. Here are some of the students we helped get into top German universities.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mb-10">
-            {SUCCESS_STORIES.map((s, i) => (
-              <SuccessCard key={i} {...s} />
-            ))}
-          </div>
-
-          <div className="text-center">
-            <p className="inline-block text-primary font-bold text-base bg-primary/8 border border-primary/20 px-6 py-3 rounded-full">
-              You could be next — both on this list and in Germany.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ── Blog Preview ── */}
-      <section className="pt-10 pb-10 md:pb-20 bg-white">
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Latest from Our Blog</div>
@@ -613,6 +583,36 @@ export default function Home() {
                 </div>
               ))
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Testimonials ── */}
+      <TestimonialsCarousel />
+
+      {/* ── Success Stories ── */}
+      <section className="pt-10 md:pt-20 pb-10 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Success Stories</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Students Who Made It to Germany
+            </h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              Real students, real admissions. Here are some of the students we helped get into top German universities.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mb-10">
+            {SUCCESS_STORIES.map((s, i) => (
+              <SuccessCard key={i} {...s} />
+            ))}
+          </div>
+
+          <div className="text-center">
+            <p className="inline-block text-primary font-bold text-base bg-primary/8 border border-primary/20 px-6 py-3 rounded-full">
+              You could be next — both on this list and in Germany.
+            </p>
           </div>
         </div>
       </section>

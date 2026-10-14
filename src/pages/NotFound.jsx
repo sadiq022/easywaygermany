@@ -1,7 +1,18 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SEOHead from '../components/SEOHead'
 
 export default function NotFound() {
+  // Netlify's SPA fallback serves this page with HTTP 200, so tell crawlers
+  // explicitly not to index it (soft-404). Restored on unmount for SPA navigation.
+  useEffect(() => {
+    const robots = document.querySelector('meta[name="robots"]')
+    if (!robots) return
+    const previous = robots.getAttribute('content')
+    robots.setAttribute('content', 'noindex, follow')
+    return () => robots.setAttribute('content', previous)
+  }, [])
+
   return (
     <>
       <SEOHead title="Page Not Found" description="The page you are looking for does not exist." />

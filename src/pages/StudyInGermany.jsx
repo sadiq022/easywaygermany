@@ -249,7 +249,7 @@ export default function StudyInGermany() {
         <meta property="og:title" content="Study in Germany 2026: Complete Guide | EasyWay Germany" />
         <meta property="og:description" content="Everything you need to study in Germany — APS certificate, blocked account, student visa, top universities, scholarships, and cost of living. Expert guidance from Dresden." />
         <meta property="og:url" content="https://easywaygermany.com/study-in-germany" />
-        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <meta property="og:type" content="article" />
         <link rel="canonical" href="https://easywaygermany.com/study-in-germany" />
         <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
@@ -272,10 +272,10 @@ export default function StudyInGermany() {
               <span className="material-icons-round text-xs text-yellow-400">auto_awesome</span>
               Updated for 2026
             </div>
-            <h1 className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
+            <div aria-hidden="true" className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
               Study in Germany<br />
               <span className="text-white">Complete Guide 2026</span>
-            </h1>
+            </div>
             <p className="text-white/90 text-xs leading-relaxed max-w-[280px] text-center font-normal">
               APS certificate, blocked account, student visa &amp; top universities — all in one guide.
             </p>
@@ -295,7 +295,7 @@ export default function StudyInGermany() {
               Updated for 2026 — Blocked account: €11,904
             </div>
             {/* Desktop-only Heading */}
-            <h1 className="hidden md:block font-serif text-5xl md:text-6xl font-black leading-tight mb-4 text-center">
+            <h1 className="sr-only md:not-sr-only font-serif text-5xl md:text-6xl font-black leading-tight md:mb-4 text-center">
               Study in Germany<br />
               <span className="text-yellow-400">Complete Guide 2026</span>
             </h1>

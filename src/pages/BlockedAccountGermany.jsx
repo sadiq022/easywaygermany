@@ -230,7 +230,7 @@ export default function BlockedAccountGermany() {
         <meta property="og:title" content="Blocked Account Germany 2026 — Fintiba vs Expatrio, Exact Amount & Process | EasyWay Germany" />
         <meta property="og:description" content="Complete guide to opening a German blocked account for your student visa. €11,904 required, provider comparison, and hands-on help from EasyWay Germany." />
         <meta property="og:url" content="https://easywaygermany.com/blocked-account-germany" />
-        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <meta property="og:type" content="article" />
         <link rel="canonical" href="https://easywaygermany.com/blocked-account-germany" />
         <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
@@ -253,10 +253,10 @@ export default function BlockedAccountGermany() {
               <span className="material-icons-round text-xs text-yellow-400">verified</span>
               Updated for 2026 — €11,904
             </div>
-            <h1 className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
+            <div aria-hidden="true" className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
               Blocked Account<br />
               <span className="text-white">Germany 2026</span>
-            </h1>
+            </div>
             <p className="text-white/90 text-xs leading-relaxed max-w-[280px] text-center font-normal">
               Sperrkonto guide: amounts, providers &amp; step-by-step process from India.
             </p>
@@ -278,7 +278,7 @@ export default function BlockedAccountGermany() {
               Updated for 2026 — Amount: €11,904
             </div>
             {/* Desktop-only Heading */}
-            <h1 className="hidden md:block font-serif text-5xl md:text-6xl font-black leading-tight mb-4 text-center">
+            <h1 className="sr-only md:not-sr-only font-serif text-5xl md:text-6xl font-black leading-tight md:mb-4 text-center">
               Blocked Account<br />
               <span className="text-yellow-400">Germany 2026</span>
             </h1>

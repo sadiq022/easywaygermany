@@ -94,7 +94,7 @@ export default function About() {
         <meta property="og:title" content="About EasyWay Germany – Consultants Who Actually Live in Germany" />
         <meta property="og:description" content="Founded by an Indian student in Dresden — we guide students through German university admissions, APS, blocked account, and visa from firsthand experience." />
         <meta property="og:url" content="https://easywaygermany.com/about" />
-        <meta property="og:image" content="https://easywaygermany.com/og-image.jpg" />
+        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <link rel="canonical" href="https://easywaygermany.com/about" />
       </Helmet>
 
