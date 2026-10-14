@@ -1,4 +1,4 @@
-const { createClient } = require('@supabase/supabase-js')
+import { createClient } from '@supabase/supabase-js'
 
 const BASE_URL = 'https://easywaygermany.com'
 
@@ -41,7 +41,7 @@ function urlEntry({ url, priority, changefreq, lastmod }) {
   </url>`
 }
 
-exports.handler = async () => {
+export const handler = async () => {
   let blogEntries = []
   let productEntries = []
 
