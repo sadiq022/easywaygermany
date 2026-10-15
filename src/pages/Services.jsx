@@ -5,7 +5,7 @@ const SERVICES = [
   {
     n: '01', img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80',
     title: 'University Shortlisting for Masters in Germany',
-    desc: "Selecting the right universities for your Masters application in Germany requires understanding your academic profile, program availability, German university ranking systems (QS, THE, CHE), and admission competitiveness. We shortlist 5–8 universities for each student across three tiers: ambitious targets, strong matches, and safe choices. Our shortlisting process accounts for your GPA, IELTS/TestDaF score, work experience, and target field of study — engineering, computer science, data science, management, or others.",
+    desc: "Selecting the right universities for your Masters application in Germany requires understanding your academic profile, program availability, German university ranking systems (QS, THE, CHE), and admission competitiveness. We shortlist 5–8 universities for each student across three tiers: ambitious targets, strong matches, and safe choices. Our shortlisting process accounts for your GPA, IELTS/TestDaF score, work experience, and target field of study — engineering, computer science, data science, management, or others. We also flag application deadlines and uni-assist requirements for each university, so you know exactly what to submit and when.",
     bullets: ['Data-driven university selection', 'Deadline tracking', 'Admission probability analysis'],
     cta: 'Learn More', ctaLink: '/services/university-shortlisting',
   },
@@ -19,28 +19,48 @@ const SERVICES = [
   {
     n: '03', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80',
     title: 'LOR Writing Support for German University Applications',
-    desc: "Letters of Recommendation for German universities must come from professors or supervisors who know your academic or professional work. German admissions offices expect LORs to speak specifically to your analytical ability, research potential, and preparedness for postgraduate study in Germany. We help your recommenders draft LORs in the correct format, with the right level of detail — improving your overall application quality without misrepresenting your profile.",
+    desc: "Letters of Recommendation for German universities must come from professors or supervisors who know your academic or professional work. German admissions offices expect LORs to speak specifically to your analytical ability, research potential, and preparedness for postgraduate study in Germany. We help your recommenders draft LORs in the correct format, with the right level of detail — improving your overall application quality without misrepresenting your profile. Every letter is drafted to be specific, credible and consistent with your SOP and CV, so your recommender only needs to review, personalise and sign it.",
     bullets: ['Written on behalf of your recommender', 'University-specific customization', 'Fast turnaround'],
     cta: 'Learn More', ctaLink: '/services/lor-writing',
   },
   {
     n: '04', img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=80',
     title: 'CV / Resume Preparation for German Universities',
-    desc: 'German universities prefer the Europass or a structured academic CV format that is very different from an Indian resume. The German academic CV includes a photo, lists education in reverse chronological order, and highlights thesis topics, publications, and internships relevant to your field. We reformat and rewrite your CV to match German academic standards — ensuring it complements your SOP and LOR.',
+    desc: 'German universities prefer the Europass or a structured academic CV format that is very different from an Indian resume. The German academic CV includes a photo, lists education in reverse chronological order, and highlights thesis topics, publications, and internships relevant to your field. We reformat and rewrite your CV to match German academic standards — ensuring it complements your SOP and LOR. You also receive an editable file, so you can adapt it for each application, internship or job in Germany with the formatting kept consistent and clean.',
     bullets: ['European CV standard (not Indian resume)', 'ATS-optimized & university-ready', 'Highlights academic and professional strengths'],
     cta: 'Learn More', ctaLink: '/services/cv-preparation',
   },
   {
-    n: '05', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80',
+    n: '05', img: 'https://images.unsplash.com/photo-1568234928966-359c35dd8327?w=700&q=80',
+    title: 'APS Certificate Guidance for Indian Students',
+    desc: 'The APS certificate (Akademische Prüfstelle) is mandatory for all Indian students applying for Masters or Bachelors programs in Germany. The process involves submitting your academic documents for verification and completing an interview arranged by the APS India centre. APS processing takes 6–8 weeks, so starting early matters. We provide a complete document checklist, sample interview questions and preparation support, and we review your documents before submission to avoid rejection and delays. Because every university application depends on it, we also help you plan the timeline so your APS is ready before your first deadline.',
+    bullets: ['Complete document checklist', 'Interview preparation and sample questions', 'Document review before submission'],
+    cta: 'Read the APS Guide', ctaLink: '/blog/aps-certificate-process-for-indian-students-complete-2025-guide',
+  },
+  {
+    n: '06', img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=700&q=80',
+    title: 'Blocked Account Setup Assistance',
+    desc: 'Indian students need a German blocked account (Sperrkonto) to apply for a student visa. In 2026, the required deposit amount is €11,904 per year (€992 per month). We help you choose between Expatrio and Fintiba, complete the application process, and make sure you receive the confirmation letter in time for your visa appointment. We also advise on how to present your blocked account documents correctly at the embassy, and how to avoid the common mistakes that delay visa decisions, so your funding proof is accepted the first time.',
+    guide: {
+      intro: 'Read our full guide on ',
+      text: 'Germany blocked account alternatives',
+      to: '/blog/germany-student-visa-without-blocked-account-alternatives-2026',
+      outro: ' if you have a scholarship or special circumstances.',
+    },
+    bullets: ['Expatrio vs Fintiba guidance', 'Confirmation letter in time for your visa slot', 'Embassy-ready document presentation'],
+    cta: 'Blocked Account Guide', ctaLink: '/blocked-account-germany',
+  },
+  {
+    n: '07', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80',
     title: 'Germany Student Visa SOP (Letter of Motivation)',
     desc: 'The SOP for your Germany student visa is a separate document from your university SOP. It must address your financial self-sufficiency, your plan of study in Germany, your ties to your home country, and your intention to return after completing your degree. German embassies use this document as part of their assessment of your visa application — a weak visa SOP is one of the most common reasons for rejection. Our consultants, based in Dresden, Germany, know exactly what each embassy expects.',
     bullets: ['Embassy-focused structure & tone', 'Covers study plan and finances', 'Highlights your ties to India'],
     cta: 'Learn More', ctaLink: '/services/visa-sop',
   },
   {
-    n: '06', img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=700&q=80',
+    n: '08', img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=700&q=80',
     title: 'Visa Cover Letter',
-    desc: 'A mandatory document for the German student visa application. Our visa experts craft a personalized letter explaining your financial situation, study plan, and return intent — compliant with the specific requirements of the German embassy or consulate handling your case, so nothing in your file raises unnecessary questions at the visa interview.',
+    desc: 'A mandatory document for the German student visa application. Our visa experts craft a personalized letter explaining your financial situation, study plan, and return intent — compliant with the specific requirements of the German embassy or consulate handling your case, so nothing in your file raises unnecessary questions at the visa interview. It works together with your visa SOP and blocked account documents, so your story is consistent across the whole file. We tailor each letter to your university, course, funding plan and the embassy you apply to, and revise it until it is ready to submit.',
     bullets: ['Mandatory for student visa', 'Crafted by visa experts', 'Compliant with embassy requirements'],
     cta: 'Learn More', ctaLink: '/services/visa-cover-letter',
   },
@@ -105,7 +125,7 @@ export default function Services() {
 
       <section className="py-8 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 space-y-16">
-          {SERVICES.map(({ n, img, title, desc, bullets, cta, ctaLink }, idx) => (
+          {SERVICES.map(({ n, img, title, desc, guide, bullets, cta, ctaLink }, idx) => (
             <div
               key={n}
               className={`flex flex-col ${idx % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-10 items-center`}>
@@ -119,6 +139,13 @@ export default function Services() {
                 <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">Service {n}</div>
                 <h2 className="font-serif text-3xl font-bold text-gray-900 mb-4">{title}</h2>
                 <p className="text-gray-600 leading-relaxed mb-5">{desc}</p>
+                {guide && (
+                  <p className="text-gray-600 leading-relaxed mb-5">
+                    {guide.intro}
+                    <Link to={guide.to} className="text-primary font-semibold hover:underline">{guide.text}</Link>
+                    {guide.outro}
+                  </p>
+                )}
                 <ul className="space-y-2 mb-7">
                   {bullets.map((b) => (
                     <li key={b} className="flex items-start gap-2 text-gray-700 text-sm">

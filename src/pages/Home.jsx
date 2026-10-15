@@ -336,6 +336,7 @@ export default function Home() {
           areaServed: ['India', 'Bangladesh', 'Nepal'],
           serviceType: 'Study Abroad Consultancy',
           priceRange: '$$',
+          openingHours: 'Mo-Sa 10:00-20:00',
         })}</script>
 
         <script type="application/ld+json">{JSON.stringify({
@@ -371,7 +372,7 @@ export default function Home() {
             </div>
             <div aria-hidden="true" className="font-serif text-3xl font-black leading-tight text-yellow-400 mb-2">
               Masters &amp; Bachelors in Germany<br />
-              <span className="text-white">Made Easy!</span>
+              <span className="text-white text-xl">Expert Consultancy from People Who Live Here</span>
             </div>
             <p className="text-white/90 text-xs leading-relaxed max-w-[280px] text-center font-normal">
               We simplify your journey to top German universities. From university selection to visa – we handle it all.
@@ -392,8 +393,8 @@ export default function Home() {
             </div>
             {/* Desktop-only Heading */}
             <h1 className="sr-only md:not-sr-only font-serif text-5xl md:text-6xl font-black leading-tight md:mb-4 text-center">
-              Masters &amp; Bachelors in Germany<br />
-              <span className="text-yellow-400">Made Easy!</span>
+              Masters &amp; Bachelors in Germany<span className="sr-only"> — </span><br />
+              <span className="text-yellow-400 text-2xl md:text-3xl">Expert Consultancy from People Who Live Here</span>
             </h1>
 
             {/* Paragraph (only visible on desktop, moved to image overlay on mobile) */}
