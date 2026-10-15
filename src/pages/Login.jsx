@@ -40,7 +40,7 @@ export default function Login() {
         <div className="text-center mb-8">
           <Link to="/" className="inline-flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
-                <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="w-8 h-8 object-contain" />
+                <img src="/images/easyway-logo.png" alt="EasyWay Germany logo" className="w-8 h-8 object-contain" />
               </div>
             <div className="text-left leading-tight">
               <div className="font-bold text-gray-900 font-serif">EasyWay</div>

@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import WhatsAppIcon from './WhatsAppIcon'
+import { productWhatsAppUrl } from '../utils/whatsapp'
 
 const CAT_CLASSES = {
   'university-lists': 'cat-university-lists',
@@ -27,14 +29,14 @@ export default function ProductCard({ product }) {
     : 0
 
   return (
-    <Link to={`/products/${product.slug}`}
-      className="group flex flex-col h-full bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden no-underline">
+    <div className="group flex flex-col h-full bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden">
+      <Link to={`/products/${product.slug}`} className="flex flex-col flex-1 no-underline">
       {/* Image area */}
       <div className="relative aspect-[16/10] overflow-hidden bg-gray-50">
         {product.preview_image ? (
           <img 
             src={product.preview_image} 
-            alt={product.title} 
+            alt={product.alt_text || product.title} 
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none" 
           />
         ) : (
@@ -71,18 +73,26 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        <div className="flex items-center justify-between mt-auto pt-2">
-          <div className="flex items-baseline gap-2">
-            <span className="text-xl font-bold text-gray-900">₹{Number(product.price).toFixed(2)}</span>
-            {product.original_price && (
-              <span className="text-sm text-gray-400 line-through">₹{Number(product.original_price).toFixed(2)}</span>
-            )}
-          </div>
-          <span className="bg-primary text-white text-sm font-semibold px-8 py-2 rounded-lg transition-colors group-hover:bg-primary-dark">
-            Buy Now
-          </span>
-        </div>
       </div>
-    </Link>
+      </Link>
+
+      {/* Price + WhatsApp purchase (a separate link, so it is not nested inside the card link) */}
+      <div className="flex items-center justify-between gap-3 px-5 pb-5">
+        <div className="flex items-baseline gap-2">
+          <span className="text-xl font-bold text-gray-900">₹{Number(product.price).toFixed(2)}</span>
+          {product.original_price && (
+            <span className="text-sm text-gray-400 line-through">₹{Number(product.original_price).toFixed(2)}</span>
+          )}
+        </div>
+        <a
+          href={productWhatsAppUrl(product)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 bg-[#25D366] text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-[#1ebe5b] transition-colors">
+          <WhatsAppIcon className="w-4 h-4" />
+          Buy Now
+        </a>
+      </div>
+    </div>
   )
 }

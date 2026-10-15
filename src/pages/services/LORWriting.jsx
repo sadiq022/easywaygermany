@@ -1,14 +1,6 @@
 ﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
-/*
- * IMAGE NEEDED:
- *   Place your image at: public/images/services/LOR_Image.jpg
- *   You can use the same image as SOP (public/images/services/SOP_Image.jpg)
- *   or a different one — a photo of someone writing/signing works well.
- *   Recommended: landscape, at least 800×500 px, under 200 KB.
- */
-
 const SIGNERS = [
   { icon: 'school',        label: 'Professor',           sub: 'From your undergraduate or postgraduate studies' },
   { icon: 'science',       label: 'Thesis Advisor',      sub: 'Research supervisor or guide' },
@@ -136,13 +128,15 @@ export default function LORWriting() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
-            {/* Image — place file at: public/images/services/LOR_Image.jpg */}
+            {/* Image */}
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
                 <img
-                  src="/images/services/LOR_Image.jpg"
-                  alt="LOR Writing Service"
-                  className="w-full h-[360px] object-cover"
+                  src="/images/services/lor-writing-recommendation-letter.webp"
+                  alt="LOR Writing Recommendation Letter Banner"
+                  className="w-full h-auto"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                 />
               </div>

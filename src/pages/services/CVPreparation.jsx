@@ -1,14 +1,6 @@
 ﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
-/*
- * IMAGES NEEDED:
- *   1. public/images/services/cv_sample.png  ← CV preview/sample screenshot
- *      (copy from old Flask project: static/images/services/cv_sample.png)
- *      This is shown in the "CV Preview" section below.
- *      Tip: use a clean screenshot of a Europass CV — no real personal data.
- */
-
 const CV_SECTIONS = [
   { icon: 'school',         label: 'Education',           sub: 'Degrees, institutions, grades, years' },
   { icon: 'work',           label: 'Work Experience',     sub: 'Jobs, internships, part-time roles' },
@@ -124,13 +116,15 @@ export default function CVPreparation() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
-            {/* CV sample image — place at: public/images/services/cv_sample.png */}
+            {/* Image */}
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover border-2 border-gray-100">
                 <img
-                  src="/images/services/cv_sample.png"
-                  alt="Europass CV Sample"
-                  className="w-full object-cover"
+                  src="/images/services/cv-preparation-german-style-resume.webp"
+                  alt="CV Preparation with German-Style Resumes"
+                  className="w-full h-auto"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                 />
               </div>

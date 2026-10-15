@@ -340,7 +340,7 @@ export default function StudyInGermany() {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={item.img}
-                    alt={item.title}
+                    alt={`${item.title} — reason to study in Germany`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -410,7 +410,7 @@ export default function StudyInGermany() {
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={step.img}
-                    alt={step.title}
+                    alt={`${step.title} — step in the study in Germany process`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -466,7 +466,7 @@ export default function StudyInGermany() {
                 <div className="relative h-48 overflow-hidden">
                   <img
                     src={c.img}
-                    alt={c.title}
+                    alt={`${c.title} — study in Germany guide`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
@@ -506,7 +506,7 @@ export default function StudyInGermany() {
                 { img: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&q=80', name: 'Heidelberg' },
               ].map((u, i) => (
                 <div key={u.name} className={`relative rounded-2xl overflow-hidden ${i === 0 ? 'row-span-2 h-72' : 'h-32'}`}>
-                  <img src={u.img} alt={u.name} className="w-full h-full object-cover" />
+                  <img src={u.img} alt={`${u.name} — university in Germany`} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <span className="absolute bottom-2 left-3 text-white text-xs font-bold">{u.name}</span>
                 </div>

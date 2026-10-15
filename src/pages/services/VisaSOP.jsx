@@ -98,9 +98,11 @@ export default function VisaSOP() {
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
                 <img
-                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80"
-                  alt="Visa SOP Writing"
-                  className="w-full h-[360px] object-cover"
+                  src="/images/services/german-visa-sop-application-guide.webp"
+                  alt="German Visa SOP Application Guide"
+                  className="w-full h-auto"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                 />
               </div>

@@ -87,7 +87,7 @@ export default function Products() {
     <>
       <Helmet>
         <title>Study in Germany Services & Packages | EasyWay Germany</title>
-        <meta name="description" content="Browse EasyWay Germany's service packages — SOP writing, LOR, CV preparation, university shortlisting, Visa SOP, and more. Affordable prices starting from ₹1,000." />
+        <meta name="description" content="Browse EasyWay Germany's service packages — SOP writing, LOR, CV preparation, university shortlisting, Visa SOP, and more. Affordable prices starting from ₹499." />
         <meta property="og:title" content="Study in Germany Services & Packages | EasyWay Germany" />
         <meta property="og:description" content="Affordable document services for German university applications. SOP, LOR, CV, Visa SOP and more." />
         <meta property="og:url" content="https://easywaygermany.com/products" />

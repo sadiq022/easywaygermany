@@ -196,7 +196,7 @@ export default function Blogs() {
                         {b.image ? (
                           <img
                             src={b.image}
-                            alt={b.title}
+                            alt={b.image_alt || b.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             loading="lazy"
                           />

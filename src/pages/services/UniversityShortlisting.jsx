@@ -1,13 +1,6 @@
 ﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
-/*
- * IMAGE NEEDED:
- *   Place your image at: public/images/services/university.jpg
- *   (copy from old Flask project: static/images/services/university.jpg)
- *   Recommended: landscape photo, at least 800×500 px, under 200 KB
- */
-
 const FAQS = [
   {
     q: 'What details do you need from me to begin?',
@@ -147,20 +140,17 @@ export default function UniversityShortlisting() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
-            {/* Image — place file at: public/images/services/university.jpg */}
+            {/* Image */}
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
                 <img
-                  src="/images/services/university.jpg"
-                  alt="University Shortlisting Service"
-                  className="w-full h-[360px] object-cover"
+                  src="/images/services/university-shortlisting-guide.webp"
+                  alt="University Shortlisting Guide"
+                  className="w-full h-auto"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                 />
-                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur rounded-xl px-5 py-3 shadow-lg flex items-baseline gap-2">
-                  <span className="text-gray-900 text-sm">Just</span>
-                  <span className="text-2xl font-bold text-primary">₹2,500</span>
-                  <span className="text-gray-900 text-sm">per profile</span>
-                </div>
               </div>
             </div>
 
@@ -168,10 +158,15 @@ export default function UniversityShortlisting() {
             <div className="md:w-1/2">
               <div className="text-xs font-bold text-primary uppercase tracking-widest mb-2">What You Get</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Everything in One Report</h2>
-              <p className="text-gray-900 mb-6">
+              <p className="text-gray-900 mb-4">
                 Delivered in <strong className="text-gray-700">2–3 working days</strong>&nbsp;·&nbsp;
                 <span className="text-green-600 font-semibold">One-on-One Consultation</span>
               </p>
+              <div className="inline-flex items-baseline gap-2 bg-primary/10 border-2 border-primary/20 rounded-xl px-5 py-3 mb-6">
+                <span className="text-sm font-medium text-gray-900">Just</span>
+                <span className="text-3xl font-black text-primary">₹2,500</span>
+                <span className="text-sm font-medium text-gray-900">per profile</span>
+              </div>
               <ul className="space-y-3 mb-8">
                 {[
                   'Profile analysis — academics, work experience & transcripts',

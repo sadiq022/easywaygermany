@@ -88,7 +88,7 @@ export default function BlogDetail() {
         // Fetch related blogs in same category (excluding current)
         return supabase
           .from('blogs')
-          .select('id, title, slug, excerpt, image, date, category, read_time')
+          .select('id, title, slug, excerpt, image, image_alt, date, category, read_time')
           .eq('category', data.category)
           .neq('id', data.id)
           .limit(3)
@@ -372,7 +372,7 @@ export default function BlogDetail() {
                       {b.image ? (
                         <img
                           src={b.image}
-                          alt={b.title}
+                          alt={b.image_alt || b.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
                         />
                       ) : (

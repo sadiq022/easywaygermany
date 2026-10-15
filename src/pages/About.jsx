@@ -114,7 +114,7 @@ export default function About() {
             <div className="rounded-2xl overflow-hidden shadow-card-hover">
               <img
                 src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=700&q=80"
-                alt="Germany street"
+                alt="Brandenburg Gate in Berlin, Germany"
                 className="w-full h-80 object-cover"
               />
             </div>
@@ -172,7 +172,7 @@ export default function About() {
             {TEAM.map(({ name, role, location, img, bio }) => (
               <div key={name} className="bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-card transition-shadow">
                 <div className="w-40 h-40 rounded-2xl overflow-hidden mb-5 bg-gradient-to-br from-primary to-primary-dark">
-                  <img src={img} alt={name} className="w-full h-full object-cover object-top" />
+                  <img src={img} alt={`${name}, ${role} at EasyWay Germany`} className="w-full h-full object-cover object-top" />
                 </div>
                 <div className="flex items-start justify-between mb-1">
                   <h3 className="font-serif text-xl font-bold text-gray-900">{name}</h3>

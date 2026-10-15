@@ -5,6 +5,11 @@ import { supabase } from '../supabase'
 import { useAuth } from '../context/AuthContext'
 import ProductCard from '../components/ProductCard'
 import SEOHead from '../components/SEOHead'
+import WhatsAppIcon from '../components/WhatsAppIcon'
+import { productWhatsAppUrl } from '../utils/whatsapp'
+
+// Product reviews are hidden while purchases go through WhatsApp. Set to true to bring them back.
+const SHOW_REVIEWS = false
 
 const CAT_ICONS = {
   'university-lists': 'account_balance',
@@ -43,7 +48,7 @@ export default function ProductDetail() {
       setLoading(true)
       const { data: p, error } = await supabase
         .from('products')
-        .select('id, title, slug, description, short_description, price, original_price, category_id, preview_image, is_featured, tags, pages, format, created_at, categories(name, slug)')
+        .select('id, title, slug, description, short_description, price, original_price, category_id, preview_image, alt_text, meta_title, meta_description, seo_keywords, is_featured, tags, pages, format, created_at, categories(name, slug)')
         .eq('slug', slug)
         .eq('is_active', true)
         .single()
@@ -78,7 +83,7 @@ export default function ProductDetail() {
 
       const { data: rel } = await supabase
         .from('products')
-        .select('id, title, slug, description, short_description, price, original_price, category_id, preview_image, is_featured, tags, pages, format, created_at, categories(name, slug)')
+        .select('id, title, slug, description, short_description, price, original_price, category_id, preview_image, alt_text, is_featured, tags, pages, format, created_at, categories(name, slug)')
         .eq('category_id', p.category_id)
         .eq('is_active', true)
         .neq('id', p.id)
@@ -149,6 +154,12 @@ export default function ProductDetail() {
     setSubmittingReview(false)
   }
 
+  // The seo-meta edge function injects Product/Breadcrumb JSON-LD into the raw HTML for non-JS crawlers.
+  // SEOHead renders the same data once React is running, so drop the edge copy to avoid duplicates.
+  useEffect(() => {
+    document.querySelectorAll('script[data-ssr-schema]').forEach((el) => el.remove())
+  }, [slug, product])
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -161,6 +172,8 @@ export default function ProductDetail() {
 
   const catSlug = product.categories?.slug || ''
   const catName = product.categories?.name || ''
+  const descriptionIsHtml = /<[a-z][\s\S]*>/i.test(product.description || '')
+  const summary = product.short_description || (descriptionIsHtml ? '' : product.description)
   const catClass = CAT_CLASSES[catSlug] || 'cat-application-guides'
   const catIcon = CAT_ICONS[catSlug] || 'menu_book'
   const discountPct = product.original_price && product.original_price > product.price
@@ -169,10 +182,13 @@ export default function ProductDetail() {
 
   const avgRating = reviews.length ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1) : null
 
-  const structuredData = {
+  const productUrl = `https://easywaygermany.com/products/${product.slug}`
+  const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: product.meta_title || product.title,
+    name: product.title,
+    sku: product.slug,
+    ...(catName && { category: catName }),
     description: product.meta_description || product.short_description || product.description,
     image: product.preview_image || undefined,
     brand: { '@type': 'Brand', name: 'EasyWay Germany' },
@@ -181,9 +197,9 @@ export default function ProductDetail() {
       price: product.price,
       priceCurrency: 'INR',
       availability: 'https://schema.org/InStock',
-      url: window.location.href,
+      url: productUrl,
     },
-    ...(reviews.length > 0 && {
+    ...(SHOW_REVIEWS && reviews.length > 0 && {
       aggregateRating: {
         '@type': 'AggregateRating',
         ratingValue: avgRating,
@@ -191,6 +207,17 @@ export default function ProductDetail() {
       },
     }),
   }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://easywaygermany.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://easywaygermany.com/products' },
+      { '@type': 'ListItem', position: 3, name: product.title, item: productUrl },
+    ],
+  }
+  const structuredData = [productSchema, breadcrumbSchema]
 
   return (
     <>
@@ -277,7 +304,7 @@ export default function ProductDetail() {
                 )}
               </div>
 
-              <p className="text-gray-600 leading-relaxed mb-6">{product.description}</p>
+              {summary && <p className="text-gray-600 leading-relaxed mb-6">{summary}</p>}
 
               {/* Guarantees */}
               <div className="grid grid-cols-2 gap-3 mb-6">
@@ -309,23 +336,18 @@ export default function ProductDetail() {
                     You own this product. Download anytime from your dashboard.
                   </p>
                 </>
-              ) : user ? (
-                <Link to={`/checkout/${product.id}`}
-                  className="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl font-bold text-base hover:bg-primary-dark transition-colors mb-3">
-                  <span className="material-icons-round">shopping_cart</span>
-                  Buy Now – ₹{Number(product.price).toFixed(2)}
-                </Link>
               ) : (
                 <>
-                  <Link to={`/login?next=/products/${slug}`}
-                    className="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl font-bold text-base hover:bg-primary-dark transition-colors mb-3">
-                    <span className="material-icons-round">login</span>
-                    Login to Purchase
-                  </Link>
+                  <a
+                    href={productWhatsAppUrl(product)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-[#25D366] text-white py-4 rounded-xl font-bold text-base hover:bg-[#1ebe5b] transition-colors mb-3">
+                    <WhatsAppIcon className="w-6 h-6" />
+                    Buy on WhatsApp – ₹{Number(product.price).toFixed(2)}
+                  </a>
                   <p className="text-sm text-gray-500">
-                    New user?{' '}
-                    <Link to="/register" className="text-primary font-semibold hover:underline">Create a free account</Link>
-                    {' '}to purchase.
+                    Tap the button to message us on WhatsApp. No account needed.
                   </p>
                 </>
               )}
@@ -333,13 +355,25 @@ export default function ProductDetail() {
               <div className="flex items-start gap-2 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 mt-4">
                 <span className="material-icons-round text-blue-500 text-base mt-0.5">security</span>
                 <p className="text-xs text-blue-700 leading-relaxed">
-                  Your payment is secured. Files are only accessible after purchase. No screenshots or previews are shown to protect content.
+                  We will share the payment details on WhatsApp and send your file as soon as the payment is confirmed. No screenshots or previews are shown to protect content.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Reviews */}
+          {/* Full description: keyword-targeted content, FAQ and internal links */}
+          {product.description && (
+            <div className="max-w-3xl mx-auto mb-16">
+              {descriptionIsHtml ? (
+                <div className="blog-content" dangerouslySetInnerHTML={{ __html: product.description }} />
+              ) : (
+                <p className="text-gray-600 leading-relaxed">{product.description}</p>
+              )}
+            </div>
+          )}
+
+          {/* Reviews (hidden while purchases go through WhatsApp) */}
+          {SHOW_REVIEWS && (
           <div className="mb-16">
             <div className="flex items-center gap-4 mb-6">
               <h2 className="font-serif text-2xl font-bold text-gray-900">Customer Reviews</h2>
@@ -425,6 +459,7 @@ export default function ProductDetail() {
               </div>
             )}
           </div>
+          )}
 
           {/* Related */}
           {related.length > 0 && (

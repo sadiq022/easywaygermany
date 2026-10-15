@@ -24,7 +24,7 @@ function SuccessCard({ name, photo, course, university }) {
           ) : (
             <img
               src={photo}
-              alt={name}
+              alt={`${name}, EasyWay Germany student${university ? ` admitted to ${university}` : ''}`}
               className="w-full h-full object-cover"
               onError={() => setImgFailed(true)}
             />
@@ -51,12 +51,12 @@ const BENEFITS = [
 ]
 
 const SERVICES = [
-  { img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80', title: 'University Shortlisting', desc: 'Personalized shortlist of 8–12 universities based on your GPA, IELTS score, budget, and field of study.', link: '/services/university-shortlisting' },
-  { img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80', title: 'SOP Writing', desc: 'Expert SOP writers craft powerful, personalized statements that highlight your unique strengths.', link: '/services/sop-writing' },
-  { img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80', title: 'LOR Writing', desc: 'Professional Letters of Recommendation written on behalf of your professors, supervisors, or managers.', link: '/services/lor-writing' },
-  { img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&q=80', title: 'CV Preparation', desc: 'European-standard CV tailored for German universities — ATS-optimized and professionally formatted.', link: '/services/cv-preparation' },
-  { img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80', title: 'Visa SOP', desc: 'A Statement of Purpose for the German embassy — covering your study plan, finances, and return intent.', link: '/services/visa-sop' },
-  { img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&q=80', title: 'Visa Cover Letter', desc: 'Mandatory for the student visa — crafted by our visa experts to strengthen your embassy application.', link: '/services/visa-cover-letter' },
+  { img: '/images/services/university-shortlisting-guide.webp', alt: 'University Shortlisting Guide', title: 'University Shortlisting', desc: 'Personalized shortlist of 8–12 universities based on your GPA, IELTS score, budget, and field of study.', link: '/services/university-shortlisting' },
+  { img: '/images/services/sop-writing-university-application-guide.webp', alt: 'SOP Writing: University Application Guide', title: 'SOP Writing', desc: 'Expert SOP writers craft powerful, personalized statements that highlight your unique strengths.', link: '/services/sop-writing' },
+  { img: '/images/services/lor-writing-recommendation-letter.webp', alt: 'LOR Writing Recommendation Letter Banner', title: 'LOR Writing', desc: 'Professional Letters of Recommendation written on behalf of your professors, supervisors, or managers.', link: '/services/lor-writing' },
+  { img: '/images/services/cv-preparation-german-style-resume.webp', alt: 'CV Preparation with German-Style Resumes', title: 'CV Preparation', desc: 'European-standard CV tailored for German universities — ATS-optimized and professionally formatted.', link: '/services/cv-preparation' },
+  { img: '/images/services/german-visa-sop-application-guide.webp', alt: 'German Visa SOP Application Guide', title: 'Visa SOP', desc: 'A Statement of Purpose for the German embassy — covering your study plan, finances, and return intent.', link: '/services/visa-sop' },
+  { img: '/images/services/visa-cover-letter-german-applications.webp', alt: 'Cover Letter for German Job Applications', title: 'Visa Cover Letter', desc: 'Mandatory for the student visa — crafted by our visa experts to strengthen your embassy application.', link: '/services/visa-cover-letter' },
 ]
 
 const PROCESS = [
@@ -154,7 +154,7 @@ function UniversityCard({ abbr, name, color, logo, square, scale }) {
         {!imgFailed ? (
           <img
             src={logo}
-            alt={name}
+            alt={`${name} logo`}
             className="w-full h-full object-contain"
             style={scale && scale !== 1 ? { transform: `scale(${scale})` } : undefined}
             onError={() => setImgFailed(true)}
@@ -418,8 +418,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Featured Products ── */}
+      {/* ── Services ── */}
       <section className="py-10 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">What We Do</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Services</h2>
+            <p className="text-gray-500">End-to-end support for your Study in Germany journey</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {SERVICES.map(({ img, alt, title, desc, link }) => (
+              <div key={title} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-shadow group">
+                <div className="aspect-[3/2] overflow-hidden">
+                  <img src={img} alt={alt || `${title} service for German university admission`} width="1536" height="1024" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                </div>
+                <div className="p-5">
+                  <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-3">{desc}</p>
+                  <Link to={link} className="inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+                    Learn More
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Featured Products ── */}
+      <section className="py-10 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Our Digital Products</div>
@@ -452,33 +479,6 @@ export default function Home() {
             <Link to="/products" className="inline-flex items-center justify-center bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-primary-dark transition-colors">
               View All Products
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Services ── */}
-      <section className="py-10 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">What We Do</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Services</h2>
-            <p className="text-gray-500">End-to-end support for your Study in Germany journey</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map(({ img, title, desc, link }) => (
-              <div key={title} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-shadow group">
-                <div className="h-44 overflow-hidden">
-                  <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-3">{desc}</p>
-                  <Link to={link} className="inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -541,7 +541,7 @@ export default function Home() {
                 <div key={b.id} className="bg-white rounded-2xl shadow-card overflow-hidden group flex flex-col h-full">
                   <Link to={`/blog/${b.slug}`} className="relative h-48 overflow-hidden bg-gray-100 flex-shrink-0 block">
                     {b.image ? (
-                      <img src={b.image} alt={b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                      <img src={b.image} alt={b.image_alt || b.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-400">
                         <span className="material-icons-round text-5xl">article</span>
@@ -618,6 +618,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── FAQ ── */}
+      <section className="py-10 md:py-20 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">FAQ</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions — Masters &amp; Bachelors in Germany</h2>
+          </div>
+          <div className="divide-y divide-gray-200">
+            {HOME_FAQS.map(({ q, a }) => (
+              <details key={q} className="group py-4">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-gray-900">
+                  {q}
+                  <span className="material-icons-round text-primary text-xl flex-shrink-0 transition-transform group-open:rotate-45">add</span>
+                </summary>
+                <p className="text-gray-600 text-sm leading-relaxed mt-3">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Why Masters in Germany ── */}
       <section className="py-10 md:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6">
@@ -686,26 +707,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section className="py-10 md:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">FAQ</div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Frequently Asked Questions — Masters &amp; Bachelors in Germany</h2>
-          </div>
-          <div className="divide-y divide-gray-100">
-            {HOME_FAQS.map(({ q, a }) => (
-              <details key={q} className="group py-4">
-                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-gray-900">
-                  {q}
-                  <span className="material-icons-round text-primary text-xl flex-shrink-0 transition-transform group-open:rotate-45">add</span>
-                </summary>
-                <p className="text-gray-600 text-sm leading-relaxed mt-3">{a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   )
 }

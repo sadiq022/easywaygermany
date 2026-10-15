@@ -96,7 +96,7 @@ function UniCard({ name, city, logo }) {
         ) : (
           <img
             src={logo}
-            alt={name}
+            alt={`${name} logo`}
             className="w-12 h-12 object-contain"
             onError={() => setImgFailed(true)}
           />
@@ -159,9 +159,11 @@ export default function SOPWriting() {
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
                 <img
-                  src="/images/services/SOP_Image.jpg"
-                  alt="SOP Writing Service"
-                  className="w-full h-[360px] object-cover"
+                  src="/images/services/sop-writing-university-application-guide.webp"
+                  alt="SOP Writing: University Application Guide"
+                  className="w-full h-auto"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                 />
               </div>

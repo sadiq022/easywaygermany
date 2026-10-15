@@ -2,6 +2,8 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
 import { supabase } from '../supabase'
+import PhoneInput from '../components/PhoneInput'
+import { isPlausiblePhone } from '../data/countries'
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', field: '', message: '' })
@@ -9,6 +11,10 @@ export default function Contact() {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    if (form.phone && !isPlausiblePhone(form.phone)) {
+      toast.error('Please enter a valid phone number, or leave it empty.')
+      return
+    }
     setSending(true)
     const { error } = await supabase.from('leads').insert({
       name: form.name.trim(),
@@ -108,14 +114,7 @@ export default function Contact() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Phone / WhatsApp</label>
-                <div className="relative">
-                  <span className="material-icons-round absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-base">phone</span>
-                  <input
-                    type="tel" placeholder="+91 98765 43210"
-                    value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
+                <PhoneInput value={form.phone} onChange={phone => setForm(f => ({ ...f, phone }))} />
               </div>
 
               <div>

@@ -412,7 +412,7 @@ export default function BlockedAccountGermany() {
             {PROVIDERS.map(p => (
               <div key={p.name} className={`rounded-2xl overflow-hidden border-2 ${p.color} shadow-card hover:shadow-card-hover transition-all duration-300`}>
                 <div className="relative h-40 overflow-hidden">
-                  <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
+                  <img src={p.img} alt={`${p.name} blocked account provider for the German student visa`} className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className={`absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full ${p.badgeColor}`}>
                     {p.badge}
@@ -509,7 +509,7 @@ export default function BlockedAccountGermany() {
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={step.img}
-                    alt={step.title}
+                    alt={`${step.title} — blocked account Germany step`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

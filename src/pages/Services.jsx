@@ -3,28 +3,28 @@ import { Helmet } from 'react-helmet-async'
 
 const SERVICES = [
   {
-    n: '01', img: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=700&q=80',
+    n: '01', img: '/images/services/university-shortlisting-guide.webp', alt: 'University Shortlisting Guide',
     title: 'University Shortlisting for Masters in Germany',
     desc: "Selecting the right universities for your Masters application in Germany requires understanding your academic profile, program availability, German university ranking systems (QS, THE, CHE), and admission competitiveness. We shortlist 5–8 universities for each student across three tiers: ambitious targets, strong matches, and safe choices. Our shortlisting process accounts for your GPA, IELTS/TestDaF score, work experience, and target field of study — engineering, computer science, data science, management, or others. We also flag application deadlines and uni-assist requirements for each university, so you know exactly what to submit and when.",
     bullets: ['Data-driven university selection', 'Deadline tracking', 'Admission probability analysis'],
     cta: 'Learn More', ctaLink: '/services/university-shortlisting',
   },
   {
-    n: '02', img: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&q=80',
+    n: '02', img: '/images/services/sop-writing-university-application-guide.webp', alt: 'SOP Writing: University Application Guide',
     title: 'SOP Writing for Germany Universities',
     desc: 'A Statement of Purpose for German university admission is very different from UK or US SOPs. German professors expect a research-focused, structured motivation letter that clearly explains your academic background, why you chose this specific program, and how it aligns with your career goals in Germany. Our team has written SOPs for students admitted to TU Munich, RWTH Aachen, TU Dresden, KIT, and 40+ other German universities. We tailor every SOP to the specific program and university — never a template.',
     bullets: ['Personalized from scratch', 'University-specific customization', 'Unlimited revisions'],
     cta: 'Learn More', ctaLink: '/services/sop-writing',
   },
   {
-    n: '03', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80',
+    n: '03', img: '/images/services/lor-writing-recommendation-letter.webp', alt: 'LOR Writing Recommendation Letter Banner',
     title: 'LOR Writing Support for German University Applications',
     desc: "Letters of Recommendation for German universities must come from professors or supervisors who know your academic or professional work. German admissions offices expect LORs to speak specifically to your analytical ability, research potential, and preparedness for postgraduate study in Germany. We help your recommenders draft LORs in the correct format, with the right level of detail — improving your overall application quality without misrepresenting your profile. Every letter is drafted to be specific, credible and consistent with your SOP and CV, so your recommender only needs to review, personalise and sign it.",
     bullets: ['Written on behalf of your recommender', 'University-specific customization', 'Fast turnaround'],
     cta: 'Learn More', ctaLink: '/services/lor-writing',
   },
   {
-    n: '04', img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&q=80',
+    n: '04', img: '/images/services/cv-preparation-german-style-resume.webp', alt: 'CV Preparation with German-Style Resumes',
     title: 'CV / Resume Preparation for German Universities',
     desc: 'German universities prefer the Europass or a structured academic CV format that is very different from an Indian resume. The German academic CV includes a photo, lists education in reverse chronological order, and highlights thesis topics, publications, and internships relevant to your field. We reformat and rewrite your CV to match German academic standards — ensuring it complements your SOP and LOR. You also receive an editable file, so you can adapt it for each application, internship or job in Germany with the formatting kept consistent and clean.',
     bullets: ['European CV standard (not Indian resume)', 'ATS-optimized & university-ready', 'Highlights academic and professional strengths'],
@@ -51,14 +51,14 @@ const SERVICES = [
     cta: 'Blocked Account Guide', ctaLink: '/blocked-account-germany',
   },
   {
-    n: '07', img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80',
+    n: '07', img: '/images/services/german-visa-sop-application-guide.webp', alt: 'German Visa SOP Application Guide',
     title: 'Germany Student Visa SOP (Letter of Motivation)',
     desc: 'The SOP for your Germany student visa is a separate document from your university SOP. It must address your financial self-sufficiency, your plan of study in Germany, your ties to your home country, and your intention to return after completing your degree. German embassies use this document as part of their assessment of your visa application — a weak visa SOP is one of the most common reasons for rejection. Our consultants, based in Dresden, Germany, know exactly what each embassy expects.',
     bullets: ['Embassy-focused structure & tone', 'Covers study plan and finances', 'Highlights your ties to India'],
     cta: 'Learn More', ctaLink: '/services/visa-sop',
   },
   {
-    n: '08', img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=700&q=80',
+    n: '08', img: '/images/services/visa-cover-letter-german-applications.webp', alt: 'Cover Letter for German Job Applications',
     title: 'Visa Cover Letter',
     desc: 'A mandatory document for the German student visa application. Our visa experts craft a personalized letter explaining your financial situation, study plan, and return intent — compliant with the specific requirements of the German embassy or consulate handling your case, so nothing in your file raises unnecessary questions at the visa interview. It works together with your visa SOP and blocked account documents, so your story is consistent across the whole file. We tailor each letter to your university, course, funding plan and the embassy you apply to, and revise it until it is ready to submit.',
     bullets: ['Mandatory for student visa', 'Crafted by visa experts', 'Compliant with embassy requirements'],
@@ -125,13 +125,13 @@ export default function Services() {
 
       <section className="py-8 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 space-y-16">
-          {SERVICES.map(({ n, img, title, desc, guide, bullets, cta, ctaLink }, idx) => (
+          {SERVICES.map(({ n, img, alt, title, desc, guide, bullets, cta, ctaLink }, idx) => (
             <div
               key={n}
               className={`flex flex-col ${idx % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'} gap-10 items-center`}>
               <div className="md:w-1/2">
                 <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
-                  <img src={img} alt={title} className="w-full h-72 object-cover" loading="lazy" />
+                  <img src={img} alt={alt || `${title} — EasyWay Germany service`} width="1536" height="1024" className="w-full aspect-[3/2] object-cover" loading="lazy" />
                   <div className="absolute top-4 left-4 bg-primary text-white text-sm font-bold px-3 py-1 rounded-full font-serif">{n}</div>
                 </div>
               </div>

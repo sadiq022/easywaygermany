@@ -1,0 +1,50 @@
+[
+ {
+  "id": 1,
+  "slug": "top-50-cs-universities-germany",
+  "price": 499.0,
+  "original_price": 1999.0
+ },
+ {
+  "id": 2,
+  "slug": "electrical-engineering-universities-germany",
+  "price": 9.99,
+  "original_price": 19.99
+ },
+ {
+  "id": 3,
+  "slug": "sop-sample-cs-tum",
+  "price": 14.99,
+  "original_price": 29.99
+ },
+ {
+  "id": 4,
+  "slug": "sop-sample-mechanical-rwth",
+  "price": 14.99,
+  "original_price": 29.99
+ },
+ {
+  "id": 5,
+  "slug": "sop-sample-mba-germany",
+  "price": 14.99,
+  "original_price": 29.99
+ },
+ {
+  "id": 6,
+  "slug": "lor-template-pack-3",
+  "price": 7.99,
+  "original_price": 14.99
+ },
+ {
+  "id": 7,
+  "slug": "cv-template-germany-ats",
+  "price": 7.99,
+  "original_price": 14.99
+ },
+ {
+  "id": 8,
+  "slug": "complete-masters-application-guide-germany",
+  "price": 19.99,
+  "original_price": 39.99
+ }
+]

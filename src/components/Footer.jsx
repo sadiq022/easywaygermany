@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center mb-4 no-underline">
               <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
-                <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="h-12 w-12 object-contain" />
+                <img src="/images/easyway-logo.png" alt="EasyWay Germany logo" className="h-12 w-12 object-contain" />
               </div>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">

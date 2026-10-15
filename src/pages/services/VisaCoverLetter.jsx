@@ -1,13 +1,6 @@
 ﻿import { Helmet } from 'react-helmet-async'
 import { useState } from 'react'
 
-/*
- * IMAGE NEEDED:
- *   Place your image at: public/images/services/visa_cover_letter.jpg
- *   You can reuse public/images/services/SOP_Image.jpg if you don't have a separate one.
- *   A photo of someone writing/reading a document works well.
- */
-
 const LETTER_TYPES = [
   {
     icon: 'flight_takeoff',
@@ -163,13 +156,15 @@ export default function VisaCoverLetter() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-14 items-center">
 
-            {/* Image — place at: public/images/services/visa_cover_letter.jpg */}
+            {/* Image */}
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-card-hover">
                 <img
-                  src="/images/services/visa_cover_letter.jpg"
-                  alt="Visa Cover Letter Service"
-                  className="w-full h-[360px] object-cover"
+                  src="/images/services/visa-cover-letter-german-applications.webp"
+                  alt="Cover Letter for German Job Applications"
+                  className="w-full h-auto"
+                  width="1536"
+                  height="1024"
                   loading="lazy"
                 />
               </div>

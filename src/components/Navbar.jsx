@@ -98,7 +98,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-2 no-underline">
-            <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="h-10 w-auto object-contain" />
+            <img src="/images/easyway-logo.png" alt="EasyWay Germany logo" className="h-10 w-auto object-contain" />
             <div className="leading-tight">
               <div className="font-bold text-gray-900 font-serif text-lg">EasyWay</div>
               <div className="text-xs text-primary -mt-0.5 font-semibold">Germany</div>
@@ -140,14 +140,14 @@ export default function Navbar() {
                     <span className="material-icons-round text-base text-primary">school</span>
                     <div>
                       <div className="font-semibold">Admission Packages</div>
-                      <div className="text-xs text-gray-400 font-normal">SOP, LOR, university applications</div>
+                      <div className="text-xs text-black font-normal">SOP, LOR, university applications</div>
                     </div>
                   </Link>
                   <Link to="/visa-package" className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">
                     <span className="material-icons-round text-base text-primary">flight_takeoff</span>
                     <div>
                       <div className="font-semibold">Visa Package</div>
-                      <div className="text-xs text-gray-400 font-normal">Visa SOP, blocked account, VFS</div>
+                      <div className="text-xs text-black font-normal">Visa SOP, blocked account, VFS</div>
                     </div>
                   </Link>
                 </div>
@@ -231,8 +231,8 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <Link to="/login" className="text-sm bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors font-semibold">
-                Login
+              <Link to="/contact" className="text-sm bg-primary text-white px-5 py-2 rounded-lg hover:bg-primary-dark transition-colors font-semibold whitespace-nowrap">
+                Book Consultation
               </Link>
             )}
           </div>
@@ -259,7 +259,7 @@ export default function Navbar() {
       <div className={`fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl transform transition-transform duration-300 md:hidden ${drawerOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         <div className="flex items-center justify-between p-5 border-b">
           <Link to="/" onClick={() => setDrawerOpen(false)} className="flex items-center gap-2 no-underline">
-            <img src="/images/easyway-logo.png" alt="EasyWay Germany" className="h-8 w-auto object-contain" />
+            <img src="/images/easyway-logo.png" alt="EasyWay Germany logo" className="h-8 w-auto object-contain" />
             <div className="leading-tight">
               <div className="font-bold text-gray-900 font-serif text-base">EasyWay</div>
               <div className="text-xs font-semibold text-primary -mt-0.5">Germany</div>
@@ -399,9 +399,9 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <Link to="/login" onClick={() => setDrawerOpen(false)}
+              <Link to="/contact" onClick={() => setDrawerOpen(false)}
                 className="block w-full text-center py-2.5 px-4 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors">
-                Login
+                Book Consultation
               </Link>
             )}
           </div>

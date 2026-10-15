@@ -100,7 +100,7 @@ const STATIC_META = {
   '/products': {
     title: 'Study in Germany Services & Packages | EasyWay Germany',
     description:
-      "Browse EasyWay Germany's service packages — SOP writing, LOR, CV preparation, university shortlisting, Visa SOP, and more. Affordable prices starting from ₹1,000.",
+      "Browse EasyWay Germany's service packages — SOP writing, LOR, CV preparation, university shortlisting, Visa SOP, and more. Affordable prices starting from ₹499.",
     ogTitle: 'Study in Germany Services & Packages | EasyWay Germany',
     ogDescription:
       'Affordable document services for German university applications. SOP, LOR, CV, Visa SOP and more.',
@@ -287,6 +287,55 @@ async function fetchBlog(slug) {
   return rows[0] ? { state: 'found', blog: rows[0] } : { state: 'missing' }
 }
 
+function stripTags(html) {
+  return String(html || '')
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+// Same states as fetchBlog: only 'missing' (query ok, no row) may become a 404.
+async function fetchProduct(slug) {
+  const url =
+    `${SUPABASE_URL}/rest/v1/products?slug=eq.${encodeURIComponent(slug)}` +
+    `&is_active=eq.true&select=title,slug,short_description,description,meta_title,meta_description,preview_image,alt_text,price,original_price,categories(name,slug)&limit=1`
+  const res = await fetch(url, {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+  })
+  if (!res.ok) return { state: 'error' }
+  const rows = await res.json()
+  if (!Array.isArray(rows)) return { state: 'error' }
+  return rows[0] ? { state: 'found', product: rows[0] } : { state: 'missing' }
+}
+
+function formatPrice(n) {
+  const v = Number(n)
+  return Number.isFinite(v) ? `₹${v.toFixed(2)}` : ''
+}
+
+// Crawlable copy of the product page for clients that don't run JS (React replaces #root on boot).
+function buildProductShell(product) {
+  const alt = product.alt_text || product.title
+  const price = formatPrice(product.price)
+  const was = product.original_price && Number(product.original_price) > Number(product.price) ? formatPrice(product.original_price) : ''
+  const summary = product.short_description || ''
+  const isHtml = /<[a-z][\s\S]*>/i.test(product.description || '')
+  return (
+    '<article id="ssr-article" style="max-width:48rem;margin:0 auto;padding:1.5rem 1rem;' +
+    'font-family:system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.65;color:#111827">' +
+    `<h1>${escapeHtml(product.title)}</h1>` +
+    (product.preview_image ? `<img src="${escapeHtml(product.preview_image)}" alt="${escapeHtml(alt)}" style="max-width:100%;height:auto" />` : '') +
+    (price ? `<p><strong>${escapeHtml(price)}</strong>${was ? ` <s>${escapeHtml(was)}</s>` : ''}</p>` : '') +
+    (summary ? `<p>${escapeHtml(summary)}</p>` : '') +
+    (isHtml ? sanitizeArticleHtml(product.description) : product.description ? `<p>${escapeHtml(product.description)}</p>` : '') +
+    '</article>'
+  )
+}
+
 export default async (request, context) => {
   const response = await context.next()
 
@@ -316,6 +365,61 @@ export default async (request, context) => {
       // Only the six routes in STATIC_META exist under /services/.
       status = 404
       meta = { noindex: true }
+    } else if (path.startsWith('/products/')) {
+      const slug = path.replace('/products/', '')
+      if (slug && !slug.includes('/')) {
+        const result = await fetchProduct(slug)
+        if (result.state === 'found') {
+          const { product } = result
+          const canonical = `${SITE}/products/${slug}`
+          const title = product.meta_title || product.title
+          const description =
+            product.meta_description || product.short_description || stripTags(product.description).slice(0, 160)
+          const image = product.preview_image || OG_IMAGE_FALLBACK
+          const pageTitle = title.includes('EasyWay Germany') ? title : `${title} | EasyWay Germany`
+          const catName = product.categories && product.categories.name
+          const productSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            name: product.title,
+            sku: product.slug,
+            ...(catName ? { category: catName } : {}),
+            description,
+            image,
+            brand: { '@type': 'Brand', name: 'EasyWay Germany' },
+            offers: {
+              '@type': 'Offer',
+              price: product.price,
+              priceCurrency: 'INR',
+              availability: 'https://schema.org/InStock',
+              url: canonical,
+            },
+          }
+          const breadcrumbSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE}/` },
+              { '@type': 'ListItem', position: 2, name: 'Products', item: `${SITE}/products` },
+              { '@type': 'ListItem', position: 3, name: product.title, item: canonical },
+            ],
+          }
+          meta = {
+            title: pageTitle,
+            description,
+            canonical,
+            ogTitle: title,
+            type: 'product',
+            image,
+            bodyHtml: buildProductShell(product),
+            // data-ssr-schema: ProductDetail.jsx removes this tag on mount (SEOHead renders the same schema).
+            extraHead: `<script type="application/ld+json" data-ssr-schema="true">${escapeJson([productSchema, breadcrumbSchema])}</script>`,
+          }
+        } else if (result.state === 'missing') {
+          status = 404
+          meta = { noindex: true }
+        }
+      }
     } else if (path.startsWith('/blog/')) {
       const slug = path.replace('/blog/', '')
       if (slug && !slug.includes('/')) {
@@ -397,5 +501,6 @@ export const config = {
     '/pricing',
     '/visa-package',
     '/products',
+    '/products/*',
   ],
 }
