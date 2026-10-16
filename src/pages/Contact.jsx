@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { Helmet } from 'react-helmet-async'
 import { supabase } from '../supabase'
@@ -35,8 +36,8 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Book a Free Consultation – Study in Germany | EasyWay Germany</title>
-        <meta name="description" content="Get a free consultation with EasyWay Germany's experts for studying in Germany. We'll evaluate your profile, suggest universities, and guide you on APS certificate, blocked account, and student visa. Contact us via WhatsApp, email, or form." />
+        <title>Book a Free Consultation | EasyWay Germany</title>
+        <meta name="description" content="Book a free consultation with EasyWay Germany. We review your profile, suggest universities and guide you on the APS, blocked account and student visa." />
         <meta name="keywords" content="free consultation study in germany, book free counselling germany study, germany study abroad consultancy contact, germany education consultants" />
         <meta property="og:title" content="Free Consultation – Study in Germany | EasyWay Germany" />
         <meta property="og:description" content="Book your free profile evaluation with EasyWay Germany. Get expert advice on university admissions, APS certificate, blocked account, and student visa." />
@@ -68,7 +69,7 @@ export default function Contact() {
               {[
                 { icon: 'mail', label: 'Email', value: 'info@easywaygermany.com' },
                 { icon: 'phone', label: 'Phone / WhatsApp', value: '+49 152 3673 8625' },
-                { icon: 'location_on', label: 'Location', value: 'Berlin, Germany' },
+                { icon: 'location_on', label: 'Location', value: 'Dresden, Germany' },
                 { icon: 'schedule', label: 'Working Hours', value: 'Mon–Sat: 9:00 AM – 6:00 PM CET' },
               ].map(({ icon, label, value }) => (
                 <div key={label} className="flex items-start gap-4">
@@ -147,6 +148,61 @@ export default function Contact() {
               </button>
             </form>
           </div>
+        </div>
+      </section>
+
+      <section className="py-10 md:py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">How It Works</div>
+            <h2 className="font-serif text-3xl font-bold text-gray-900">What Happens After You Book</h2>
+          </div>
+          <ol className="space-y-4 mb-14 list-none p-0">
+            {[
+              ['Send us your details', 'Fill in the form on this page or message us on WhatsApp. Tell us your field of interest and what you want to achieve.'],
+              ['We reply within 24 hours', 'A member of our team contacts you and arranges your free 30-minute consultation.'],
+              ['We review your profile', 'We look at your academic background, language scores, work experience and budget.'],
+              ['You get a clear plan', 'You receive honest advice on suitable universities, the APS certificate, the blocked account and the student visa, plus the next step to take.'],
+            ].map(([title, text], i) => (
+              <li key={title} className="flex gap-4 items-start">
+                <span className="w-9 h-9 rounded-full bg-primary text-white font-bold flex items-center justify-center flex-shrink-0">{i + 1}</span>
+                <p className="text-gray-600 leading-relaxed"><strong className="text-gray-900">{title}.</strong> {text}</p>
+              </li>
+            ))}
+          </ol>
+
+          <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4">What to Include in Your Message</h2>
+          <ul className="space-y-2 mb-14 text-gray-600 list-disc pl-6">
+            <li>Your Bachelor’s degree and your grades (GPA or percentage)</li>
+            <li>Your IELTS, TOEFL or German test scores, if you already have them</li>
+            <li>Your field of interest and the intake you are aiming for (winter or summer)</li>
+            <li>Your budget and how you plan to fund your living costs</li>
+            <li>Any questions about the APS certificate, the blocked account or the visa</li>
+          </ul>
+
+          <h2 className="font-serif text-2xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+          <div className="divide-y divide-gray-200 mb-10">
+            {[
+              ['Is the consultation really free?', 'Yes. Your first 30-minute consultation with EasyWay Germany is free.'],
+              ['How quickly will you reply?', 'We aim to reply to every message within 24 hours. For a faster answer, message us on WhatsApp at +49 152 3673 8625.'],
+              ['Which students do you help?', 'We mainly help students from India, Bangladesh and Nepal who want to study a Masters or Bachelors at a German university. Our team is based in Dresden, Germany.'],
+              ['Can you help with the APS certificate and the visa?', 'Yes. We guide you through the APS certificate, the blocked account, your visa SOP and the visa application.'],
+            ].map(([q, a]) => (
+              <details key={q} className="group py-4">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none font-semibold text-gray-900">
+                  {q}
+                  <span className="material-icons-round text-primary text-xl flex-shrink-0 transition-transform group-open:rotate-45">add</span>
+                </summary>
+                <p className="text-gray-600 text-sm leading-relaxed mt-3">{a}</p>
+              </details>
+            ))}
+          </div>
+
+          <p className="text-gray-600 leading-relaxed">
+            Want to read more first? See our <Link to="/services" className="text-primary font-semibold hover:underline">services</Link>,
+            the <Link to="/study-in-germany" className="text-primary font-semibold hover:underline">complete guide to studying in Germany</Link> and
+            our <Link to="/blog" className="text-primary font-semibold hover:underline">study in Germany blog</Link>.
+          </p>
         </div>
       </section>
     </>

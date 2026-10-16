@@ -314,8 +314,8 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Masters & Bachelors in Germany Consultancy | EasyWay Germany — Expert Help from Dresden</title>
-        <meta name="description" content="Planning Masters or Bachelors in Germany? Get expert help from consultants who actually live in Germany — SOP writing, APS certificate, university shortlisting, blocked account, and visa SOP. Free consultation available." />
+        <title>Masters & Bachelors in Germany Consultancy | EasyWay</title>
+        <meta name="description" content="Planning a Masters or Bachelors in Germany? Get expert help from consultants who live there: SOP, APS, shortlisting, blocked account and visa." />
         <meta name="keywords" content="masters in germany, bachelors in germany, study in germany consultancy, study in germany from india, germany university admission, APS certificate help, blocked account germany, germany student visa consultants, SOP writing germany, masters in germany indian students" />
         <meta property="og:title" content="Masters & Bachelors in Germany Consultancy | EasyWay Germany" />
         <meta property="og:description" content="Expert guidance for Indian students applying to German universities — from consultants who actually live in Germany. SOP, LOR, CV, APS certificate, blocked account & visa support." />
@@ -336,7 +336,7 @@ export default function Home() {
           areaServed: ['India', 'Bangladesh', 'Nepal'],
           serviceType: 'Study Abroad Consultancy',
           priceRange: '$$',
-          openingHours: 'Mo-Sa 10:00-20:00',
+          openingHours: 'Mo-Sa 09:00-18:00',
         })}</script>
 
         <script type="application/ld+json">{JSON.stringify({

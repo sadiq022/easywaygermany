@@ -88,8 +88,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About EasyWay Germany | Study Abroad Consultants Who Live in Dresden, Germany</title>
-        <meta name="description" content="EasyWay Germany is run by Indian students who moved to Germany and know the process firsthand. We offer honest, affordable guidance on admissions, APS certificate, blocked account, and student visa — not from India, but from Germany itself." />
+        <title>About EasyWay Germany | Consultants in Dresden</title>
+        <meta name="description" content="EasyWay Germany is run by Indian students who moved to Germany. Honest, affordable help with admissions, APS, blocked account and visa." />
         <meta name="keywords" content="easyway germany, study in germany consultants, germany study abroad consultancy, indian students germany, study in germany from india" />
         <meta property="og:title" content="About EasyWay Germany – Consultants Who Actually Live in Germany" />
         <meta property="og:description" content="Founded by an Indian student in Dresden — we guide students through German university admissions, APS, blocked account, and visa from firsthand experience." />

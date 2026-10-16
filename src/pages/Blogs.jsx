@@ -99,8 +99,8 @@ export default function Blogs() {
   return (
     <>
       <Helmet>
-        <title>Study in Germany Blog 2026 – APS, Visa, Blocked Account, University Guides | EasyWay Germany</title>
-        <meta name="description" content="Expert blog on studying in Germany for Indian, Bangladeshi & Nepali students. Step-by-step guides on APS certificate, Germany student visa, blocked account (Sperrkonto), university shortlisting, SOP writing, scholarships, and life in Germany." />
+        <title>Study in Germany Blog 2026 | EasyWay Germany</title>
+        <meta name="description" content="Guides for Indian, Bangladeshi and Nepali students: APS certificate, Germany student visa, blocked account, SOP writing, scholarships and life in Germany." />
         <meta name="keywords" content="study in germany blog 2026, APS certificate guide, germany student visa guide, blocked account germany guide, masters in germany guide, germany scholarship india, SOP writing tips germany" />
         <meta property="og:title" content="Study in Germany Blog 2026 – Expert Guides & Tips | EasyWay Germany" />
         <meta property="og:description" content="Comprehensive guides on APS certificate, Germany student visa, blocked account, university admissions and life in Germany — written by consultants who live there." />

@@ -42,18 +42,17 @@ function FAQ({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
     <div className={`border rounded-2xl transition-all ${open ? 'border-primary/30 bg-primary/5' : 'border-gray-100 bg-white'}`}>
-      <button
+      <h3 className="m-0"><button
         onClick={() => setOpen(v => !v)}
         className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left"
       >
         <span className="font-semibold text-gray-900 text-sm md:text-base leading-snug">{q}</span>
         <span className={`material-icons-round text-primary flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}>expand_more</span>
-      </button>
-      {open && (
-        <div className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+      </button></h3>
+      {/* Always rendered (just hidden) so the answer text stays in the page for search engines. */}
+      <div hidden={!open} className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
           {a}
         </div>
-      )}
     </div>
   )
 }
@@ -88,8 +87,8 @@ export default function VisaPackage() {
   return (
     <>
       <Helmet>
-        <title>Germany Student Visa Package for Indian Students 2026 | EasyWay Germany</title>
-        <meta name="description" content="Complete Germany student visa assistance for Indian students — Visa SOP, blocked account guidance, APS help, VFS appointment, health insurance, and mock interview. ₹7,999 one-time." />
+        <title>Germany Student Visa Package | EasyWay Germany</title>
+        <meta name="description" content="Germany student visa help for Indian students: visa SOP, blocked account guidance, APS help, VFS appointment and mock interview. ₹7,999 one-time." />
         <meta name="keywords" content="germany student visa india, german student visa from india 2026, germany visa assistance india, blocked account germany, sperrkonto india, aps certificate india, vfs germany appointment india, germany student visa documents, visa sop germany, germany study visa process india, how to get germany student visa, german embassy india student visa" />
         <meta property="og:title" content="Germany Student Visa Package for Indian Students | EasyWay Germany" />
         <meta property="og:description" content="Expert visa assistance — Visa SOP, blocked account, APS, VFS appointment and mock interview. ₹7,999 one-time." />

@@ -202,7 +202,7 @@ function FaqItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
     <div className={`border rounded-xl overflow-hidden transition-all duration-200 ${open ? 'border-primary/30 shadow-sm' : 'border-gray-200'}`}>
-      <button
+      <h3 className="m-0"><button
         className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-gray-50 transition-colors"
         onClick={() => setOpen(o => !o)}
       >
@@ -210,12 +210,11 @@ function FaqItem({ q, a }) {
         <span className={`material-icons-round flex-shrink-0 text-primary transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
           expand_more
         </span>
-      </button>
-      {open && (
-        <div className="px-5 pb-4 text-sm text-gray-700 leading-relaxed border-t border-gray-100 pt-3">
+      </button></h3>
+      {/* Always rendered (just hidden) so the answer text stays in the page for search engines. */}
+      <div hidden={!open} className="px-5 pb-4 text-sm text-gray-700 leading-relaxed border-t border-gray-100 pt-3">
           {a}
         </div>
-      )}
     </div>
   )
 }
@@ -224,8 +223,8 @@ export default function BlockedAccountGermany() {
   return (
     <>
       <Helmet>
-        <title>Blocked Account Germany 2026: Exact Amount, Best Providers & Step-by-Step Guide | EasyWay Germany</title>
-        <meta name="description" content="Open your German blocked account (Sperrkonto) the right way. €11,904 required in 2026, Fintiba vs Expatrio full comparison, step-by-step process from India, and TCS rules explained. Expert assistance from consultants who live in Germany." />
+        <title>Blocked Account Germany 2026: Guide | EasyWay Germany</title>
+        <meta name="description" content="Open your German blocked account (Sperrkonto): €11,904 required in 2026, Fintiba vs Expatrio, the process from India and TCS rules explained." />
         <meta name="keywords" content="blocked account germany 2026, blocked account germany for indian students, sperrkonto germany, fintiba vs expatrio, blocked account germany amount, how to open blocked account germany from india, blocked account germany consultants, expatrio blocked account, fintiba blocked account, blocked account germany bangladeshi students, blocked account germany nepali students" />
         <meta property="og:title" content="Blocked Account Germany 2026 — Fintiba vs Expatrio, Exact Amount & Process | EasyWay Germany" />
         <meta property="og:description" content="Complete guide to opening a German blocked account for your student visa. €11,904 required, provider comparison, and hands-on help from EasyWay Germany." />

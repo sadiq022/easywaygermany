@@ -72,10 +72,10 @@ export default function VisaSOP() {
   return (
     <>
       <Helmet>
-        <title>Visa SOP Writing for Germany Student Visa | EasyWayGermany</title>
+        <title>Visa SOP Writing for Germany | EasyWay Germany</title>
         <meta
           name="description"
-          content="Get a professional Statement of Purpose for your German student visa application. Written by experts who know what embassy officers look for. Just ₹1,500."
+          content="Professional statement of purpose for your German student visa, written by experts who know what embassy officers look for. ₹1,500."
         />
       </Helmet>
 
@@ -249,7 +249,7 @@ export default function VisaSOP() {
           <div className="space-y-4">
             {FAQS.map((faq, i) => (
               <div key={i} className="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-                <button
+                <h3 className="m-0"><button
                   className="w-full text-left px-6 py-5 flex justify-between items-center focus:outline-none"
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                 >
@@ -257,7 +257,7 @@ export default function VisaSOP() {
                   <span className={`material-icons-round text-primary transition-transform duration-300 ${activeFaq === i ? 'rotate-180' : ''}`}>
                     expand_more
                   </span>
-                </button>
+                </button></h3>
                 <div className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${activeFaq === i ? 'max-h-96 pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
                   <p className="text-gray-900 leading-relaxed">{faq.a}</p>
                 </div>

@@ -107,7 +107,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-gray-400 text-sm">
                 <span className="material-icons-round text-base text-gray-500 mt-0.5">location_on</span>
-                Berlin, Germany
+                Dresden, Germany
               </li>
               <li className="flex items-start gap-2 text-gray-400 text-sm">
                 <span className="material-icons-round text-base text-gray-500 mt-0.5">schedule</span>

@@ -113,18 +113,17 @@ function FAQ({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
     <div className={`border rounded-2xl transition-all ${open ? 'border-primary/30 bg-primary/5' : 'border-gray-100 bg-white'}`}>
-      <button
+      <h3 className="m-0"><button
         onClick={() => setOpen(v => !v)}
         className="w-full flex items-center justify-between gap-4 px-6 py-4 text-left"
       >
         <span className="font-semibold text-gray-900 text-sm md:text-base leading-snug">{q}</span>
         <span className={`material-icons-round text-primary flex-shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}>expand_more</span>
-      </button>
-      {open && (
-        <div className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+      </button></h3>
+      {/* Always rendered (just hidden) so the answer text stays in the page for search engines. */}
+      <div hidden={!open} className="px-6 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
           {a}
         </div>
-      )}
     </div>
   )
 }
@@ -167,8 +166,8 @@ export default function Pricing() {
   return (
     <>
       <Helmet>
-        <title>Germany University Admission Packages 2026 | EasyWay Germany</title>
-        <meta name="description" content="Affordable Germany university admission packages for Indian students. SOP writing, university shortlisting, LOR, CV, and visa guidance. Basic ₹19,999 | Standard ₹34,999 | Premium ₹44,999." />
+        <title>Germany University Admission Packages | EasyWay Germany</title>
+        <meta name="description" content="Admission packages for Indian students: SOP writing, university shortlisting, LOR, CV and visa guidance. Basic ₹19,999, Standard ₹34,999, Premium ₹44,999." />
         <meta name="keywords" content="study in germany from india, germany university admission, germany admission package india, germany study abroad, study in germany 2026, germany university application help, sop writing germany, germany university shortlisting india, masters in germany, germany education consultants india, how to apply to german university, germany study visa india, germany tuition free university" />
         <meta property="og:title" content="Germany University Admission Packages for Indian Students | EasyWay Germany" />
         <meta property="og:description" content="Get expert help applying to German universities. SOP, LOR, CV, shortlisting and visa guidance. Plans from ₹19,999." />

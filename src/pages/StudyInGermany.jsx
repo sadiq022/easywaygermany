@@ -202,7 +202,7 @@ function FAQItem({ q, a }) {
   const [open, setOpen] = useState(false)
   return (
     <div className={`border rounded-xl overflow-hidden transition-all duration-200 ${open ? 'border-primary/30 shadow-sm' : 'border-gray-200'}`}>
-      <button
+      <h3 className="m-0"><button
         className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-gray-50 transition-colors"
         onClick={() => setOpen(o => !o)}
       >
@@ -210,12 +210,11 @@ function FAQItem({ q, a }) {
         <span className={`material-icons-round flex-shrink-0 text-primary transition-transform duration-200 ${open ? 'rotate-180' : ''}`}>
           expand_more
         </span>
-      </button>
-      {open && (
-        <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+      </button></h3>
+      {/* Always rendered (just hidden) so the answer text stays in the page for search engines. */}
+      <div hidden={!open} className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
           {a}
         </div>
-      )}
     </div>
   )
 }
@@ -243,8 +242,8 @@ export default function StudyInGermany() {
   return (
     <>
       <Helmet>
-        <title>Study in Germany 2026: Complete Guide for Indian, Bangladeshi & Nepali Students | EasyWay Germany</title>
-        <meta name="description" content="The most comprehensive guide to studying in Germany in 2026 — APS certificate, blocked account (€11,904), student visa, top universities, scholarships, cost of living, and how to apply. Free consultation from experts who live in Germany." />
+        <title>Study in Germany 2026: Complete Guide | EasyWay Germany</title>
+        <meta name="description" content="Complete 2026 guide to studying in Germany: APS, blocked account (€11,904), student visa, top universities, scholarships and cost of living." />
         <meta name="keywords" content="study in germany 2026, study in germany from india, study in germany complete guide, masters in germany indian students, APS certificate germany, blocked account germany 2026, germany student visa india, study in germany requirements, germany university admission, study in germany step by step" />
         <meta property="og:title" content="Study in Germany 2026: Complete Guide | EasyWay Germany" />
         <meta property="og:description" content="Everything you need to study in Germany — APS certificate, blocked account, student visa, top universities, scholarships, and cost of living. Expert guidance from Dresden." />

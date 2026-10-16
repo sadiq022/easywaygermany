@@ -76,8 +76,8 @@ export default function Services() {
   return (
     <>
       <Helmet>
-        <title>Study in Germany Services 2026 — SOP, APS, Visa SOP, University Shortlisting | EasyWay Germany</title>
-        <meta name="description" content="Complete study in Germany services for Indian students — SOP writing, LOR, APS certificate guidance, blocked account setup, university shortlisting, and Germany visa SOP. Expert help from Dresden." />
+        <title>Study in Germany Services: SOP, APS & Visa | EasyWay</title>
+        <meta name="description" content="Study in Germany services for Indian students: SOP and LOR writing, APS guidance, blocked account, university shortlisting and visa SOP." />
         <meta name="keywords" content="SOP writing service germany, LOR writing germany, CV preparation germany, university shortlisting service germany, germany visa SOP writing service, APS certificate guidance, blocked account setup germany, study in germany services" />
         <meta property="og:title" content="Study in Germany Services 2026 — SOP, APS, Visa SOP | EasyWay Germany" />
         <meta property="og:description" content="Professional SOP, LOR, CV, university shortlisting and visa services for Indian students applying to Germany. Affordable prices, unlimited revisions." />
