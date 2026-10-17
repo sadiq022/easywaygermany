@@ -238,7 +238,17 @@ export default function AdminAddBlog() {
       seo_keywords: seoKeywords.trim() || null,
       focus_keyword: focusKeyword.trim() || null,
       image_alt: imageAlt.trim() || null,
-      og_image: ogImage.trim() || null,
+      og_image: (() => {
+        let computed = ogImage.trim()
+        if (!computed && finalImageUrl) {
+          if (finalImageUrl.includes('cloudinary.com')) {
+            computed = finalImageUrl.replace('/upload/', '/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/').replace(/\.[a-zA-Z0-9]+$/, '.jpg')
+          } else {
+            computed = finalImageUrl
+          }
+        }
+        return computed || 'https://easywaygermany.com/og-banner.jpg'
+      })(),
       is_published: isPublished,
     }
 
@@ -546,6 +556,36 @@ export default function AdminAddBlog() {
                   <p className="text-gray-600 text-sm leading-relaxed">
                     {seoDescription || excerpt || 'Your meta description will appear here. Write something that makes people want to click.'}
                   </p>
+                </div>
+              </div>
+
+              {/* WhatsApp & Social Share Preview */}
+              <div className="bg-gray-900 border border-gray-800 rounded-2xl p-4 text-white">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#25D366]"></span>
+                    <p className="text-xs font-bold text-gray-300 uppercase tracking-wider">WhatsApp & Social Share Preview</p>
+                  </div>
+                  <span className="text-[11px] bg-green-500/20 text-green-300 px-2 py-0.5 rounded font-medium">1200x630 JPEG</span>
+                </div>
+                <div className="bg-[#202c33] rounded-xl overflow-hidden border border-white/10 max-w-sm">
+                  <div className="aspect-[1.91/1] w-full bg-gray-800 overflow-hidden relative">
+                    <img
+                      src={ogImage || imagePreview || image || 'https://easywaygermany.com/og-banner.jpg'}
+                      alt="Social Preview"
+                      className="w-full h-full object-cover"
+                      onError={e => { e.target.src = 'https://easywaygermany.com/og-banner.jpg' }}
+                    />
+                  </div>
+                  <div className="p-3 bg-[#111b21]">
+                    <p className="text-xs text-white/50 mb-0.5">easywaygermany.com</p>
+                    <h4 className="text-sm font-semibold text-white/90 line-clamp-1 mb-1">
+                      {seoTitle || title || 'Your Blog Post Title'}
+                    </h4>
+                    <p className="text-xs text-white/60 line-clamp-2 leading-relaxed">
+                      {seoDescription || excerpt || 'Planning a Masters or Bachelors in Germany? Expert tips and requirements from consultants who live there.'}
+                    </p>
+                  </div>
                 </div>
               </div>
 

@@ -55,6 +55,8 @@ const SERVICES = [
   { img: '/images/services/sop-writing-university-application-guide.webp', alt: 'SOP Writing: University Application Guide', title: 'SOP Writing', desc: 'Expert SOP writers craft powerful, personalized statements that highlight your unique strengths.', link: '/services/sop-writing' },
   { img: '/images/services/lor-writing-recommendation-letter.webp', alt: 'LOR Writing Recommendation Letter Banner', title: 'LOR Writing', desc: 'Professional Letters of Recommendation written on behalf of your professors, supervisors, or managers.', link: '/services/lor-writing' },
   { img: '/images/services/cv-preparation-german-style-resume.webp', alt: 'CV Preparation with German-Style Resumes', title: 'CV Preparation', desc: 'European-standard CV tailored for German universities — ATS-optimized and professionally formatted.', link: '/services/cv-preparation' },
+  { img: '/images/services/aps-certificate-guidance.jpg', alt: 'APS Certificate Guidance for Indian Students', title: 'APS Certificate Guidance', desc: 'Complete document verification assistance, checklist review, and interview preparation for Indian students.', link: '/blog/aps-certificate-process-for-indian-students-complete-2025-guide' },
+  { img: '/images/services/blocked-account-setup.jpg', alt: 'Blocked Account Setup Assistance', title: 'Blocked Account Setup', desc: 'Expert assistance choosing between Expatrio and Fintiba, fast setup, and embassy-ready confirmation letter.', link: '/blocked-account-germany' },
   { img: '/images/services/german-visa-sop-application-guide.webp', alt: 'German Visa SOP Application Guide', title: 'Visa SOP', desc: 'A Statement of Purpose for the German embassy — covering your study plan, finances, and return intent.', link: '/services/visa-sop' },
   { img: '/images/services/visa-cover-letter-german-applications.webp', alt: 'Cover Letter for German Job Applications', title: 'Visa Cover Letter', desc: 'Mandatory for the student visa — crafted by our visa experts to strengthen your embassy application.', link: '/services/visa-cover-letter' },
 ]
@@ -426,21 +428,29 @@ export default function Home() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">Our Services</h2>
             <p className="text-gray-500">End-to-end support for your Study in Germany journey</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICES.map(({ img, alt, title, desc, link }) => (
-              <div key={title} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-shadow group">
+              <div key={title} className="bg-white rounded-2xl shadow-card overflow-hidden hover:shadow-card-hover transition-all duration-300 group flex flex-col h-full">
                 <div className="aspect-[3/2] overflow-hidden">
                   <img src={img} alt={alt || `${title} service for German university admission`} width="1536" height="1024" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </div>
-                <div className="p-5">
+                <div className="p-5 flex flex-col flex-1">
                   <h3 className="font-serif font-bold text-gray-900 text-lg mb-2">{title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-3">{desc}</p>
-                  <Link to={link} className="inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
-                    Learn More
-                  </Link>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-1">{desc}</p>
+                  <div className="mt-auto">
+                    <Link to={link} className="inline-block bg-primary text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+                      Learn More
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link to="/services" className="inline-flex items-center gap-2 border-2 border-primary text-primary px-6 py-2.5 rounded-xl font-bold hover:bg-primary hover:text-white transition-colors text-sm">
+              <span>View All Services &amp; Guides</span>
+              <span className="material-icons-round text-base">arrow_forward</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -669,22 +679,57 @@ export default function Home() {
               program to receiving your visa.
             </p>
           </div>
-          <div className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-2">
-            <Link to="/blog/masters-in-germany-for-indian-students-complete-guide-2026" className="text-primary font-semibold hover:underline text-sm">
-              Masters in Germany for Indian Students — Complete Guide →
-            </Link>
-            <Link to="/blog/is-masters-in-germany-free-for-international-students-2026" className="text-primary font-semibold hover:underline text-sm">
-              Is a Masters in Germany Really Free? →
-            </Link>
-            <Link to="/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown" className="text-primary font-semibold hover:underline text-sm">
-              Masters in Germany Cost in Indian Rupees — Full Breakdown →
-            </Link>
-            <Link to="/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026" className="text-primary font-semibold hover:underline text-sm">
-              How to Study in Germany from India — Step by Step →
-            </Link>
-            <Link to="/blog/best-consultancy-for-masters-in-germany-easyway-germany" className="text-primary font-semibold hover:underline text-sm">
-              Best Consultancy for Masters in Germany — Why EasyWay Germany →
-            </Link>
+          <div className="mt-8 grid sm:grid-cols-2 gap-3.5">
+            {[
+              {
+                title: 'Masters in Germany for Indian Students — Complete Guide',
+                to: '/blog/masters-in-germany-for-indian-students-complete-guide-2026',
+                icon: 'school',
+              },
+              {
+                title: 'Is a Masters in Germany Really Free?',
+                to: '/blog/is-masters-in-germany-free-for-international-students-2026',
+                icon: 'euro',
+              },
+              {
+                title: 'Masters in Germany Cost in Indian Rupees — Full Breakdown',
+                to: '/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown',
+                icon: 'currency_rupee',
+              },
+              {
+                title: 'How to Study in Germany from India — Step by Step',
+                to: '/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026',
+                icon: 'alt_route',
+              },
+              {
+                title: 'Best Consultancy for Masters in Germany — Why EasyWay Germany',
+                to: '/blog/best-consultancy-for-masters-in-germany-easyway-germany',
+                icon: 'workspace_premium',
+                colSpan: true,
+              },
+            ].map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-xl bg-gray-50/80 hover:bg-white border border-gray-200/80 hover:border-primary/40 hover:shadow-card transition-all duration-200 group ${
+                  link.colSpan ? 'sm:col-span-2' : ''
+                }`}
+              >
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <span className="material-icons-round text-base">{link.icon}</span>
+                  </div>
+                  <span className="text-xs sm:text-sm font-semibold text-gray-800 group-hover:text-primary transition-colors leading-snug">
+                    {link.title}
+                  </span>
+                </div>
+                <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
+                  <span className="material-icons-round text-gray-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all text-xs sm:text-sm">
+                    arrow_forward
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

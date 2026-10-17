@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Add Product – EasyWay Admin{% endblock %}
+
+{% block content %}
+<section style="padding: 40px 0 80px;">
+  <div class="container container-narrow">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
+      <div>
+        <span class="section-tag">New Resource</span>
+        <h1 class="section-title" style="margin-bottom: 4px;">Upload & Publish Product</h1>
+      </div>
+      <a href="{{ url_for('admin_products') }}" class="btn btn-sm btn-outline">&larr; Back to Products</a>
+    </div>
+
+    <div class="form-card">
+      <form action="{{ url_for('admin_add_product') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label class="form-label" for="title">Product Title *</label>
+          <input type="text" id="title" name="title" class="form-control" placeholder="e.g. RWTH Aachen Mechanical Engineering SOP Blueprint" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="form-group">
+            <label class="form-label" for="category_id">Category *</label>
+            <select id="category_id" name="category_id" class="form-control" required>
+              {% for cat in categories %}
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="badge">Display Badge</label>
+            <input type="text" id="badge" name="badge" class="form-control" placeholder="e.g. Best Seller, New 2026">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="form-group">
+            <label class="form-label" for="price">Sale Price (EUR €) *</label>
+            <input type="number" step="0.01" min="0" id="price" name="price" class="form-control" placeholder="19.00" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="original_price">Original Price (EUR €)</label>
+            <input type="number" step="0.01" min="0" id="original_price" name="original_price" class="form-control" placeholder="39.00">
+            <div class="form-help">Optional for displaying strikethrough discount.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="short_desc">Short Summary *</label>
+          <textarea id="short_desc" name="short_desc" class="form-control" style="min-height: 80px;" placeholder="One or two sentences explaining the core benefit..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="description">Detailed Product Description *</label>
+          <textarea id="description" name="description" class="form-control" style="min-height: 150px;" placeholder="Full breakdown of the syllabus, ECTS match criteria, included modules..." required></textarea>
+        </div>
+
+        <!-- Secure File Upload -->
+        <div class="form-group" style="background: #F8FAFC; border: 2px dashed var(--border); border-radius: var(--radius-md); padding: 24px; text-align: center;">
+          <label class="form-label" for="product_file" style="font-size: 16px; margin-bottom: 6px;">
+            📁 Upload Digital Resource File *
+          </label>
+          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+            Files are stored in <code>secure_files/</code> and are never accessible publicly without an authenticated purchase.
+          </p>
+          <input type="file" id="product_file" name="product_file" class="form-control" style="max-width: 400px; margin: 0 auto; background: #fff;" required>
+          <div class="form-help" style="margin-top: 8px;">Accepted formats: PDF, DOCX, ZIP, TXT, XLSX (Max 50MB)</div>
+        </div>
+
+        <div style="margin-top: 28px;">
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            Publish Digital Product &rarr;
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

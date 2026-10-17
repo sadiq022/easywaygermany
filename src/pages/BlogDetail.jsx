@@ -158,7 +158,7 @@ export default function BlogDetail() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-6 py-24 animate-pulse">
+      <div className="max-w-7xl mx-auto px-6 py-24 animate-pulse">
         <div className="h-6 bg-gray-200 rounded w-24 mb-6" />
         <div className="h-12 bg-gray-200 rounded w-3/4 mb-4" />
         <div className="h-12 bg-gray-200 rounded w-1/2 mb-8" />
@@ -180,7 +180,20 @@ export default function BlogDetail() {
   const metaTitle = blog.seo_title || blog.title
   const metaDescription = blog.seo_description || blog.excerpt || blog.title
   const metaKeywords = blog.seo_keywords || `study in germany, ${blog.category || ''}, germany university, indian students germany`
-  const ogImage = blog.og_image || blog.image || 'https://easywaygermany.com/images/easyway-logo.png'
+  const rawImage = blog.og_image || blog.image
+  let ogImage = 'https://easywaygermany.com/og-banner.jpg'
+  if (rawImage) {
+    if (rawImage.startsWith('http://') || rawImage.startsWith('https://')) {
+      // If it's a Cloudinary URL, make sure it serves 1200x630 JPEG for WhatsApp
+      if (rawImage.includes('cloudinary.com')) {
+        ogImage = rawImage.replace('/upload/', '/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/').rsplit ? rawImage : rawImage.replace(/\.[a-zA-Z0-9]+$/, '.jpg')
+      } else {
+        ogImage = rawImage
+      }
+    } else {
+      ogImage = `https://easywaygermany.com${rawImage.startsWith('/') ? '' : '/'}${rawImage}`
+    }
+  }
 
   return (
     <div className="bg-white min-h-screen">
@@ -189,11 +202,26 @@ export default function BlogDetail() {
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={metaKeywords} />
         {blog.focus_keyword && <meta name="news_keywords" content={blog.focus_keyword} />}
+        
+        {/* Open Graph / WhatsApp / Facebook / LinkedIn */}
         <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="EasyWay Germany" />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:image" content={ogImage} />
+        <meta property="og:image:secure_url" content={ogImage} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={blog.image_alt || metaTitle} />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDescription} />
+        <meta name="twitter:image" content={ogImage} />
+        
         <meta property="article:published_time" content={blog.date || blog.created_at} />
         <meta property="article:section" content={blog.category || 'Study in Germany'} />
         {blog.focus_keyword && <meta property="article:tag" content={blog.focus_keyword} />}
@@ -220,7 +248,7 @@ export default function BlogDetail() {
       </Helmet>
       {/* Blog Hero/Header Section */}
       <header className="bg-gradient-to-b from-gray-50 via-gray-50/50 to-white pt-10 pb-7 border-b border-gray-100">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Breadcrumb & Navigation */}
           <div className="flex items-center justify-between mb-5">
             <Link
@@ -267,14 +295,14 @@ export default function BlogDetail() {
 
       {/* Blog Article Layout */}
       <main className="py-8 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Main Cover Image */}
           {blog.image && (
-            <div className="rounded-2xl overflow-hidden shadow-lg mb-8 bg-gray-50">
+            <div className="rounded-2xl overflow-hidden shadow-lg mb-8 bg-gray-50 border border-gray-100">
               <img
                 src={blog.image}
                 alt={blog.image_alt || blog.title}
-                className="w-full object-cover max-h-[420px] select-none"
+                className="w-full h-auto block select-none"
               />
             </div>
           )}
@@ -354,46 +382,75 @@ export default function BlogDetail() {
             </div>
           </section>
 
-          {/* Related Articles */}
-          {related.length > 0 && (
-            <section className="mt-8 pt-6 border-t border-gray-100">
-              <div className="mb-6">
-                <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Keep Reading</div>
-                <h3 className="font-serif text-2xl md:text-3xl font-bold text-gray-900">Related Articles</h3>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                {related.map((b) => (
-                  <Link
-                    key={b.id}
-                    to={`/blog/${b.slug}`}
-                    className="group block bg-gray-50 rounded-2xl p-5 border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <div className="aspect-[16/10] rounded-xl overflow-hidden bg-gray-200 mb-4 shadow-sm">
-                      {b.image ? (
-                        <img
-                          src={b.image}
-                          alt={b.image_alt || b.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">
-                          <span className="material-icons-round text-4xl">article</span>
-                        </div>
-                      )}
-                    </div>
-                    <span className="inline-block text-xs font-bold text-primary uppercase tracking-wider mb-2">
-                      {b.category}
-                    </span>
-                    <h4 className="font-serif font-bold text-gray-900 text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-200">
-                      {b.title}
-                    </h4>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
         </div>
       </main>
+
+      {/* Related Articles — Full Width like Home Page */}
+      {related.length > 0 && (
+        <section className="py-16 md:py-20 bg-gray-50/70 border-t border-gray-100">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-12">
+              <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Keep Reading</div>
+              <h3 className="font-serif text-3xl md:text-4xl font-bold text-gray-900">Related Articles</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {related.map((b) => (
+                <div key={b.id} className="bg-white rounded-2xl shadow-card overflow-hidden group flex flex-col h-full border border-gray-100/80">
+                  <Link to={`/blog/${b.slug}`} className="relative h-48 overflow-hidden bg-gray-100 flex-shrink-0 block">
+                    {b.image ? (
+                      <img
+                        src={b.image}
+                        alt={b.image_alt || b.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        <span className="material-icons-round text-5xl">article</span>
+                      </div>
+                    )}
+                    <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+                      {b.category}
+                    </div>
+                  </Link>
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-center gap-3 text-xs text-gray-400 mb-3 font-semibold">
+                      {b.date && (
+                        <span className="flex items-center gap-1">
+                          <span className="material-icons-round text-xs">calendar_today</span>
+                          {formatDate(b.date)}
+                        </span>
+                      )}
+                      <span className="flex items-center gap-1">
+                        <span className="material-icons-round text-xs">schedule</span>
+                        {b.read_time || '5 min read'}
+                      </span>
+                    </div>
+                    <Link to={`/blog/${b.slug}`}>
+                      <h4 className="font-serif font-bold text-gray-900 text-base leading-snug mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                        {b.title}
+                      </h4>
+                    </Link>
+                    {b.excerpt && (
+                      <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">
+                        {b.excerpt}
+                      </p>
+                    )}
+                    <div className="mt-auto pt-4 border-t border-gray-100">
+                      <Link
+                        to={`/blog/${b.slug}`}
+                        className="w-full block text-center py-2.5 px-4 bg-primary text-white hover:bg-primary-dark rounded-xl text-sm font-bold transition-all shadow-sm"
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   )
 }

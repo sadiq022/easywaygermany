@@ -4,8 +4,70 @@ import toast from 'react-hot-toast'
 import { supabase } from '../../supabase'
 import { uploadToCloudinary } from '../../cloudinary'
 
+const SEO_KEYWORD_SUGGESTIONS = [
+  'Masters in Germany',
+  'Study in Germany for Indian Students',
+  'Top Universities in Germany',
+  'Computer Science in Germany',
+  'Free Tuition Universities Germany',
+  'Winter 2026 Admissions Germany',
+  'English Taught Masters Germany',
+  'APS Certificate Germany',
+  'German University Shortlisting',
+  'SOP for German Universities',
+]
+
 function toSlug(str) {
   return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+}
+
+function parseFaqsFromHtml(html) {
+  if (!html) return []
+  try {
+    const jsonMatch = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i)
+    if (jsonMatch && jsonMatch[1]) {
+      const parsed = JSON.parse(jsonMatch[1])
+      if (parsed['@type'] === 'FAQPage' && Array.isArray(parsed.mainEntity)) {
+        return parsed.mainEntity.map(item => ({
+          question: item.name || '',
+          answer: item.acceptedAnswer?.text || ''
+        }))
+      }
+    }
+  } catch (e) {}
+
+  const list = []
+  const faqSectionRegex = /<h2>Frequently Asked Questions<\/h2>([\s\S]*?)(?:<h2>|$)/i
+  const sectionMatch = html.match(faqSectionRegex)
+  const sourceHtml = sectionMatch ? sectionMatch[1] : html
+  const itemRegex = /<h3>([^<]+)<\/h3>\s*<p>([\s\S]*?)<\/p>/gi
+  let match
+  while ((match = itemRegex.exec(sourceHtml)) !== null) {
+    const q = match[1].replace(/<[^>]+>/g, '').trim()
+    const a = match[2].trim()
+    if (q && a && !q.toLowerCase().includes('what is inside') && !q.toLowerCase().includes('who should')) {
+      list.push({ question: q, answer: a })
+    }
+  }
+  return list
+}
+
+function syncFaqsToDescription(currentDesc, faqList) {
+  if (!faqList || faqList.length === 0) return currentDesc
+  const validFaqs = faqList.filter(f => f.question.trim() && f.answer.trim())
+  if (validFaqs.length === 0) return currentDesc
+
+  const faqHtml = [
+    '<h2>Frequently Asked Questions</h2>',
+    ...validFaqs.map(f => `<h3>${f.question.trim()}</h3>\n<p>${f.answer.trim()}</p>`),
+  ].join('\n\n')
+
+  const faqRegex = /<h2>Frequently Asked Questions<\/h2>[\s\S]*?(?=(?:<h2>|$))/i
+  if (faqRegex.test(currentDesc)) {
+    return currentDesc.replace(faqRegex, faqHtml + '\n\n')
+  } else {
+    return (currentDesc ? currentDesc.trim() + '\n\n' : '') + faqHtml
+  }
 }
 
 export default function AdminAddProduct() {
@@ -21,6 +83,12 @@ export default function AdminAddProduct() {
   const [fileUploading, setFileUploading] = useState(false)
   const [thumbnailUploading, setThumbnailUploading] = useState(false)
   const [isSlugManuallyEdited, setIsSlugManuallyEdited] = useState(false)
+
+  // SEO & Preview States
+  const [previewDevice, setPreviewDevice] = useState('desktop')
+  const [showDescPreview, setShowDescPreview] = useState(false)
+  const [faqs, setFaqs] = useState([])
+  const [newFaq, setNewFaq] = useState({ question: '', answer: '' })
 
   const [form, setForm] = useState({
     title: '', slug: '', description: '', short_description: '',
@@ -71,6 +139,7 @@ export default function AdminAddProduct() {
           meta_description: prod.meta_description || '',
           seo_keywords: prod.seo_keywords || '',
         })
+        setFaqs(parseFaqsFromHtml(prod.description || ''))
         setIsSlugManuallyEdited(true)
         setExistingFilePath(prod.file_path)
         setExistingPreviewImage(prod.preview_image)
@@ -91,6 +160,59 @@ export default function AdminAddProduct() {
       }
       return next
     })
+  }
+
+  function insertSnippet(type) {
+    let snippet = ''
+    if (type === 'inside') {
+      snippet = `\n\n<h2>What is inside this resource</h2>\n<ul>\n  <li>A curated list of top universities in Germany with program specifications</li>\n  <li>Tuition fees and semester contribution breakdowns</li>\n  <li>Language requirements (English IELTS/TOEFL vs German)</li>\n  <li>Application deadlines for Winter & Summer intakes</li>\n  <li>GPA cut-offs and competitive profile assessment criteria</li>\n</ul>\n`
+    } else if (type === 'audience') {
+      snippet = `\n\n<h2>Who should use this resource?</h2>\n<p>Specially curated for Indian and international students planning to study Masters or Bachelors in Germany. Whether you need ambitious, target, or safe university options, this guide eliminates hours of manual research across university portals.</p>\n`
+    } else if (type === 'how') {
+      snippet = `\n\n<h2>How to use this resource to build your shortlist</h2>\n<ol>\n  <li>Compare your Bachelor GPA and IELTS score against program cut-offs.</li>\n  <li>Shortlist 8 to 12 universities across ambitious, target, and safe categories.</li>\n  <li>Track application deadlines and start your APS Certificate verification early.</li>\n  <li>Confirm all prerequisites on official faculty portals before submitting applications.</li>\n</ol>\n`
+    } else if (type === 'faq') {
+      snippet = `\n\n<h3>Is education in Germany free for international students?</h3>\n<p>At most public German universities, there are no tuition fees for Masters programs. Students only pay a semester contribution (€150–€350). Baden-Württemberg charges €1,500/semester for non-EU students.</p>\n`
+    } else if (type === 'link_consult') {
+      snippet = ` <a href="/contact">book a free consultation with our Germany education experts</a> `
+    } else if (type === 'link_shortlist') {
+      snippet = ` <a href="/services/university-shortlisting">university shortlisting service</a> `
+    }
+
+    setForm(f => ({
+      ...f,
+      description: (f.description || '').trim() + snippet
+    }))
+    toast.success('Section template inserted into description!')
+  }
+
+  function handleAddFaq() {
+    if (!newFaq.question.trim() || !newFaq.answer.trim()) {
+      toast.error('Both question and answer are required')
+      return
+    }
+    const updated = [...faqs, { question: newFaq.question.trim(), answer: newFaq.answer.trim() }]
+    setFaqs(updated)
+    setNewFaq({ question: '', answer: '' })
+    setForm(f => ({ ...f, description: syncFaqsToDescription(f.description, updated) }))
+    toast.success('FAQ added and synced to description!')
+  }
+
+  function handleRemoveFaq(idx) {
+    const updated = faqs.filter((_, i) => i !== idx)
+    setFaqs(updated)
+    setForm(f => ({ ...f, description: syncFaqsToDescription(f.description, updated) }))
+    toast.success('FAQ removed.')
+  }
+
+  function handleAppendKeyword(kw) {
+    const current = form.seo_keywords ? form.seo_keywords.split(',').map(s => s.trim()).filter(Boolean) : []
+    if (current.includes(kw)) {
+      toast('Keyword already included', { icon: 'ℹ️' })
+      return
+    }
+    const next = [...current, kw].join(', ')
+    set('seo_keywords', next)
+    toast.success(`Added keyword: ${kw}`)
   }
 
   async function handleSubmit(e) {
@@ -229,12 +351,99 @@ export default function AdminAddProduct() {
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Description *</label>
-                <textarea
-                  required rows={5} value={form.description} onChange={e => set('description', e.target.value)}
-                  placeholder="Detailed description of the product"
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors resize-none"
-                />
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Full Description *</label>
+                    <p className="text-xs text-gray-500">Supports HTML tags for rich SEO formatting (headings, lists, internal links, FAQs).</p>
+                  </div>
+                  <div className="flex items-center gap-1.5 bg-gray-100 p-1 rounded-lg text-xs font-medium">
+                    <button
+                      type="button"
+                      onClick={() => setShowDescPreview(false)}
+                      className={`px-2.5 py-1 rounded-md transition-colors ${!showDescPreview ? 'bg-white shadow text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
+                    >
+                      Code / HTML
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setShowDescPreview(true)}
+                      className={`px-2.5 py-1 rounded-md transition-colors ${showDescPreview ? 'bg-white shadow text-primary font-semibold' : 'text-gray-600 hover:text-gray-900'}`}
+                    >
+                      Live Preview
+                    </button>
+                  </div>
+                </div>
+
+                {/* 1-Click SEO Section Inserters */}
+                <div className="mb-2.5 p-2.5 bg-gray-50 border border-gray-200 rounded-xl">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-gray-600 mb-2">
+                    <span className="material-icons-round text-sm text-primary">auto_fix_high</span>
+                    <span>1-Click SEO Section Inserters:</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => insertSnippet('inside')}
+                      className="px-2.5 py-1 bg-white hover:bg-primary/5 text-gray-700 hover:text-primary text-xs font-medium border border-gray-200 hover:border-primary/40 rounded-lg transition-colors flex items-center gap-1"
+                    >
+                      <span>+</span> What's Inside Checklist
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertSnippet('audience')}
+                      className="px-2.5 py-1 bg-white hover:bg-primary/5 text-gray-700 hover:text-primary text-xs font-medium border border-gray-200 hover:border-primary/40 rounded-lg transition-colors flex items-center gap-1"
+                    >
+                      <span>+</span> Who This Is For
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertSnippet('how')}
+                      className="px-2.5 py-1 bg-white hover:bg-primary/5 text-gray-700 hover:text-primary text-xs font-medium border border-gray-200 hover:border-primary/40 rounded-lg transition-colors flex items-center gap-1"
+                    >
+                      <span>+</span> Shortlisting Steps
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertSnippet('faq')}
+                      className="px-2.5 py-1 bg-white hover:bg-primary/5 text-gray-700 hover:text-primary text-xs font-medium border border-gray-200 hover:border-primary/40 rounded-lg transition-colors flex items-center gap-1"
+                    >
+                      <span>+</span> Sample FAQ Item
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertSnippet('link_consult')}
+                      className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-medium border border-blue-200 rounded-lg transition-colors flex items-center gap-1"
+                    >
+                      <span>🔗</span> Link: Consultation
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertSnippet('link_shortlist')}
+                      className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-medium border border-blue-200 rounded-lg transition-colors flex items-center gap-1"
+                    >
+                      <span>🔗</span> Link: Shortlisting
+                    </button>
+                  </div>
+                </div>
+
+                {showDescPreview ? (
+                  <div className="w-full p-4 border border-gray-200 rounded-xl bg-white min-h-[220px] max-h-[420px] overflow-y-auto blog-content prose prose-sm">
+                    {form.description ? (
+                      <div dangerouslySetInnerHTML={{ __html: form.description }} />
+                    ) : (
+                      <p className="text-gray-400 italic text-sm">No description entered yet. Switch to Code / HTML to start writing.</p>
+                    )}
+                  </div>
+                ) : (
+                  <textarea
+                    required
+                    rows={8}
+                    value={form.description}
+                    onChange={e => set('description', e.target.value)}
+                    placeholder="Enter detailed HTML description with headings (<h2>, <h3>), checklists (<ul>), and FAQs..."
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-mono focus:outline-none focus:border-primary transition-colors resize-y leading-relaxed"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -384,10 +593,61 @@ export default function AdminAddProduct() {
           </div>
 
           {/* SEO & Metadata */}
-          <div className="bg-white rounded-2xl shadow-card p-6">
-            <h2 className="font-semibold text-gray-900 mb-1">SEO & Metadata</h2>
-            <p className="text-sm text-gray-500 mb-4">Controls how this product appears in Google, AI search engines, and social media previews. Leave blank to auto-use the product title and description.</p>
-            <div className="space-y-4">
+          <div className="bg-white rounded-2xl shadow-card p-6 space-y-6">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="material-icons-round text-primary text-xl">travel_explore</span>
+                <h2 className="font-semibold text-gray-900 text-lg">SEO & Google Search Presence</h2>
+              </div>
+              <p className="text-sm text-gray-500">Fine-tune Google search rankings, rich snippets, and metadata specifically for Indian and international students searching for Germany studies.</p>
+            </div>
+
+            {/* Live Google Search Preview */}
+            <div className="border border-gray-200 rounded-2xl p-4 bg-gray-50/70">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <span className="material-icons-round text-primary text-base">preview</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-700">Live Google Search Preview</span>
+                </div>
+                <div className="flex bg-gray-200/80 rounded-lg p-0.5 text-xs font-medium">
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice('desktop')}
+                    className={`px-3 py-1 rounded-md transition-all ${previewDevice === 'desktop' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-600 hover:text-gray-900'}`}
+                  >
+                    Desktop
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice('mobile')}
+                    className={`px-3 py-1 rounded-md transition-all ${previewDevice === 'mobile' ? 'bg-white shadow text-gray-900 font-bold' : 'text-gray-600 hover:text-gray-900'}`}
+                  >
+                    Mobile
+                  </button>
+                </div>
+              </div>
+
+              <div className={`bg-white p-4 rounded-xl border border-gray-200 shadow-sm transition-all ${previewDevice === 'mobile' ? 'max-w-sm mx-auto' : 'w-full'}`}>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-6 h-6 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary text-[10px] font-black">
+                    EG
+                  </div>
+                  <div className="leading-tight overflow-hidden">
+                    <p className="text-xs font-semibold text-gray-800">EasyWay Germany</p>
+                    <p className="text-[11px] text-gray-500 truncate">https://easywaygermany.com › products › {form.slug || 'product-slug'}</p>
+                  </div>
+                </div>
+                <h3 className="text-[#1a0dab] hover:underline cursor-pointer text-base md:text-lg font-medium leading-snug mb-1">
+                  {(form.meta_title || form.title || 'Product Title') + ' | EasyWay Germany'}
+                </h3>
+                <p className="text-xs md:text-sm text-[#4d5156] leading-relaxed line-clamp-2">
+                  {form.meta_description || form.short_description || 'Ranked list and admission guide for Indian and international students applying for Masters & Bachelors in Germany with tuition fees, GPA cutoffs, and deadlines.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-5">
+              {/* Thumbnail Alt Text */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Thumbnail Alt Text</label>
                 <input
@@ -395,34 +655,176 @@ export default function AdminAddProduct() {
                   placeholder="e.g. Top 50 CS universities in Germany ranked list PDF"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
                 />
-                <p className="text-xs text-gray-400 mt-1">Describe the thumbnail image for screen readers and image search.</p>
+                <p className="text-xs text-gray-400 mt-1">Describe the thumbnail image for Google Images and screen readers.</p>
               </div>
+
+              {/* Meta Title with Gauge */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title</label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-sm font-medium text-gray-700">Meta Title</label>
+                  <div className="text-xs font-semibold">
+                    <span className={
+                      form.meta_title.length === 0 ? 'text-gray-400' :
+                      form.meta_title.length >= 50 && form.meta_title.length <= 60 ? 'text-green-600 font-bold' :
+                      form.meta_title.length < 50 ? 'text-amber-600' : 'text-red-500'
+                    }>
+                      {form.meta_title.length}/60 chars
+                    </span>
+                    <span className="text-gray-400 ml-1.5 font-normal">
+                      {form.meta_title.length === 0 ? '(leave blank to use Title)' :
+                       form.meta_title.length >= 50 && form.meta_title.length <= 60 ? '• Optimal length' :
+                       form.meta_title.length < 50 ? '• A bit short' : '• Over 60 chars (may truncate)'}
+                    </span>
+                  </div>
+                </div>
                 <input
                   type="text" value={form.meta_title} onChange={e => set('meta_title', e.target.value)}
-                  placeholder="Leave blank to use product title"
+                  placeholder="e.g. Top 50 CS Universities in Germany: PDF List & Cutoffs"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
                 />
-                <p className="text-xs text-gray-400 mt-1">Shown in Google search results. Ideal length: 50–60 characters.</p>
+                <p className="text-xs text-gray-400 mt-1">Shown as the blue title in Google results. Ideal length: 50–60 characters.</p>
               </div>
+
+              {/* Meta Description with Gauge */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Meta Description</label>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-sm font-medium text-gray-700">Meta Description</label>
+                  <div className="text-xs font-semibold">
+                    <span className={
+                      form.meta_description.length === 0 ? 'text-gray-400' :
+                      form.meta_description.length >= 120 && form.meta_description.length <= 160 ? 'text-green-600 font-bold' :
+                      form.meta_description.length < 120 ? 'text-amber-600' : 'text-red-500'
+                    }>
+                      {form.meta_description.length}/160 chars
+                    </span>
+                    <span className="text-gray-400 ml-1.5 font-normal">
+                      {form.meta_description.length === 0 ? '(leave blank to use short description)' :
+                       form.meta_description.length >= 120 && form.meta_description.length <= 160 ? '• Optimal length' :
+                       form.meta_description.length < 120 ? '• Under 120 chars' : '• Over 160 chars (may truncate)'}
+                    </span>
+                  </div>
+                </div>
                 <textarea
                   rows={3} value={form.meta_description} onChange={e => set('meta_description', e.target.value)}
-                  placeholder="Leave blank to use short description. Shown below the title in Google results."
+                  placeholder="e.g. Ranked list of the top 50 computer science universities in Germany with fees, deadlines, language needs and GPA cut-offs. Instant 35-page PDF download."
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors resize-none"
                 />
-                <p className="text-xs text-gray-400 mt-1">Ideal length: 120–160 characters.</p>
+                <p className="text-xs text-gray-400 mt-1">Shown below the title in Google results. Target: 120–160 characters with clear call-to-action.</p>
               </div>
+
+              {/* SEO Keywords with Clickable Chips */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">SEO Keywords</label>
                 <input
                   type="text" value={form.seo_keywords} onChange={e => set('seo_keywords', e.target.value)}
-                  placeholder="study in Germany, CS universities, German universities ranking"
+                  placeholder="top CS universities in Germany, masters in computer science Germany, study in Germany for Indian students"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
                 />
-                <p className="text-xs text-gray-400 mt-1">Comma-separated keywords. Used in the meta keywords tag and structured data.</p>
+                <p className="text-xs text-gray-400 mt-1 mb-2">Comma-separated target search queries used in meta tags and structured data.</p>
+
+                {/* Suggested High-Intent Keywords */}
+                <div className="bg-gray-50 border border-gray-200 rounded-xl p-3">
+                  <div className="text-xs font-semibold text-gray-600 mb-2 flex items-center gap-1">
+                    <span className="material-icons-round text-sm text-primary">tag</span>
+                    <span>Click to add high-intent Germany admission keywords:</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {SEO_KEYWORD_SUGGESTIONS.map(kw => (
+                      <button
+                        key={kw}
+                        type="button"
+                        onClick={() => handleAppendKeyword(kw)}
+                        className="px-2.5 py-1 bg-white hover:bg-primary/10 text-gray-700 hover:text-primary text-xs font-medium border border-gray-200 hover:border-primary/30 rounded-lg transition-colors flex items-center gap-1"
+                      >
+                        <span className="text-primary font-bold">+</span> {kw}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Interactive FAQ Builder (Google FAQ Rich Snippet Generator) */}
+              <div className="border border-gray-200 rounded-2xl p-5 bg-gradient-to-br from-gray-50/50 to-white">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="material-icons-round text-primary text-lg">quiz</span>
+                      <h3 className="font-semibold text-gray-900 text-sm">Product FAQs (Google Schema Ready)</h3>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-0.5">FAQs appear directly on Google search results as expandable rich snippets.</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setForm(f => ({ ...f, description: syncFaqsToDescription(f.description, faqs) }))
+                      toast.success('Synced all FAQs into product description!')
+                    }}
+                    className="px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-xl text-xs font-bold transition-colors flex items-center gap-1 w-fit"
+                  >
+                    <span className="material-icons-round text-sm">sync</span>
+                    Sync FAQs to Description
+                  </button>
+                </div>
+
+                {/* Current FAQs List */}
+                {faqs.length > 0 ? (
+                  <div className="space-y-2.5 mb-4">
+                    {faqs.map((f, idx) => (
+                      <div key={idx} className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm flex items-start justify-between gap-3">
+                        <div className="text-xs space-y-1">
+                          <p className="font-bold text-gray-900 flex items-center gap-1.5">
+                            <span className="w-4 h-4 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px]">Q</span>
+                            {f.question}
+                          </p>
+                          <p className="text-gray-600 pl-5.5 leading-relaxed">{f.answer}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveFaq(idx)}
+                          className="text-gray-400 hover:text-red-500 p-1 transition-colors"
+                          title="Remove FAQ"
+                        >
+                          <span className="material-icons-round text-base">delete_outline</span>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-gray-400 italic mb-4 bg-white p-3 rounded-xl border border-dashed border-gray-200">
+                    No individual FAQs added yet. Add questions below to trigger Google FAQ rich snippets.
+                  </p>
+                )}
+
+                {/* Add New FAQ Form */}
+                <div className="bg-white border border-gray-200 rounded-xl p-3.5 space-y-2.5">
+                  <span className="text-xs font-bold uppercase tracking-wider text-gray-500 block">Add New FAQ</span>
+                  <div>
+                    <input
+                      type="text"
+                      value={newFaq.question}
+                      onChange={e => setNewFaq({ ...newFaq, question: e.target.value })}
+                      placeholder="e.g. Is a Masters in computer science in Germany free?"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-primary"
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      rows={2}
+                      value={newFaq.answer}
+                      onChange={e => setNewFaq({ ...newFaq, answer: e.target.value })}
+                      placeholder="e.g. At most public German universities, there are no tuition fees. Students only pay semester contributions (€150–€350)."
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-primary resize-none"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleAddFaq}
+                    className="flex items-center gap-1 bg-gray-900 hover:bg-black text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors"
+                  >
+                    <span className="material-icons-round text-sm">add</span>
+                    Add FAQ Item
+                  </button>
+                </div>
               </div>
             </div>
           </div>

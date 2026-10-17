@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard – EasyWay Germany{% endblock %}
+
+{% block content %}
+<section style="padding: 50px 0 80px;">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="section-tag">Student Dashboard</span>
+        <h1 class="section-title" style="margin-bottom: 6px;">Welcome back, {{ current_user.full_name }}</h1>
+        <p style="color: var(--text-muted); font-size: 14px;">Logged in as: <strong>{{ current_user.email }}</strong></p>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <a href="{{ url_for('products') }}" class="btn btn-outline btn-sm">Browse More Resources</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-sm btn-outline">Log Out</a>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="stats-overview">
+      <div class="stat-widget">
+        <div class="stat-widget-label">Purchased Resources</div>
+        <div class="stat-widget-val">{{ orders|length }}</div>
+      </div>
+      <div class="stat-widget">
+        <div class="stat-widget-label">Available Downloads</div>
+        <div class="stat-widget-val" style="color: var(--primary);">{{ orders|length }}</div>
+      </div>
+      <div class="stat-widget">
+        <div class="stat-widget-label">Account Status</div>
+        <div class="stat-widget-val" style="font-size: 20px; color: #10B981; padding-top: 10px;">
+          Active Member
+        </div>
+      </div>
+    </div>
+
+    <!-- Downloads Section -->
+    <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-sm); margin-bottom: 40px;">
+      <h2 style="font-size: 22px; margin-bottom: 20px;">My Downloads & Purchased Guides</h2>
+
+      {% if orders %}
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Resource Name</th>
+                <th>Category</th>
+                <th>Order ID</th>
+                <th>Purchase Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+                <tr>
+                  <td>
+                    <strong>
+                      <a href="{{ url_for('product_detail', slug=order.product.slug) }}">
+                        {{ order.product.title }}
+                      </a>
+                    </strong>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+                      File: {{ order.product.file_original_name }}
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge">{{ order.product.category.name }}</span>
+                  </td>
+                  <td>
+                    <code style="background: #F1F5F9; padding: 2px 6px; border-radius: 4px; font-size: 12px;">{{ order.order_number }}</code>
+                  </td>
+                  <td style="color: var(--text-muted); font-size: 13px;">
+                    {{ order.created_at.strftime('%b %d, %Y') }}
+                  </td>
+                  <td>
+                    <a href="{{ url_for('download_file', product_id=order.product.id) }}" class="btn btn-sm btn-primary">
+                      📥 Download File
+                    </a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <div style="text-align: center; padding: 48px 20px; background: #F8FAFC; border-radius: var(--radius-md); border: 1px dashed var(--border);">
+          <div style="font-size: 36px; margin-bottom: 12px;">📂</div>
+          <h3 style="font-size: 18px; margin-bottom: 8px;">No resources purchased yet</h3>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px; max-width: 440px; margin-left: auto; margin-right: auto;">
+            Explore our curated university shortlists, SOP blueprints, and CV templates to start preparing your German Master application.
+          </p>
+          <a href="{{ url_for('products') }}" class="btn btn-primary">Visit Digital Store</a>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Need help box -->
+    <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius-md); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+      <div>
+        <strong style="color: #92400E;">Have trouble opening or downloading your files?</strong>
+        <p style="font-size: 13px; color: #B45309; margin: 2px 0 0;">
+          All downloads are scanned and securely hosted. Our support team responds in less than 24 hours.
+        </p>
+      </div>
+      <a href="{{ url_for('contact') }}" class="btn btn-sm btn-outline" style="border-color: #D97706; color: #92400E;">Contact Support</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

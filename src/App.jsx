@@ -45,6 +45,7 @@ import AdminLeads from './pages/admin/AdminLeads'
 import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 import ChatBot from './components/ChatBot'
+import LeadPopup from './components/LeadPopup'
 import PrivacyPolicy from './pages/legal/PrivacyPolicy'
 import TermsConditions from './pages/legal/TermsConditions'
 import RefundPolicy from './pages/legal/RefundPolicy'
@@ -112,6 +113,7 @@ function Layout() {
       </main>
       {!isAdmin && <Footer />}
       {!isAdmin && <ChatBot />}
+      {!isAdmin && <LeadPopup />}
     </>
   )
 }

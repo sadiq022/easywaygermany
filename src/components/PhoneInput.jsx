@@ -19,7 +19,7 @@ function stripDialPrefix(str, dial) {
  * - Typing or pasting a number that starts with "+" switches the country to match (e.g. +49 -> Germany).
  * - `onChange` receives the full international number ("+91 98765 43210"), or '' while the field is empty.
  */
-export default function PhoneInput({ value, onChange, id = 'phone', placeholder = 'Phone number' }) {
+export default function PhoneInput({ value, onChange, id = 'phone', placeholder = 'Phone number', compact = false }) {
   const [iso, setIso] = useState(detectCountry)
   const [national, setNational] = useState('')
   const [open, setOpen] = useState(false)
@@ -91,10 +91,12 @@ export default function PhoneInput({ value, onChange, id = 'phone', placeholder 
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={`Country code: ${country.name} +${country.dial}. Click to change`}
-        className="flex items-center gap-1.5 px-3 py-3 border border-gray-200 rounded-xl text-sm bg-white hover:border-primary focus:outline-none focus:border-primary transition-colors flex-shrink-0">
-        <span className="text-base leading-none" aria-hidden="true">{flagEmoji(iso)}</span>
+        className={`flex items-center gap-1.5 border border-gray-200 bg-white hover:border-primary focus:outline-none focus:border-primary transition-colors flex-shrink-0 ${
+          compact ? 'px-2.5 py-2 rounded-lg text-xs' : 'px-3 py-3 rounded-xl text-sm'
+        }`}>
+        <span className={`${compact ? 'text-sm' : 'text-base'} leading-none`} aria-hidden="true">{flagEmoji(iso)}</span>
         <span className="font-medium text-gray-800">+{country.dial}</span>
-        <span className="material-icons-round text-gray-400" style={{ fontSize: 16 }} aria-hidden="true">expand_more</span>
+        <span className="material-icons-round text-gray-400" style={{ fontSize: compact ? 14 : 16 }} aria-hidden="true">expand_more</span>
       </button>
 
       <input
@@ -107,7 +109,9 @@ export default function PhoneInput({ value, onChange, id = 'phone', placeholder 
         placeholder={placeholder}
         value={national}
         onChange={handleNumber}
-        className="flex-1 w-0 min-w-0 px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-primary transition-colors"
+        className={`flex-1 w-0 min-w-0 border border-gray-200 focus:outline-none focus:border-primary transition-colors ${
+          compact ? 'px-3 py-2 rounded-lg text-xs' : 'px-4 py-3 rounded-xl text-sm'
+        }`}
       />
 
       {open && (

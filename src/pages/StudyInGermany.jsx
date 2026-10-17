@@ -54,7 +54,7 @@ const PROCESS_STEPS = [
     icon: 'fact_check',
     title: 'APS Certificate',
     desc: 'Indian students must get their academic documents verified by APS India before applying to German universities. We guide you through every step.',
-    img: 'https://images.unsplash.com/photo-1568234928966-359c35dd8327?w=600&q=80',
+    img: '/images/services/aps-certificate-guidance.jpg',
     link: '/services',
   },
   {
@@ -92,7 +92,7 @@ const PROCESS_STEPS = [
 
 const CLUSTERS = [
   {
-    img: 'https://images.unsplash.com/photo-1568234928966-359c35dd8327?w=700&q=80',
+    img: '/images/services/aps-certificate-guidance.jpg',
     icon: 'verified',
     title: 'APS Certificate',
     desc: 'Mandatory document verification for all Indian students. We explain what it is, how to apply, what documents are needed, and how to prepare for the APS interview.',

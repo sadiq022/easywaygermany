@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Log In – EasyWay Germany{% endblock %}
+
+{% block content %}
+<section style="padding: 70px 0 100px;">
+  <div class="container container-narrow" style="max-width: 480px;">
+    <div class="form-card">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <div class="brand-icon" style="margin: 0 auto 14px; width: 48px; height: 48px; font-size: 20px;">EW</div>
+        <h1 style="font-size: 26px; margin-bottom: 6px;">Welcome Back</h1>
+        <p style="color: var(--text-muted); font-size: 14px;">Log in to access your purchased downloads & dashboard</p>
+      </div>
+
+      <!-- Quick Admin Hint -->
+      <div style="background: #F1F5F9; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 20px; font-size: 13px; color: var(--secondary);">
+        <strong>🔑 Default Admin Credentials:</strong>
+        <div style="display: flex; justify-content: space-between; margin-top: 4px; font-size: 12px; color: var(--text-muted);">
+          <span>Email: <code>admin@easywaygermany.com</code></span>
+          <span>Pass: <code>admin123</code></span>
+        </div>
+      </div>
+
+      <form action="{{ url_for('login', next=request.args.get('next', '')) }}" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="name@example.com" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <label class="form-label" for="password" style="margin: 0;">Password</label>
+          </div>
+          <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-muted); cursor: pointer;">
+            <input type="checkbox" name="remember" value="1" style="accent-color: var(--primary);">
+            <span>Remember me</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 16px;">
+          Log In &rarr;
+        </button>
+      </form>
+
+      <!-- Google OAuth placeholder -->
+      <div style="text-align: center; margin: 20px 0; position: relative;">
+        <hr style="border: none; border-top: 1px solid var(--border);">
+        <span style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #fff; padding: 0 10px; font-size: 12px; color: var(--text-light); text-transform: uppercase;">
+          Or continue with
+        </span>
+      </div>
+
+      <button type="button" class="btn btn-outline" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;" onclick="alert('Google OAuth setup: Add YOUR_CLIENT_ID and flask-dance per README instructions.')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.87c2.26-2.09 3.67-5.17 3.67-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.87-3.05c-1.08.72-2.45 1.16-4.06 1.16-3.13 0-5.78-2.11-6.73-4.96H1.28v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.24c-.25-.72-.38-1.49-.38-2.24s.13-1.52.38-2.24V6.61H1.28C.46 8.23 0 10.06 0 12s.46 3.77 1.28 5.39l3.99-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.28 6.61l3.99 3.15c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
+        Sign in with Google
+      </button>
+
+      <div style="text-align: center; margin-top: 24px; font-size: 14px; color: var(--text-muted);">
+        Don't have an account? <a href="{{ url_for('register') }}" style="font-weight: 600;">Create an account</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

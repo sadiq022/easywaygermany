@@ -16,7 +16,7 @@ const SUPABASE_URL = 'https://uhknpxtwgpngdieuvurh.supabase.co'
 const SUPABASE_ANON_KEY =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoa25weHR3Z3BuZ2RpZXV2dXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIxOTc5MDYsImV4cCI6MjA3Nzc3MzkwNn0.65AA1RLHjjzlzi5jXUhbBgZEjEuYUQG8R0zK_b6PJMo'
 
-const OG_IMAGE_FALLBACK = `${SITE}/images/easyway-logo.png`
+const OG_IMAGE_FALLBACK = `${SITE}/og-banner.jpg`
 
 // Keep title/description in sync with the <Helmet> block of each page — the
 // edge value is what crawlers see before JS runs, Helmet takes over after.
@@ -220,7 +220,7 @@ function applyMeta(html, meta) {
   if (meta.image) {
     swap(
       /<meta property="og:image" content=".*?" \/>/s,
-      `<meta property="og:image" content="${escapeHtml(meta.image)}" />`
+      `<meta property="og:image" content="${escapeHtml(meta.image)}" />\n    <meta property="og:image:secure_url" content="${escapeHtml(meta.image)}" />\n    <meta property="og:image:type" content="image/jpeg" />\n    <meta property="og:image:width" content="1200" />\n    <meta property="og:image:height" content="630" />`
     )
     swap(
       /<meta name="twitter:image" content=".*?" \/>/s,
@@ -692,7 +692,19 @@ export default async (request, context) => {
           const title = blog.seo_title || blog.title
           const description = blog.seo_description || blog.excerpt || blog.title
           const canonical = `${SITE}/blog/${slug}`
-          const image = blog.og_image || blog.image || OG_IMAGE_FALLBACK
+          let rawImg = blog.og_image || blog.image
+          let image = OG_IMAGE_FALLBACK
+          if (rawImg) {
+            if (rawImg.startsWith('http://') || rawImg.startsWith('https://')) {
+              if (rawImg.includes('cloudinary.com')) {
+                image = rawImg.replace('/upload/', '/upload/c_fill,w_1200,h_630,g_auto,f_jpg,q_auto/').replace(/\.[a-zA-Z0-9]+$/, '.jpg')
+              } else {
+                image = rawImg
+              }
+            } else {
+              image = `${SITE}${rawImg.startsWith('/') ? '' : '/'}${rawImg}`
+            }
+          }
           const pageTitle = title.includes('EasyWay Germany') ? title : `${title} | EasyWay Germany`
           meta = {
             title: pageTitle,

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard – EasyWay Germany{% endblock %}
+
+{% block content %}
+<section style="padding: 40px 0 80px;">
+  <div class="container">
+    <!-- Admin Header & Nav -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <span class="section-tag">EasyWay Control Center</span>
+        <h1 class="section-title" style="margin-bottom: 4px;">Admin Overview</h1>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a href="{{ url_for('admin_products') }}" class="btn btn-sm btn-outline">Products</a>
+        <a href="{{ url_for('admin_add_product') }}" class="btn btn-sm btn-primary">+ Add New Product</a>
+        <a href="{{ url_for('admin_categories') }}" class="btn btn-sm btn-outline">Categories</a>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-overview">
+      <div class="stat-widget">
+        <div class="stat-widget-label">Total Revenue</div>
+        <div class="stat-widget-val" style="color: #10B981;">€{{ "%.2f"|format(total_revenue) }}</div>
+      </div>
+      <div class="stat-widget">
+        <div class="stat-widget-label">Completed Orders</div>
+        <div class="stat-widget-val">{{ total_orders }}</div>
+      </div>
+      <div class="stat-widget">
+        <div class="stat-widget-label">Active Products</div>
+        <div class="stat-widget-val">{{ total_products }}</div>
+      </div>
+      <div class="stat-widget">
+        <div class="stat-widget-label">Registered Users</div>
+        <div class="stat-widget-val">{{ total_users }}</div>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow-sm); margin-bottom: 36px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <h2 style="font-size: 20px; margin: 0;">Recent Customer Orders</h2>
+        <span style="font-size: 13px; color: var(--text-muted);">Real-time purchase logs</span>
+      </div>
+
+      {% if recent_orders %}
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Payment Mode</th>
+                <th>Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in recent_orders %}
+                <tr>
+                  <td><code>{{ order.order_number }}</code></td>
+                  <td>
+                    <strong>{{ order.user.full_name }}</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);">{{ order.user.email }}</div>
+                  </td>
+                  <td>{{ order.product.title }}</td>
+                  <td><strong>€{{ "%.2f"|format(order.amount) }}</strong></td>
+                  <td><span class="badge">{{ order.payment_method }}</span></td>
+                  <td style="color: var(--text-muted); font-size: 13px;">{{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                  <td><span class="badge" style="background: #DCFCE7; color: #166534;">Completed</span></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p style="color: var(--text-muted); font-size: 14px; margin: 0;">No customer orders placed yet.</p>
+      {% endif %}
+    </div>
+
+    <!-- Contact & Consultation Inquiries -->
+    <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow-sm);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <h2 style="font-size: 20px; margin: 0;">Recent Consultation & Contact Inquiries</h2>
+        <span style="font-size: 13px; color: var(--text-muted);">Student questions & leads</span>
+      </div>
+
+      {% if recent_messages %}
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Name / Email</th>
+                <th>Phone</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for msg in recent_messages %}
+                <tr>
+                  <td>
+                    <strong>{{ msg.name }}</strong>
+                    <div style="font-size: 12px; color: var(--text-muted);">{{ msg.email }}</div>
+                  </td>
+                  <td>{{ msg.phone or '—' }}</td>
+                  <td><span class="badge">{{ msg.subject }}</span></td>
+                  <td style="max-width: 320px; font-size: 13px; line-height: 1.5;">{{ msg.message }}</td>
+                  <td style="color: var(--text-muted); font-size: 13px;">{{ msg.created_at.strftime('%b %d, %Y') }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p style="color: var(--text-muted); font-size: 14px; margin: 0;">No messages received yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

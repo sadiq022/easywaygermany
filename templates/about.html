@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}About Us – EasyWay Germany{% endblock %}
+{% block meta_description %}Learn about EasyWay Germany, our mission to make tuition-free German education accessible,
+and our story.{% endblock %}
+
+{% block content %}
+<section style="padding: 60px 0 80px;">
+  <div class="container container-narrow">
+    <div class="section-header" style="text-align: left; margin-bottom: 36px;">
+      <span class="section-tag">About EasyWay Germany</span>
+      <h1 class="section-title">Democratizing Access to World-Class German Education</h1>
+      <p class="section-desc" style="margin-left: 0;">
+        We believe world-class education should not be locked behind exorbitant consultant fees or confusing
+        bureaucracy.
+      </p>
+    </div>
+
+    <div
+      style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-sm); line-height: 1.8; font-size: 16px; color: var(--text-main); margin-bottom: 40px;">
+      <h2 style="font-size: 24px; margin-bottom: 16px;">Our Story</h2>
+      <p style="margin-bottom: 20px;">
+        Germany is globally renowned for its world-class higher education system, cutting-edge research facilities, and
+        remarkable tuition-free policy for both domestic and international students. Yet, every semester, thousands of
+        qualified applicants are rejected simply due to technicalities: missing ECTS prerequisites, wrongly formatted
+        CVs, or Statement of Purpose essays written for the American rather than the German academic system.
+      </p>
+      <p style="margin-bottom: 20px;">
+        EasyWay Germany was started by a collective of international students and graduates from top German universities
+        including TU Munich (TUM), RWTH Aachen, and Heidelberg University. Having overcome the complex maze of
+        uni-assist, German grade conversion, APS verification, and embassy appointments ourselves, we created EasyWay
+        Germany to give applicants the exact digital blueprints, verified university lists, and frameworks needed to
+        succeed independently.
+      </p>
+
+      <hr style="border: none; border-top: 1px solid var(--border); margin: 30px 0;">
+
+      <h2 style="font-size: 24px; margin-bottom: 16px;">What Sets Us Apart</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px;">
+        <div
+          style="background: var(--bg-page); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <strong style="display: block; font-size: 17px; margin-bottom: 6px; color: var(--secondary);">🎯 Tailored for
+            German Academia</strong>
+          <p style="font-size: 14px; color: var(--text-muted); margin: 0;">
+            No generic templates. Every resource conforms directly to German Zulassungsausschuss criteria and Europass
+            guidelines.
+          </p>
+        </div>
+        <div
+          style="background: var(--bg-page); padding: 20px; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <strong style="display: block; font-size: 17px; margin-bottom: 6px; color: var(--secondary);">⚡ Instant
+            Digital Accessibility</strong>
+          <p style="font-size: 14px; color: var(--text-muted); margin: 0;">
+            Immediate download access with zero waiting, no consultations required, and lifetime updates in your user
+            dashboard.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <div style="text-align: center;">
+      <h3 style="font-size: 22px; margin-bottom: 12px;">Ready to start your journey to Germany?</h3>
+      <div style="display: flex; gap: 14px; justify-content: center; margin-top: 16px;">
+        <a href="{{ url_for('products') }}" class="btn btn-primary">Browse Digital Store</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

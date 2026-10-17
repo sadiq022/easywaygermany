@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { supabase } from '../../supabase'
 import AdminLayout from '../../components/AdminLayout'
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({ users: 0, products: 0, purchases: 0, revenue: 0, blogs: 0 })
+  const [stats, setStats] = useState({ users: 0, products: 0, purchases: 0, revenue: 0, blogs: 0, leads: 0 })
   const [recent, setRecent] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function load() {
-      const [usersRes, productsRes, purchasesRes, recentRes, blogsRes] = await Promise.all([
+      const [usersRes, productsRes, purchasesRes, recentRes, blogsRes, leadsRes] = await Promise.all([
         supabase.from('profiles').select('id', { count: 'exact', head: true }),
         supabase.from('products').select('id', { count: 'exact', head: true }),
         supabase.from('purchases').select('amount').eq('status', 'completed'),
@@ -18,6 +19,7 @@ export default function AdminDashboard() {
           .order('created_at', { ascending: false })
           .limit(10),
         supabase.from('blogs').select('id', { count: 'exact', head: true }),
+        supabase.from('leads').select('id', { count: 'exact', head: true }),
       ])
 
       const revenue = (purchasesRes.data || []).reduce((s, p) => s + Number(p.amount), 0)
@@ -27,6 +29,7 @@ export default function AdminDashboard() {
         purchases: (purchasesRes.data || []).length,
         revenue,
         blogs: blogsRes.count || 0,
+        leads: leadsRes.count || 0,
       })
       setRecent(recentRes.data || [])
       setLoading(false)
@@ -36,8 +39,9 @@ export default function AdminDashboard() {
 
   const cards = [
     { icon: 'group',           label: 'Total Users',      value: stats.users },
-    { icon: 'store',           label: 'Total Products',   value: stats.products },
-    { icon: 'article',         label: 'Total Blogs',      value: stats.blogs },
+    { icon: 'contact_phone',   label: 'Student Leads',    value: stats.leads, to: '/admin/leads' },
+    { icon: 'store',           label: 'Total Products',   value: stats.products, to: '/admin/products' },
+    { icon: 'article',         label: 'Total Blogs',      value: stats.blogs, to: '/admin/blogs' },
     { icon: 'receipt',         label: 'Completed Sales',  value: stats.purchases },
     { icon: 'currency_rupee',  label: 'Total Revenue',    value: `₹${stats.revenue.toFixed(2)}` },
   ]
@@ -55,8 +59,8 @@ export default function AdminDashboard() {
 
         {/* Stat cards */}
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-            {[...Array(5)].map((_, i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            {[...Array(6)].map((_, i) => (
               <div key={i} className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 animate-pulse">
                 <div className="h-10 w-10 bg-gray-100 rounded-xl mb-3" />
                 <div className="h-6 bg-gray-100 rounded mb-2 w-1/2" />
@@ -65,16 +69,27 @@ export default function AdminDashboard() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
-            {cards.map(({ icon, label, value }) => (
-              <div key={label} className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                  <span className="material-icons-round text-primary text-[18px]">{icon}</span>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+            {cards.map(({ icon, label, value, to }) => {
+              const content = (
+                <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md hover:border-primary/30 transition-all h-full">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
+                    <span className="material-icons-round text-primary text-[18px]">{icon}</span>
+                  </div>
+                  <div className="font-bold text-2xl text-gray-900 leading-none mb-1">{value}</div>
+                  <div className="text-xs text-gray-400 font-medium">{label}</div>
                 </div>
-                <div className="font-bold text-2xl text-gray-900 leading-none mb-1">{value}</div>
-                <div className="text-xs text-gray-400 font-medium">{label}</div>
-              </div>
-            ))}
+              )
+              return to ? (
+                <Link key={label} to={to} className="block no-underline">
+                  {content}
+                </Link>
+              ) : (
+                <div key={label}>
+                  {content}
+                </div>
+              )
+            })}
           </div>
         )}
 

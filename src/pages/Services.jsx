@@ -31,14 +31,14 @@ const SERVICES = [
     cta: 'Learn More', ctaLink: '/services/cv-preparation',
   },
   {
-    n: '05', img: 'https://images.unsplash.com/photo-1568234928966-359c35dd8327?w=700&q=80',
+    n: '05', img: '/images/services/aps-certificate-guidance.jpg', alt: 'APS Certificate Guidance for Indian Students',
     title: 'APS Certificate Guidance for Indian Students',
     desc: 'The APS certificate (Akademische Prüfstelle) is mandatory for all Indian students applying for Masters or Bachelors programs in Germany. The process involves submitting your academic documents for verification and completing an interview arranged by the APS India centre. APS processing takes 6–8 weeks, so starting early matters. We provide a complete document checklist, sample interview questions and preparation support, and we review your documents before submission to avoid rejection and delays. Because every university application depends on it, we also help you plan the timeline so your APS is ready before your first deadline.',
     bullets: ['Complete document checklist', 'Interview preparation and sample questions', 'Document review before submission'],
     cta: 'Read the APS Guide', ctaLink: '/blog/aps-certificate-process-for-indian-students-complete-2025-guide',
   },
   {
-    n: '06', img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=700&q=80',
+    n: '06', img: '/images/services/blocked-account-setup.jpg', alt: 'Blocked Account Setup Assistance',
     title: 'Blocked Account Setup Assistance',
     desc: 'Indian students need a German blocked account (Sperrkonto) to apply for a student visa. In 2026, the required deposit amount is €11,904 per year (€992 per month). We help you choose between Expatrio and Fintiba, complete the application process, and make sure you receive the confirmation letter in time for your visa appointment. We also advise on how to present your blocked account documents correctly at the embassy, and how to avoid the common mistakes that delay visa decisions, so your funding proof is accepted the first time.',
     guide: {

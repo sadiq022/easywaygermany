@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services – EasyWay Germany{% endblock %}
+{% block meta_description %}Comprehensive admissions consulting, SOP reviews, APS certification guidance, and university shortlisting for studying in Germany.{% endblock %}
+
+{% block content %}
+<section style="padding: 60px 0 80px;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Admissions Consulting</span>
+      <h1 class="section-title">Specialized Services for German Universities</h1>
+      <p class="section-desc">
+        Beyond digital templates, our team of alumni and consultants based in Germany provide hands-on support for your application cycle.
+      </p>
+    </div>
+
+    <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; margin-bottom: 60px;">
+      <!-- Service 1 -->
+      <div class="form-card" style="padding: 30px;">
+        <div style="font-size: 32px; margin-bottom: 16px;">🏛️</div>
+        <h3 style="font-size: 22px; margin-bottom: 12px;">University Shortlisting & ECTS Audit</h3>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+          German universities reject over 70% of applicants due to missing specific module credits (ECTS mismatch). We evaluate your bachelor syllabus against target German universities (TUM, RWTH Aachen, TU Berlin, Stuttgart, etc.) to ensure 100% eligibility.
+        </p>
+        <ul style="list-style: none; font-size: 13px; color: var(--secondary); margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px;">
+          <li>✔ 8-10 Tailored University Recommendations</li>
+          <li>✔ Ambitious, Target & Safe Category Stratification</li>
+          <li>✔ Modified Bavarian Formula GPA Assessment</li>
+        </ul>
+        <a href="{{ url_for('contact') }}?service=shortlisting" class="btn btn-outline btn-sm" style="width: 100%;">Inquire About Shortlisting</a>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="form-card" style="padding: 30px; border-color: var(--primary);">
+        <div style="font-size: 32px; margin-bottom: 16px;">✍️</div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+          <h3 style="font-size: 22px; margin: 0;">SOP & Essay Intensive Review</h3>
+          <span class="badge">Most Popular</span>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+          German professors dislike emotional storytelling and look strictly for academic rigor, research alignment, and course syllabus connection. We rewrite and polish your SOP line-by-line to match German expectations.
+        </p>
+        <ul style="list-style: none; font-size: 13px; color: var(--secondary); margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px;">
+          <li>✔ 2 Rounds of In-Depth Line-by-Line Edits</li>
+          <li>✔ Program-specific Module Integration</li>
+          <li>✔ Academic Tone & Grammatical Refinement</li>
+        </ul>
+        <a href="{{ url_for('contact') }}?service=sop-review" class="btn btn-primary btn-sm" style="width: 100%;">Request SOP Review</a>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="form-card" style="padding: 30px;">
+        <div style="font-size: 32px; margin-bottom: 16px;">📑</div>
+        <h3 style="font-size: 22px; margin-bottom: 12px;">APS Verification & Visa Support</h3>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;">
+          The mandatory APS verification certificate from the German Embassy can take months if documents are incorrect. We guide you through verification, blocked account opening (€11,904), and National Student Visa appointments.
+        </p>
+        <ul style="list-style: none; font-size: 13px; color: var(--secondary); margin-bottom: 24px; display: flex; flex-direction: column; gap: 8px;">
+          <li>✔ APS Document Pre-screening & Tracking</li>
+          <li>✔ Blocked Account Setup Guidance (Expatrio / Coracle / Fintiba)</li>
+          <li>✔ Embassy Interview Simulation</li>
+        </ul>
+        <a href="{{ url_for('contact') }}?service=visa-aps" class="btn btn-outline btn-sm" style="width: 100%;">Book Visa Consultation</a>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; text-align: center; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 28px; margin-bottom: 12px;">Prefer Self-Paced Preparation?</h2>
+      <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 24px; max-width: 580px; margin-left: auto; margin-right: auto;">
+        Browse our digital store to instantly download the exact templates, formulas, and program directories used by our consultants.
+      </p>
+      <a href="{{ url_for('products') }}" class="btn btn-primary btn-lg">Browse Digital Store &rarr;</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -44,9 +44,13 @@ function LeadModal({ lead, onClose, onStatusChange, onDelete }) {
           <div className="grid grid-cols-2 gap-3">
             <div className="bg-gray-50 rounded-xl p-4">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Email</p>
-              <a href={`mailto:${lead.email}`} className="text-sm font-medium text-primary hover:underline break-all">
-                {lead.email}
-              </a>
+              {lead.email ? (
+                <a href={`mailto:${lead.email}`} className="text-sm font-medium text-primary hover:underline break-all">
+                  {lead.email}
+                </a>
+              ) : (
+                <span className="text-sm font-medium text-gray-400">Not provided</span>
+              )}
             </div>
             <div className="bg-gray-50 rounded-xl p-4">
               <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Phone</p>
@@ -99,11 +103,13 @@ function LeadModal({ lead, onClose, onStatusChange, onDelete }) {
 
           {/* Action buttons */}
           <div className="flex flex-wrap gap-3 pt-2 border-t border-gray-100">
-            <a href={`mailto:${lead.email}`}
-              className="flex items-center gap-1.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-xl transition-colors">
-              <span className="material-icons-round text-base">email</span>
-              Send Email
-            </a>
+            {lead.email && (
+              <a href={`mailto:${lead.email}`}
+                className="flex items-center gap-1.5 text-sm font-semibold text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-xl transition-colors">
+                <span className="material-icons-round text-base">email</span>
+                Send Email
+              </a>
+            )}
             {lead.phone && (
               <a href={`https://wa.me/${lead.phone.replace(/\D/g, '')}`} target="_blank" rel="noreferrer"
                 className="flex items-center gap-1.5 text-sm font-semibold text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-xl transition-colors">

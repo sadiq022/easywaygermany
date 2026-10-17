@@ -88,11 +88,11 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About EasyWay Germany | Consultants in Dresden</title>
-        <meta name="description" content="EasyWay Germany is run by Indian students who moved to Germany. Honest, affordable help with admissions, APS, blocked account and visa." />
-        <meta name="keywords" content="easyway germany, study in germany consultants, germany study abroad consultancy, indian students germany, study in germany from india" />
-        <meta property="og:title" content="About EasyWay Germany – Consultants Who Actually Live in Germany" />
-        <meta property="og:description" content="Founded by an Indian student in Dresden — we guide students through German university admissions, APS, blocked account, and visa from firsthand experience." />
+        <title>About EasyWay Germany | Study in Germany Consultancy from Dresden</title>
+        <meta name="description" content="EasyWay Germany (easywaygermany) is run by Indian students living in Dresden, Germany. Honest, affordable guidance for Masters &amp; Bachelors in Germany, APS, and visa." />
+        <meta name="keywords" content="easywaygermany, easy way germany, easyway germany, EasyWay Germany, about easyway germany, study in germany consultants, germany study abroad consultancy, indian students germany, study in germany from india, masters in germany, bachelors in germany" />
+        <meta property="og:title" content="About EasyWay Germany – Study in Germany Consultants in Dresden" />
+        <meta property="og:description" content="Founded by Indian students in Dresden — EasyWay Germany guides students through German university admissions, APS, blocked account, and visa from firsthand experience." />
         <meta property="og:url" content="https://easywaygermany.com/about" />
         <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <link rel="canonical" href="https://easywaygermany.com/about" />

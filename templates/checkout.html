@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout – {{ product.title }} | EasyWay Germany{% endblock %}
+
+{% block content %}
+<section style="padding: 50px 0 80px;">
+  <div class="container container-narrow">
+    <div style="text-align: center; margin-bottom: 36px;">
+      <span class="section-tag">Secure Checkout</span>
+      <h1 class="section-title">Complete Your Order</h1>
+      <p class="section-desc">Instant digital access will be granted immediately upon completing this step.</p>
+    </div>
+
+    <div class="checkout-grid">
+      <!-- Order Form -->
+      <div class="form-card">
+        <form action="{{ url_for('checkout_confirm', product_id=product.id) }}" method="POST">
+          <h3 style="font-size: 20px; margin-bottom: 20px;">1. Customer Details</h3>
+          
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" value="{{ current_user.full_name }}" readonly>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Account Email (Files delivered to this account)</label>
+            <input type="email" class="form-control" value="{{ current_user.email }}" readonly>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border); margin: 28px 0;">
+
+          <h3 style="font-size: 20px; margin-bottom: 20px;">2. Select Payment Method</h3>
+
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px;">
+            <!-- Demo Instant Checkout -->
+            <label style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 2px solid var(--primary); border-radius: var(--radius-md); background: #FFF5F5; cursor: pointer;">
+              <input type="radio" name="payment_method" value="demo" checked style="margin-top: 4px; accent-color: var(--primary);">
+              <div>
+                <strong>⚡ Instant Demo Checkout (Simulator)</strong>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 2px 0 0;">
+                  Instantly tests the completed transaction & immediately unlocks your download file.
+                </p>
+              </div>
+            </label>
+
+            <!-- Stripe (Live/Test ready) -->
+            <label style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-md); background: #fff; cursor: pointer;">
+              <input type="radio" name="payment_method" value="stripe" style="margin-top: 4px; accent-color: var(--primary);">
+              <div>
+                <strong>💳 Credit / Debit Card / SEPA (Stripe)</strong>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 2px 0 0;">
+                  Visa, Mastercard, American Express, SEPA transfer.
+                </p>
+                <div class="payment-note" data-method="stripe" style="display: none; margin-top: 8px; font-size: 12px; color: #4B5563; background: #F3F4F6; padding: 8px; border-radius: 4px;">
+                  ℹ️ Stripe checkout mode selected. (Set <code>STRIPE_SECRET_KEY</code> in environment for live processing).
+                </div>
+              </div>
+            </label>
+
+            <!-- Razorpay -->
+            <label style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; border: 1px solid var(--border); border-radius: var(--radius-md); background: #fff; cursor: pointer;">
+              <input type="radio" name="payment_method" value="razorpay" style="margin-top: 4px; accent-color: var(--primary);">
+              <div>
+                <strong>🇮🇳 Razorpay (UPI, GPay, Paytm & Netbanking)</strong>
+                <p style="font-size: 13px; color: var(--text-muted); margin: 2px 0 0;">
+                  Preferred for Indian bank accounts and UPI IDs.
+                </p>
+                <div class="payment-note" data-method="razorpay" style="display: none; margin-top: 8px; font-size: 12px; color: #4B5563; background: #F3F4F6; padding: 8px; border-radius: 4px;">
+                  ℹ️ Razorpay checkout mode selected. (Set <code>RAZORPAY_KEY_ID</code> in environment for live Indian gateway).
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); cursor: pointer;">
+              <input type="checkbox" required checked style="accent-color: var(--primary);">
+              <span>I agree to the Digital Delivery Terms and understand that downloads are accessible immediately.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+            Confirm & Pay €{{ "%.2f"|format(product.price) }} &rarr;
+          </button>
+        </form>
+      </div>
+
+      <!-- Order Summary Card -->
+      <aside>
+        <div class="order-summary-box">
+          <h3 style="font-size: 18px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+            Order Summary
+          </h3>
+
+          <div style="margin-bottom: 16px;">
+            <span style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-light);">
+              {{ product.category.name }}
+            </span>
+            <h4 style="font-size: 15px; margin: 4px 0 8px;">{{ product.title }}</h4>
+            <span style="font-size: 13px; color: var(--text-muted);">Format: {{ product.file_original_name }}</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Item Subtotal</span>
+            <span>€{{ "%.2f"|format(product.price) }}</span>
+          </div>
+          <div class="summary-row">
+            <span>VAT / Taxes (0% Digital Edu)</span>
+            <span>€0.00</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total Due</span>
+            <span style="color: var(--primary);">€{{ "%.2f"|format(product.price) }}</span>
+          </div>
+
+          <div style="margin-top: 24px; padding-top: 16px; border-top: 1px dashed var(--border); font-size: 12px; color: var(--text-muted);">
+            <p>✔ Instant delivery to your dashboard</p>
+            <p>✔ Lifetime re-download guarantee</p>
+            <p>✔ 100% verified for German admissions</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+{% endblock %}

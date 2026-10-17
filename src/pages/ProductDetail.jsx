@@ -183,13 +183,56 @@ export default function ProductDetail() {
   const avgRating = reviews.length ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1) : null
 
   const productUrl = `https://easywaygermany.com/products/${product.slug}`
+
+  // Extract FAQs for Google FAQPage Schema.org rich snippets
+  let productFaqs = []
+  if (product.description) {
+    try {
+      const scriptMatch = product.description.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/i)
+      if (scriptMatch && scriptMatch[1]) {
+        const parsed = JSON.parse(scriptMatch[1])
+        if (parsed['@type'] === 'FAQPage' && Array.isArray(parsed.mainEntity)) {
+          productFaqs = parsed.mainEntity.map(item => ({
+            question: item.name || '',
+            answer: (item.acceptedAnswer?.text || '').replace(/<[^>]+>/g, '').trim()
+          }))
+        }
+      }
+    } catch (e) {}
+
+    if (productFaqs.length === 0) {
+      const itemRegex = /<h3>([^<]+)<\/h3>\s*<p>([\s\S]*?)<\/p>/gi
+      let match
+      while ((match = itemRegex.exec(product.description)) !== null) {
+        const q = match[1].replace(/<[^>]+>/g, '').trim()
+        const a = match[2].replace(/<[^>]+>/g, '').trim()
+        if (q && a && !q.toLowerCase().includes('what is inside') && !q.toLowerCase().includes('who should') && !q.toLowerCase().includes('how to use')) {
+          productFaqs.push({ question: q, answer: a })
+        }
+      }
+    }
+  }
+
+  const faqSchema = productFaqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: productFaqs.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  } : null
+
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.title,
     sku: product.slug,
     ...(catName && { category: catName }),
-    description: product.meta_description || product.short_description || product.description,
+    description: product.meta_description || product.short_description || product.description?.replace(/<[^>]+>/g, '').slice(0, 300),
     image: product.preview_image || undefined,
     brand: { '@type': 'Brand', name: 'EasyWay Germany' },
     offers: {
@@ -217,7 +260,8 @@ export default function ProductDetail() {
       { '@type': 'ListItem', position: 3, name: product.title, item: productUrl },
     ],
   }
-  const structuredData = [productSchema, breadcrumbSchema]
+  const structuredData = [productSchema, breadcrumbSchema, ...(faqSchema ? [faqSchema] : [])]
+  const displayHtml = (product.description || '').replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim()
 
   return (
     <>
@@ -286,6 +330,32 @@ export default function ProductDetail() {
                     <strong className="text-gray-900">{value}</strong>
                   </div>
                 ))}
+              </div>
+
+              {/* Admissions Verification & SEO Trust Badge Card */}
+              <div className="bg-gradient-to-br from-primary/5 via-white to-gray-50 border border-primary/15 rounded-2xl p-5 space-y-3 mt-4">
+                <div className="text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="material-icons-round text-base">verified_user</span>
+                  <span>Admissions Verification</span>
+                </div>
+                <div className="space-y-2 text-xs text-gray-700">
+                  <div className="flex items-start gap-2">
+                    <span className="material-icons-round text-success text-sm mt-0.5">check_circle</span>
+                    <span><strong>Audience:</strong> Masters & Bachelors in Germany from India</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="material-icons-round text-success text-sm mt-0.5">check_circle</span>
+                    <span><strong>Intake Verified:</strong> Winter 2025 / Summer 2026 / Winter 2026</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="material-icons-round text-success text-sm mt-0.5">check_circle</span>
+                    <span><strong>Requirements:</strong> English (IELTS/TOEFL), GPA Cutoffs & Fees</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="material-icons-round text-success text-sm mt-0.5">check_circle</span>
+                    <span><strong>Delivery:</strong> Instant Digital Download with Lifetime Updates</span>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -365,7 +435,7 @@ export default function ProductDetail() {
           {product.description && (
             <div className="max-w-3xl mx-auto mb-16">
               {descriptionIsHtml ? (
-                <div className="blog-content" dangerouslySetInnerHTML={{ __html: product.description }} />
+                <div className="blog-content" dangerouslySetInnerHTML={{ __html: displayHtml }} />
               ) : (
                 <p className="text-gray-600 leading-relaxed">{product.description}</p>
               )}

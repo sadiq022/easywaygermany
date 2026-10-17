@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useAuth } from '../context/AuthContext'
@@ -109,21 +109,26 @@ export default function Navbar() {
           <ul className="hidden md:flex items-center gap-6 list-none m-0 p-0">
             <li><NavLink to="/" end className={navLinkClass}>Home</NavLink></li>
 
-            {/* Study Dropdown */}
+            {/* Services Dropdown */}
             <li className="relative group py-2">
-              <span className={dropdownTrigger(false)}>
-                Study
-                <span className="material-icons-round text-base leading-none" style={{ fontSize: 16 }}>expand_more</span>
-              </span>
-              <div className="absolute left-0 top-full mt-0 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <div className="p-2 space-y-0.5">
-                  {STUDY_LINKS.map(item => (
-                    <Link key={item.to} to={item.to}
-                      className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-primary/5 hover:text-primary transition-colors group/item">
-                      <span className="material-icons-round text-primary text-base group-hover/item:text-primary">{item.icon}</span>
-                      <span className="text-sm font-semibold text-gray-800 group-hover/item:text-primary">{item.label}</span>
-                    </Link>
-                  ))}
+              <NavLink to="/services" className={navLinkClass}>
+                Services
+                <span className="material-icons-round text-base align-middle" style={{ fontSize: 16 }}>expand_more</span>
+              </NavLink>
+              <div className="absolute left-0 top-full mt-0 w-[420px] bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="p-3">
+                  <div className="grid grid-cols-2 gap-x-2 gap-y-1">
+                    <Link to="/services/university-shortlisting" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">University Shortlisting</Link>
+                    <Link to="/services/sop-writing" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">SOP Writing</Link>
+                    <Link to="/services/lor-writing" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">LOR Writing</Link>
+                    <Link to="/services/cv-preparation" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">CV Preparation</Link>
+                    <Link to="/services/visa-sop" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">Visa SOP</Link>
+                    <Link to="/services/visa-cover-letter" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">Visa Cover Letter</Link>
+                  </div>
+                  <div className="border-t border-gray-100 my-2" />
+                  <Link to="/services" className="block px-3 py-2.5 text-sm font-bold text-primary hover:bg-primary/5 transition-colors rounded-lg text-center">
+                    View All Services
+                  </Link>
                 </div>
               </div>
             </li>
@@ -178,26 +183,21 @@ export default function Navbar() {
               </div>
             </li>
 
-            {/* Services Dropdown */}
+            {/* Study Dropdown */}
             <li className="relative group py-2">
-              <NavLink to="/services" className={navLinkClass}>
-                Services
-                <span className="material-icons-round text-base align-middle" style={{ fontSize: 16 }}>expand_more</span>
-              </NavLink>
-              <div className="absolute left-0 top-full mt-0 w-[420px] bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
-                <div className="p-3">
-                  <div className="grid grid-cols-2 gap-x-2 gap-y-1">
-                    <Link to="/services/university-shortlisting" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">University Shortlisting</Link>
-                    <Link to="/services/sop-writing" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">SOP Writing</Link>
-                    <Link to="/services/lor-writing" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">LOR Writing</Link>
-                    <Link to="/services/cv-preparation" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">CV Preparation</Link>
-                    <Link to="/services/visa-sop" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">Visa SOP</Link>
-                    <Link to="/services/visa-cover-letter" className="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-primary/5 hover:text-primary transition-colors rounded-lg">Visa Cover Letter</Link>
-                  </div>
-                  <div className="border-t border-gray-100 my-2" />
-                  <Link to="/services" className="block px-3 py-2.5 text-sm font-bold text-primary hover:bg-primary/5 transition-colors rounded-lg text-center">
-                    View All Services
-                  </Link>
+              <span className={dropdownTrigger(false)}>
+                Study
+                <span className="material-icons-round text-base leading-none" style={{ fontSize: 16 }}>expand_more</span>
+              </span>
+              <div className="absolute left-0 top-full mt-0 w-56 bg-white border border-gray-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="p-2 space-y-0.5">
+                  {STUDY_LINKS.map(item => (
+                    <Link key={item.to} to={item.to}
+                      className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-primary/5 hover:text-primary transition-colors group/item">
+                      <span className="material-icons-round text-primary text-base group-hover/item:text-primary">{item.icon}</span>
+                      <span className="text-sm font-semibold text-gray-800 group-hover/item:text-primary">{item.label}</span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </li>
@@ -279,28 +279,25 @@ export default function Navbar() {
               </NavLink>
             </li>
 
-            {/* Mobile Study Dropdown */}
+            {/* Mobile Services */}
             <li>
               <div className="flex items-center justify-between">
-                <NavLink to="/study-in-germany" onClick={() => setDrawerOpen(false)}
+                <NavLink to="/services" onClick={() => setDrawerOpen(false)}
                   className={({ isActive }) => `flex-1 py-2.5 px-3 rounded-lg font-medium text-sm transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-700 hover:bg-gray-100'}`}>
-                  Study
+                  Services
                 </NavLink>
-                <button onClick={() => setMobileStudyOpen(!mobileStudyOpen)} className="p-2 text-gray-500">
-                  <span className={`material-icons-round transition-transform ${mobileStudyOpen ? 'rotate-180' : ''}`}>expand_more</span>
+                <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="p-2 text-gray-500">
+                  <span className={`material-icons-round transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`}>expand_more</span>
                 </button>
               </div>
-              {mobileStudyOpen && (
-                <ul className="pl-4 mt-1 space-y-0.5 mb-2">
-                  {STUDY_LINKS.map(item => (
-                    <li key={item.to}>
-                      <Link to={item.to} onClick={() => setDrawerOpen(false)}
-                        className="flex items-center gap-2 py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">
-                        <span className="material-icons-round text-primary text-sm">{item.icon}</span>
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
+              {mobileServicesOpen && (
+                <ul className="pl-6 mt-1 space-y-1 mb-2">
+                  <li><Link to="/services/university-shortlisting" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">University Shortlisting</Link></li>
+                  <li><Link to="/services/sop-writing" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">SOP Writing</Link></li>
+                  <li><Link to="/services/lor-writing" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">LOR Writing</Link></li>
+                  <li><Link to="/services/cv-preparation" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">CV Preparation</Link></li>
+                  <li><Link to="/services/visa-sop" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">Visa SOP</Link></li>
+                  <li><Link to="/services/visa-cover-letter" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">Visa Cover Letter</Link></li>
                 </ul>
               )}
             </li>
@@ -346,25 +343,28 @@ export default function Navbar() {
               )}
             </li>
 
-            {/* Mobile Services */}
+            {/* Mobile Study Dropdown */}
             <li>
               <div className="flex items-center justify-between">
-                <NavLink to="/services" onClick={() => setDrawerOpen(false)}
+                <NavLink to="/study-in-germany" onClick={() => setDrawerOpen(false)}
                   className={({ isActive }) => `flex-1 py-2.5 px-3 rounded-lg font-medium text-sm transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-gray-700 hover:bg-gray-100'}`}>
-                  Services
+                  Study
                 </NavLink>
-                <button onClick={() => setMobileServicesOpen(!mobileServicesOpen)} className="p-2 text-gray-500">
-                  <span className={`material-icons-round transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`}>expand_more</span>
+                <button onClick={() => setMobileStudyOpen(!mobileStudyOpen)} className="p-2 text-gray-500">
+                  <span className={`material-icons-round transition-transform ${mobileStudyOpen ? 'rotate-180' : ''}`}>expand_more</span>
                 </button>
               </div>
-              {mobileServicesOpen && (
-                <ul className="pl-6 mt-1 space-y-1 mb-2">
-                  <li><Link to="/services/university-shortlisting" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">University Shortlisting</Link></li>
-                  <li><Link to="/services/sop-writing" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">SOP Writing</Link></li>
-                  <li><Link to="/services/lor-writing" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">LOR Writing</Link></li>
-                  <li><Link to="/services/cv-preparation" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">CV Preparation</Link></li>
-                  <li><Link to="/services/visa-sop" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">Visa SOP</Link></li>
-                  <li><Link to="/services/visa-cover-letter" onClick={() => setDrawerOpen(false)} className="block py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">Visa Cover Letter</Link></li>
+              {mobileStudyOpen && (
+                <ul className="pl-4 mt-1 space-y-0.5 mb-2">
+                  {STUDY_LINKS.map(item => (
+                    <li key={item.to}>
+                      <Link to={item.to} onClick={() => setDrawerOpen(false)}
+                        className="flex items-center gap-2 py-2 px-3 text-sm text-gray-600 rounded-lg hover:bg-gray-50 hover:text-primary">
+                        <span className="material-icons-round text-primary text-sm">{item.icon}</span>
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               )}
             </li>

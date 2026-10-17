@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Digital Store – EasyWay Germany{% endblock %}
+{% block meta_description %}Browse digital resources, university masterlists, SOP blueprints, and CV templates for German Master applications.{% endblock %}
+
+{% block content %}
+<section style="padding: 50px 0 80px;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Resource Catalog</span>
+      <h1 class="section-title">Digital Products & Templates</h1>
+      <p class="section-desc">Download verified university guides, academic SOP frameworks, and German-standard CV kits.</p>
+    </div>
+
+    <!-- Search Form -->
+    <div class="search-bar-wrap">
+      <form action="{{ url_for('products') }}" method="GET" class="search-form">
+        {% if selected_category %}
+          <input type="hidden" name="category" value="{{ selected_category.slug }}">
+        {% endif %}
+        <input 
+          type="text" 
+          name="q" 
+          class="search-input" 
+          placeholder="Search resources (e.g. SOP, CS, TUM, Visa)..." 
+          value="{{ search_query }}"
+        >
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="filter-tabs">
+      <a href="{{ url_for('products') }}" class="filter-pill {% if not selected_category %}active{% endif %}">
+        All Categories
+      </a>
+      {% for cat in categories %}
+        <a 
+          href="{{ url_for('products') }}?category={{ cat.slug }}{% if search_query %}&q={{ search_query }}{% endif %}" 
+          class="filter-pill {% if selected_category and selected_category.id == cat.id %}active{% endif %}"
+        >
+          {{ cat.name }}
+        </a>
+      {% endfor %}
+    </div>
+
+    <!-- Products Grid -->
+    {% if products %}
+      <div class="product-grid">
+        {% for product in products %}
+          <div class="product-card">
+            {% if product.badge %}
+              <div class="product-badge-wrap">
+                <span class="badge {% if product.badge == 'Best Seller' %}badge-gold{% endif %}">{{ product.badge }}</span>
+              </div>
+            {% endif %}
+
+            <div class="product-category">{{ product.category.name }}</div>
+            <h2 class="product-title">
+              <a href="{{ url_for('product_detail', slug=product.slug) }}">{{ product.title }}</a>
+            </h2>
+            <p class="product-desc">{{ product.short_desc }}</p>
+
+            <div class="product-footer">
+              <div class="price-wrap">
+                {% if product.original_price %}
+                  <span class="original-price">€{{ "%.2f"|format(product.original_price) }}</span>
+                {% endif %}
+                <span class="current-price">€{{ "%.2f"|format(product.price) }}</span>
+              </div>
+              <a href="{{ url_for('product_detail', slug=product.slug) }}" class="btn btn-sm btn-primary">Details &rarr;</a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="text-align: center; padding: 60px 20px; background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--border);">
+        <h3 style="font-size: 22px; margin-bottom: 8px;">No resources found</h3>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Try adjusting your search terms or category filters.</p>
+        <a href="{{ url_for('products') }}" class="btn btn-outline">Clear All Filters</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

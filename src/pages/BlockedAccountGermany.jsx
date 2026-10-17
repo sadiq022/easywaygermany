@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 
@@ -69,7 +69,7 @@ const STEPS = [
     icon: 'person_add',
     title: 'Register & Submit Documents',
     desc: 'Create your account on the provider\'s website. Upload your passport, admission letter (or conditional acceptance), and fill in your personal details. No German bank account needed.',
-    img: 'https://images.unsplash.com/photo-1568234928966-359c35dd8327?w=600&q=80',
+    img: '/images/services/aps-certificate-guidance.jpg',
   },
   {
     n: '03',
