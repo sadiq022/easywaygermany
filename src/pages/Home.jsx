@@ -320,7 +320,7 @@ export default function Home() {
         <meta property="og:title" content="Masters & Bachelors in Germany Consultancy | EasyWay Germany" />
         <meta property="og:description" content="Expert guidance for Indian students applying to German universities — from consultants who actually live in Germany. SOP, LOR, CV, APS certificate, blocked account & visa support." />
         <meta property="og:url" content="https://easywaygermany.com/" />
-        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
+        <meta property="og:image" content="https://easywaygermany.com/og-banner.jpg" />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://easywaygermany.com/" />
 

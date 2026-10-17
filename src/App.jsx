@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { Toaster } from 'react-hot-toast'
@@ -52,6 +53,13 @@ import ShippingPolicy from './pages/legal/ShippingPolicy'
 function Layout() {
   const { pathname } = useLocation()
   const isAdmin = pathname.startsWith('/admin')
+
+  // The seo-meta edge function puts each page's structured data into the raw HTML for crawlers that do not
+  // run JavaScript. Every page's <Helmet> renders the same data once React is running, so remove the early
+  // copy here (otherwise Google would see it twice).
+  useEffect(() => {
+    document.querySelectorAll('script[data-ssr-schema]').forEach((el) => el.remove())
+  }, [])
 
   return (
     <>

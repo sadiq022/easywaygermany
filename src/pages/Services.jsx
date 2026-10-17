@@ -82,7 +82,7 @@ export default function Services() {
         <meta property="og:title" content="Study in Germany Services 2026 — SOP, APS, Visa SOP | EasyWay Germany" />
         <meta property="og:description" content="Professional SOP, LOR, CV, university shortlisting and visa services for Indian students applying to Germany. Affordable prices, unlimited revisions." />
         <meta property="og:url" content="https://easywaygermany.com/services" />
-        <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
+        <meta property="og:image" content="https://easywaygermany.com/og-banner.jpg" />
         <link rel="canonical" href="https://easywaygermany.com/services" />
 
         <script type="application/ld+json">{JSON.stringify({

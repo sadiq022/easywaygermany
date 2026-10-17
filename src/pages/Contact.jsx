@@ -36,11 +36,11 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Book a Free Consultation | EasyWay Germany</title>
-        <meta name="description" content="Book a free consultation with EasyWay Germany. We review your profile, suggest universities and guide you on the APS, blocked account and student visa." />
+        <title>Free Masters in Germany Consultation | EasyWay Germany</title>
+        <meta name="description" content="Book a free consultation with EasyWay Germany. Help with Masters and Bachelors in Germany: SOP, APS, blocked account and visa SOP. Based in Dresden." />
         <meta name="keywords" content="free consultation study in germany, book free counselling germany study, germany study abroad consultancy contact, germany education consultants" />
-        <meta property="og:title" content="Free Consultation – Study in Germany | EasyWay Germany" />
-        <meta property="og:description" content="Book your free profile evaluation with EasyWay Germany. Get expert advice on university admissions, APS certificate, blocked account, and student visa." />
+        <meta property="og:title" content="Contact EasyWay Germany — Free Consultation for Masters in Germany" />
+        <meta property="og:description" content="Book a free consultation with EasyWay Germany. Expert help from Dresden for Indian students — SOP, APS, blocked account, visa SOP." />
         <meta property="og:url" content="https://easywaygermany.com/contact" />
         <meta property="og:image" content="https://easywaygermany.com/images/easyway-logo.png" />
         <link rel="canonical" href="https://easywaygermany.com/contact" />

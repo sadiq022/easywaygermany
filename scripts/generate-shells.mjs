@@ -28,6 +28,9 @@ const PATHS = [
   '/services/university-shortlisting', '/services/visa-sop', '/services/visa-cover-letter',
 ]
 
+// Pages whose text shell is hand-written (it adds live lists), but whose structured data is still captured here.
+const SCHEMA_ONLY = ['/']
+
 const CHROME_CANDIDATES = [
   process.env.CHROME_PATH,
   'C:/Program Files/Google/Chrome/Application/chrome.exe',
@@ -113,9 +116,35 @@ async function main() {
   const stripTags = (h) => h.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/\s+/g, ' ').trim()
   const out = {}
 
+  // Navigate and wait until the React app has rendered (a cold dev server can take several seconds on the first load).
+  const loadPage = async (url) => {
+    await send('Page.navigate', { url })
+    for (let i = 0; i < 120; i++) {
+      await sleep(250)
+      if (await evaluate(`!!document.getElementById('root') && document.getElementById('root').children.length > 0`)) break
+    }
+    await sleep(2000) // let data fetches and <Helmet> settle
+  }
+
+  // Structured data (JSON-LD) that the page adds through <Helmet>. Those tags carry data-rh="true"; the ones
+  // already in index.html do not, so this never duplicates the site-wide Organization / WebSite schema.
+  const captureSchema = async () => {
+    const raw = await evaluate(`[...document.head.querySelectorAll('script[type="application/ld+json"][data-rh="true"]')].map((s) => s.textContent)`)
+    return raw.map((t) => JSON.stringify(JSON.parse(t))) // throws if a page ships invalid JSON-LD
+  }
+
+  await loadPage(BASE + '/') // warm-up, so the first real page is not captured half-loaded
+
+  for (const p of SCHEMA_ONLY) {
+    await loadPage(BASE + p)
+    const schema = await captureSchema()
+    out[p] = { schema }
+    console.log(`${p.padEnd(36)} structured data only: ${schema.length} block(s)`)
+  }
+
   for (const p of PATHS) {
-    await send('Page.navigate', { url: BASE + p })
-    await sleep(3200)
+    await loadPage(BASE + p)
+    const schema = await captureSchema()
     const blocks = await evaluate(EXTRACT)
     let h1 = ''
     let prevLevel = 1
@@ -151,8 +180,8 @@ async function main() {
     if (!h1) throw new Error(`${p}: no <h1> found on the page`)
     const body = html.join('')
     const words = stripTags(h1 + ' ' + body).split(' ').filter(Boolean).length
-    out[p] = { h1, body }
-    console.log(`${p.padEnd(36)} ${String(words).padStart(5)} words, ${(body.match(/<p>/g) || []).length} paragraphs, ${(body.match(/<a /g) || []).length} links`)
+    out[p] = { h1, body, schema }
+    console.log(`${p.padEnd(36)} ${String(words).padStart(5)} words, ${(body.match(/<p>/g) || []).length} paragraphs, ${(body.match(/<a /g) || []).length} links, ${schema.length} schema block(s)`)
   }
 
   ws.close()
@@ -166,7 +195,7 @@ async function main() {
   if (start < 0 || end < 0 || end < start) throw new Error('generated-shells markers not found in the edge function')
   src = src.slice(0, start) + '// <generated-shells:start>\n' + literal + '\n' + src.slice(end)
   fs.writeFileSync(EDGE_FILE, crlf ? src.replace(/\n/g, '\r\n') : src)
-  console.log(`\nWrote ${PATHS.length} page snapshots into netlify/edge-functions/seo-meta.js`)
+  console.log(`\nWrote ${PATHS.length} page snapshots + ${SCHEMA_ONLY.length} schema-only page(s) into netlify/edge-functions/seo-meta.js`)
 }
 
 main()
