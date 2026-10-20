@@ -316,11 +316,11 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Masters & Bachelors in Germany Consultancy | EasyWay</title>
-        <meta name="description" content="Planning a Masters or Bachelors in Germany? Get expert help from consultants who live there: SOP, APS, shortlisting, blocked account and visa." />
-        <meta name="keywords" content="masters in germany, bachelors in germany, study in germany consultancy, study in germany from india, germany university admission, APS certificate help, blocked account germany, germany student visa consultants, SOP writing germany, masters in germany indian students" />
-        <meta property="og:title" content="Masters & Bachelors in Germany Consultancy | EasyWay Germany" />
-        <meta property="og:description" content="Expert guidance for Indian students applying to German universities — from consultants who actually live in Germany. SOP, LOR, CV, APS certificate, blocked account & visa support." />
+        <title>EasyWay Germany — Study in Germany Consultancy | Masters &amp; Bachelors</title>
+        <meta name="description" content="EasyWay Germany (easywaygermany.com / Easy Way Germany) is the leading study in Germany consultancy for Indian, Bangladeshi and Nepali students. Free Masters guidance, SOP, APS, and visa support." />
+        <meta name="keywords" content="EasyWay Germany, easywaygermany, easy way germany, easyway germany, easywaygermany.com, EasyWay, study in germany, masters in germany, bachelors in germany, study in germany consultancy, study in germany from india, study in germany from nepal, APS certificate help, blocked account germany, germany student visa consultants, SOP writing germany" />
+        <meta property="og:title" content="EasyWay Germany — Study in Germany Consultancy | Masters &amp; Bachelors" />
+        <meta property="og:description" content="EasyWay Germany (Easy Way Germany) provides expert guidance for Indian students applying for Masters &amp; Bachelors at top German public universities. SOP, APS, and Visa." />
         <meta property="og:url" content="https://easywaygermany.com/" />
         <meta property="og:image" content="https://easywaygermany.com/og-banner.jpg" />
         <meta property="og:type" content="website" />
@@ -330,6 +330,15 @@ export default function Home() {
           '@context': 'https://schema.org',
           '@type': 'LocalBusiness',
           name: 'EasyWay Germany',
+          alternateName: [
+            'easywaygermany',
+            'easy way germany',
+            'easyway germany',
+            'Easy Way Germany',
+            'EasyWay',
+            'EasyWayGermany',
+            'easywaygermany.com'
+          ],
           description: 'Study abroad consultancy for Masters and Bachelors in Germany for Indian, Bangladeshi, and Nepali students. Based in Dresden, Germany.',
           url: 'https://easywaygermany.com',
           email: 'info@easywaygermany.com',
@@ -395,7 +404,7 @@ export default function Home() {
             </div>
             {/* Desktop-only Heading */}
             <h1 className="sr-only md:not-sr-only font-serif text-5xl md:text-6xl font-black leading-tight md:mb-4 text-center">
-              Masters &amp; Bachelors in Germany<span className="sr-only"> — </span><br />
+              <span className="sr-only">EasyWay Germany — </span>Masters &amp; Bachelors in Germany<span className="sr-only"> Consultancy — </span><br />
               <span className="text-yellow-400 text-2xl md:text-3xl">Expert Consultancy from People Who Live Here</span>
             </h1>
 
@@ -687,9 +696,24 @@ export default function Home() {
                 icon: 'school',
               },
               {
-                title: 'Is a Masters in Germany Really Free?',
+                title: "Is a Master's in Germany Free for International Students? (2026)",
                 to: '/blog/is-masters-in-germany-free-for-international-students-2026',
                 icon: 'euro',
+              },
+              {
+                title: 'Best Cities in Germany for IT & Computer Science Students',
+                to: '/blog/best-cities-in-germany-for-it-computer-science-students',
+                icon: 'computer',
+              },
+              {
+                title: 'Germany University Intakes 2026–27: Winter vs Summer Deadlines',
+                to: '/blog/germany-university-intakes-2026-27-winter-vs-summer-intake-explained',
+                icon: 'calendar_month',
+              },
+              {
+                title: 'Study in Germany from Nepal: 2026 Complete Guide (Cost & Visa)',
+                to: '/blog/study-in-germany-from-nepal-cost-visa-process-2026',
+                icon: 'public',
               },
               {
                 title: 'Masters in Germany Cost in Indian Rupees — Full Breakdown',
@@ -697,9 +721,14 @@ export default function Home() {
                 icon: 'currency_rupee',
               },
               {
-                title: 'How to Study in Germany from India — Step by Step',
-                to: '/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026',
-                icon: 'alt_route',
+                title: 'VPD Uni-Assist: What It Is, How to Apply & Fees',
+                to: '/blog/uni-assist-vpd-what-it-is-and-how-to-apply-as-an-international-student',
+                icon: 'description',
+              },
+              {
+                title: 'Anabin Degree Check 2026: Verify University & Degree',
+                to: '/blog/anabin-degree-recognition-2026-does-your-degree-qualify-for-germany',
+                icon: 'verified',
               },
               {
                 title: 'Best Consultancy for Masters in Germany — Why EasyWay Germany',

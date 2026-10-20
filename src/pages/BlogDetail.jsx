@@ -52,6 +52,68 @@ function wrapCtaSections(html) {
   return body.innerHTML
 }
 
+function extractFaqSchema(html) {
+  if (!html || typeof window === 'undefined') return []
+  try {
+    const doc = new DOMParser().parseFromString(html, 'text/html')
+    const items = []
+    
+    // Check h3 headers with questions
+    const h3s = Array.from(doc.querySelectorAll('h3'))
+    for (const h3 of h3s) {
+      const q = h3.textContent.trim()
+      const qLower = q.toLowerCase()
+      if (q.endsWith('?') || qLower.startsWith('what') || qLower.startsWith('how') || qLower.startsWith('is ') || qLower.startsWith('can ') || qLower.startsWith('do ') || qLower.startsWith('which')) {
+        let answer = ''
+        let next = h3.nextElementSibling
+        while (next && (next.tagName.toLowerCase() === 'p' || next.tagName.toLowerCase() === 'ul' || next.tagName.toLowerCase() === 'ol')) {
+          answer += next.textContent.trim() + ' '
+          next = next.nextElementSibling
+        }
+        if (answer.trim()) {
+          items.push({
+            '@type': 'Question',
+            name: q,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: answer.trim()
+            }
+          })
+        }
+      }
+    }
+    
+    // Also check <p><strong>Question?</strong> Answer</p>
+    if (items.length === 0) {
+      const ps = Array.from(doc.querySelectorAll('p'))
+      for (const p of ps) {
+        const strong = p.querySelector('strong, b')
+        if (strong) {
+          const q = strong.textContent.trim()
+          if (q.endsWith('?') || q.toLowerCase().includes('is a master') || q.toLowerCase().includes('what are')) {
+            const fullText = p.textContent.trim()
+            const answer = fullText.replace(q, '').trim()
+            if (answer) {
+              items.push({
+                '@type': 'Question',
+                name: q,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: answer
+                }
+              })
+            }
+          }
+        }
+      }
+    }
+
+    return items
+  } catch {
+    return []
+  }
+}
+
 export default function BlogDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -195,6 +257,8 @@ export default function BlogDetail() {
     }
   }
 
+  const faqEntities = extractFaqSchema(blog.content)
+
   return (
     <div className="bg-white min-h-screen">
       <Helmet>
@@ -245,6 +309,13 @@ export default function BlogDetail() {
           url: pageUrl,
           mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl }
         })}</script>
+        {faqEntities.length > 0 && (
+          <script type="application/ld+json">{JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqEntities
+          })}</script>
+        )}
       </Helmet>
       {/* Blog Hero/Header Section */}
       <header className="bg-gradient-to-b from-gray-50 via-gray-50/50 to-white pt-10 pb-7 border-b border-gray-100">

@@ -600,7 +600,91 @@ export default function StudyInGermany() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
+      {/* ── POPULAR GUIDES & ARTICLES ── */}
+      <section className="py-16 md:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <div className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1 rounded-full mb-3">Knowledge Base</div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-3">Essential Study in Germany Guides</h2>
+            <p className="text-gray-900 max-w-2xl mx-auto">In-depth research, exact cost breakdowns, and step-by-step guides written by our Dresden team.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Is a Master's in Germany Really Free? (2026 Fees & Exceptions)",
+                desc: "Discover how Germany's tuition-free system works, exact semester contributions (€100–€350), and the Baden-Württemberg exception.",
+                to: "/blog/is-masters-in-germany-free-for-international-students-2026",
+                tag: "Tuition Free"
+              },
+              {
+                title: "Winter vs Summer Intake: 2026–27 Deadlines & Comparison",
+                desc: "Compare application deadlines, course availability, uni-assist dates, and the best intake for international students.",
+                to: "/blog/germany-university-intakes-2026-27-winter-vs-summer-intake-explained",
+                tag: "Deadlines"
+              },
+              {
+                title: "VPD Uni-Assist: What It Is, How to Apply & Fees",
+                desc: "Step-by-step Vorprüfungsdokumentation (VPD) guide: required documents, €75 fee, and processing timelines.",
+                to: "/blog/uni-assist-vpd-what-it-is-and-how-to-apply-as-an-international-student",
+                tag: "Admissions"
+              },
+              {
+                title: "Anabin Degree Check: How to Verify Your Degree for Germany",
+                desc: "Verify your university's H+ status and check your Bachelor's degree equivalence before applying to German universities.",
+                to: "/blog/anabin-degree-recognition-2026-does-your-degree-qualify-for-germany",
+                tag: "Eligibility"
+              },
+              {
+                title: "Germany Student Visa Without Blocked Account: 4 Legal Alternatives",
+                desc: "Explore legal alternatives to the €11,904 blocked account: Verpflichtungserklärung, DAAD scholarships, and bank guarantees.",
+                to: "/blog/germany-student-visa-without-blocked-account-alternatives-2026",
+                tag: "Visa & Finance"
+              },
+              {
+                title: "How to Open a Bank Account in Germany for Students (2026)",
+                desc: "Complete guide to student Girokonto in Germany: compare N26, Expatrio, Sparkasse & Fintiba for zero-fee accounts.",
+                to: "/blog/opening-a-bank-account-in-germany-student-guide-2026",
+                tag: "Student Life"
+              },
+              {
+                title: "Study in Germany from Nepal: 2026 Complete Guide",
+                desc: "Comprehensive roadmap for Nepalese students: total cost in NPR, German Embassy Kathmandu visa, NOC, and no APS requirement.",
+                to: "/blog/study-in-germany-from-nepal-cost-visa-process-2026",
+                tag: "Nepal Guide"
+              },
+              {
+                title: "Best Cities in Germany for IT & Computer Science Students",
+                desc: "Compare Berlin, Munich, Aachen, Karlsruhe, and Darmstadt for CS universities, tech startups, and student living costs.",
+                to: "/blog/best-cities-in-germany-for-it-computer-science-students",
+                tag: "IT & Tech"
+              },
+              {
+                title: "Masters in Germany Cost in Indian Rupees (2026 Breakdown)",
+                desc: "Full budget breakdown in INR: blocked account, semester contributions, accommodation, and living costs in Germany.",
+                to: "/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown",
+                tag: "Budget Guide"
+              },
+            ].map(guide => (
+              <Link
+                key={guide.to}
+                to={guide.to}
+                className="bg-white rounded-2xl p-6 border border-gray-150 hover:border-primary/40 hover:shadow-card transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <span className="inline-block text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full mb-3">{guide.tag}</span>
+                  <h3 className="font-bold text-gray-900 group-hover:text-primary transition-colors text-base mb-2 leading-snug">{guide.title}</h3>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-4">{guide.desc}</p>
+                </div>
+                <div className="flex items-center gap-1 text-primary text-xs font-bold group-hover:translate-x-1 transition-transform">
+                  Read complete guide <span className="material-icons-round text-sm">arrow_forward</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">

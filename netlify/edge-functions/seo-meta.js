@@ -23,10 +23,10 @@ const OG_IMAGE_FALLBACK = `${SITE}/og-banner.jpg`
 // `ogTitle` / `ogDescription` are optional and fall back to title / description.
 const STATIC_META = {
   '/': {
-    title: 'Masters & Bachelors in Germany Consultancy | EasyWay',
+    title: 'EasyWay Germany — Study in Germany Consultancy | Masters & Bachelors',
     description:
-      'Planning a Masters or Bachelors in Germany? Get expert help from consultants who live there: SOP, APS, shortlisting, blocked account and visa.',
-    ogTitle: 'Masters & Bachelors in Germany Consultancy | EasyWay Germany',
+      'EasyWay Germany (Easy Way Germany) is the leading study in Germany consultancy for Indian students applying for Masters & Bachelors. Expert SOP, APS, and visa support.',
+    ogTitle: 'EasyWay Germany — Study in Germany Consultancy | Masters & Bachelors',
     type: 'website',
     image: 'https://easywaygermany.com/og-banner.jpg',
   },
@@ -372,11 +372,17 @@ const SERVICE_LINKS = [
 
 const PILLAR_GUIDES = [
   ['/blog/masters-in-germany-for-indian-students-complete-guide-2026', 'Masters in Germany for Indian Students: Complete Guide 2026'],
-  ['/blog/is-masters-in-germany-free-for-international-students-2026', 'Is a Masters in Germany Free for International Students?'],
+  ['/blog/is-masters-in-germany-free-for-international-students-2026', "Is a Master's in Germany Free for International Students? (2026 Fees & Exceptions)"],
   ['/blog/masters-in-germany-cost-in-indian-rupees-2026-full-breakdown', 'Masters in Germany Cost in Indian Rupees: Full Breakdown'],
   ['/blog/how-to-study-in-germany-from-india-step-by-step-guide-2026', 'How to Study in Germany from India: Step-by-Step Guide'],
-  ['/blog/masters-in-germany-without-ielts-updated-guide-for-2026', 'Masters in Germany Without IELTS: Complete Guide'],
+  ['/blog/study-in-germany-from-nepal-cost-visa-process-2026', 'Study in Germany from Nepal: 2026 Complete Guide (Cost, Visa & Process)'],
+  ['/blog/best-cities-in-germany-for-it-computer-science-students', 'Best Cities in Germany for IT & Computer Science Students'],
+  ['/blog/germany-university-intakes-2026-27-winter-vs-summer-intake-explained', 'Germany University Intakes 2026–27: Winter vs Summer Deadlines & Comparison'],
+  ['/blog/uni-assist-vpd-what-it-is-and-how-to-apply-as-an-international-student', 'VPD Uni-Assist: What It Is, How to Apply & Fees (2026 Guide)'],
+  ['/blog/anabin-degree-recognition-2026-does-your-degree-qualify-for-germany', 'Anabin Degree Check 2026: Verify University & Degree for Germany'],
   ['/blog/germany-student-visa-without-blocked-account-alternatives-2026', 'Germany Student Visa Without a Blocked Account: 4 Legal Alternatives'],
+  ['/blog/opening-a-bank-account-in-germany-student-guide-2026', 'How to Open a Bank Account in Germany for Students (2026 Guide)'],
+  ['/blog/best-consultancy-for-masters-in-germany-easyway-germany', 'Best Consultancy for Masters in Germany — EasyWay Germany Reviews'],
   ['/blog/aps-certificate-process-for-indian-students-complete-2025-guide', 'APS Certificate Process for Indian Students'],
 ]
 
