@@ -119,6 +119,7 @@ desktop.ini
 *.sql
 *.sql.gz
 *.sqlite
+*.db
 supabase_backup.sql
 
 test.html
